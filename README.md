@@ -9,7 +9,7 @@ Our application provides users the ability to post pictures of their finished me
 
 With Instacrumbz, upload images of your dirty dishes and half eaten meals, and show everyone what you ate during the day. The more crumbs the better!
 
-This project mimics Instagram's ability to share and post pictures on an online platform.
+This project mimics Instagram's ability to share and post pictures on an online platform. 
 
 [Instacrumbz Live Site](https://instacrumbz.herokuapp.com/login)
 
