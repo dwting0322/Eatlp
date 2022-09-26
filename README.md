@@ -11,17 +11,19 @@ With Instacrumbz, upload images of your dirty dishes and half eaten meals, and s
 
 This project mimics Instagram's ability to share and post pictures on an online platform. 
 
-[Instacrumbz Live Site](https://instacrumbz.herokuapp.com/login)
+[Eatlp Live Site - update later]()
 
 ## Project Wiki Links:
 
-[API Routes](https://github.com/avenida714/instacrumbz/wiki/API-ROUTES)
+[API Routes](https://github.com/dwting0322/Eatlp/wiki/API-ROUTES)
 
-[DB Schema](https://github.com/avenida714/instacrumbz/wiki/DB-SCHEMA)
+[DB Schema](https://github.com/dwting0322/Eatlp/wiki/DB-SCHEMA)
 
-[Features List](https://github.com/avenida714/instacrumbz/wiki/FEATURES)
+[Features List](https://github.com/dwting0322/Eatlp/wiki/FEATURES)
 
-[User Stories](https://github.com/avenida714/instacrumbz/wiki/USER-STORIES)
+[User Stories](https://github.com/dwting0322/Eatlp/wiki/USER-STORIES)
+
+[Wire Frames](https://github.com/dwting0322/Eatlp/wiki/WIRE-FRAMES)
 
 ## Tech Stack:
 
