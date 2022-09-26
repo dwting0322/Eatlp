@@ -1,15 +1,15 @@
-# Instacrumbz
+# Eatlp
 
-## Welcome to Instacrumbz, our project clone of Instagram.
+## Welcome to Eatlp, our project clone of Yelp.
 
 ## About Our Web Application!
 
-InstaCrumbz is a full-stack web application inspired by Instagram, with a little twist!
-Our application provides users the ability to post pictures of their finished meals, leave likes and add comments to said photos!
+Eatlp is a full-stack web application inspired by Yelp, with a little twist!
+Our application provides users the ability to post business of their meals, leave likes and add comments to said business!
 
-With Instacrumbz, upload images of your dirty dishes and half eaten meals, and show everyone what you ate during the day. The more crumbs the better!
+With Eatlp, upload images of your business, and show everyone what you like to do for your business. 
 
-This project mimics Instagram's ability to share and post pictures on an online platform. 
+This project mimics Yelp's ability to share and post pictures on an online platform. 
 
 [Eatlp Live Site - update later]()
 
@@ -92,15 +92,15 @@ npm start
 
 <img width="1792" alt="Screen Shot 2022-09-24 at 5 20 06 PM" src="">
 
-### All Photos Feed
+### Home page
 
 <img width="1792" alt="Screen Shot 2022-09-24 at 5 05 09 PM" src="">
 
-### Create a New Post
+### Create a New Business
 
 <img width="1792" alt="Screen Shot 2022-09-24 at 5 05 42 PM" src="">
 
-### Edit a Post / Delete a Post
+### Edit a Business / Delete a Business
 
 <img width="1790" alt="Screen Shot 2022-09-24 at 5 33 29 PM" src="">
 
