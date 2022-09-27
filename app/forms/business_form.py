@@ -45,7 +45,7 @@ class BusinessForm(FlaskForm):
         validators.Length(min=1, max=500, message="Description must be between 1 - 500 characters")])
 
     price_range = StringField("Price range", validators=[DataRequired(), 
-        validators.Length(min=1, max=4, message="Price range must be between $ - $$$$")])
+        validators.Length(min=1, max=4, message="Price range must be either $, $$, $$$ or $$$$")])
 
     preview_img = StringField("Preview image", validators=[DataRequired(), check_preview_img, url(),
         validators.Length(max=500, message="Preview image must be less than 500 characters")])
