@@ -19,14 +19,18 @@ def all_businesses():
 # Get one business by business ID
 @business_routes.route("/<int:business_id>")
 def get_one_business(id):
-    business = Business.query.get(id)
+    business = Business.query.get_or_404(id)
     return business.to_dict()
 
 
-# Get all busioness of the Current User
+# Get all business of the Current User
 @business_routes.route("/current")
 @login_required
 def get_current_businesses():
+
+    if Business.owner_id != current_user.id:
+        return {"message": "You don't have any business", "statusCode": 404}
+
     current_business = Business.query.filter(Business.owner_id == current_user.id).all()
     current_business_json = [current_post.to_dict() for current_post in current_business]
     return {"current_business": current_business_json}
@@ -102,6 +106,10 @@ def edit_business():
 @business_routes.route("/<int:business_id>", methods=["DELETE"])
 @login_required
 def delete_business(business_id):
+
+    if Business.id != business_id:
+        return {"message": "You business have not found", "statusCode": 404}
+
     business = Business.query.filter(Business.id == business_id).first()
     if current_user.id == business.owner_id:
         db.session.delete(business)
