@@ -36,7 +36,7 @@ def get_current_reviews():
     return {"current_review": current_review_json}
 
 
-#EDIT A COMMENT
+# edit review
 @review_routes.route('/<int:review_id>', methods=['PUT'])
 @login_required
 def edit_comment(review_id):
@@ -51,18 +51,20 @@ def edit_comment(review_id):
 
     if form.validate_on_submit():
         edited_review.review = form.data['review']
+        edited_review.stars = form.data['stars']
         db.session.commit()
+
         return edited_review.to_dict()
     else:
         return {'message': 'Unauthorized user', "statusCode": 403}
 
 
-#DELETE COMMENT
+# delete review
 @review_routes.route('/<int:review_id>', methods=['DELETE'])
 @login_required
 def delete_comment(review_id):
 
-    review = Review.query.get_or_404(review_id) # special query method that finds it, or returns a 404
+    review = Review.query.get_or_404(review_id)
 
     if current_user.id == review.user_id:
 

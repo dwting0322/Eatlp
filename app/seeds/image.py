@@ -6,30 +6,30 @@ def seed_images():
         url = "https://cdn.lifestyleasia.com/wp-content/uploads/sites/3/2020/12/17161236/likemeat-f96pzsJZpcs-unsplash-scaled.jpg",
         user_id = 1,
         business_id = 1,
-        review_id = 1
+        review_id = None
     )
     image2 = Image(
         url = "https://s3-media0.fl.yelpcdn.com/bphoto/Roj6QcWeG0VW2B1-Ny5HVw/o.jpg",
         user_id = 2,
         business_id = 2,
-        review_id = 2
+        review_id = None
     )
     image3 = Image(
         url = "https://s.inyourpocket.com/gallery/pisa/2020/02/271514.jpg",
         user_id = 3,
-        business_id = 3,
+        business_id = None,
         review_id = 3
     )
     image4 = Image(
         url = "https://img1.mashed.com/img/gallery/the-oldest-fast-food-chain-in-the-us-might-surprise-you/l-intro-1615688999.jpg",
         user_id = 4,
         business_id = 4,
-        review_id = 4
+        review_id = None
     )
     image5 = Image(
         url = "https://www.adrianharrison.com.au/wp-content/uploads/2018/09/enticing-steak-sandwich-photography.jpg",
         user_id = 5,
-        business_id = 5,
+        business_id = None,
         review_id = 5
     )
 

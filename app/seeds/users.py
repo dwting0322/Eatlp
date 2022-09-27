@@ -8,7 +8,7 @@ def seed_users():
         password='password', 
         first_name='Demo',
         last_name='Demo',
-        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506',
+        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506'
         
         )
     marnie = User(
@@ -16,72 +16,72 @@ def seed_users():
         password='password', 
         first_name='Marnie',
         last_name='Lara',
-        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506',
-        password='password'
+        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506'
+
         )
     bobbie = User(
         email='bobbie@aa.io', 
         password='password', 
         first_name='Bobbie',
         last_name='Lee',
-        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506',
-        password='password'
+        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506'
+       
         )
     fred = User(
         email='fred@aa.io', 
         password='password', 
         first_name='Fred',
         last_name='Flintstone',
-        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506',
-        password='password'
+        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506'
+     
         )
     kangaskhan = User(
         email='kangaskhan@aa.io', 
         password='password', 
         first_name='Kangaskhan',
         last_name='Wang',
-        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506',
-        password='password'
+        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506'
+       
         )
     maggie = User(
         email='maggie@aa.io', 
         password='password', 
         first_name='Maggie',
         last_name='Cute',
-        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506',
-        password='password'
+        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506'
+       
         )
     kevin = User(
-        email='lisa@aa.io', 
+        email='kevin@aa.io', 
         password='password', 
         first_name='Kevin',
         last_name='Love',
-        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506',
-        password='password'
+        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506'
+        
         )
     jordon = User(
-        email='lisa@aa.io', 
+        email='jordon@aa.io', 
         password='password', 
         first_name='Jordon',
         last_name='James',
-        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506',
-        password='password'
+        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506'
+        
         )
     carol = User(
         email='carol@aa.io', 
         password='password', 
         first_name='Carol',
         last_name='Alila',
-        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506',
-        password='password'
+        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506'
+        
         )
     dragon = User(
-        email='lisa@aa.io', 
+        email='dragon@aa.io', 
         password='password', 
         first_name='Dragon',
         last_name='Ting',
-        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506',
-        password='password'
+        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506'
+        
         )
 
     db.session.add(demo)
