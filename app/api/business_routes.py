@@ -3,6 +3,10 @@ from flask_login import current_user, login_user, logout_user, login_required
 from ..models.business import Business
 from ..forms.business_form import BusinessForm
 from ..models.db import db
+from ..models.review import Review
+from ..forms.review_form import ReviewForm
+from ..models.image import Image
+
 
 business_routes = Blueprint('business', __name__)
 
@@ -10,7 +14,7 @@ business_routes = Blueprint('business', __name__)
 
 # Get all businesses
 @business_routes.route("/")
-def all_businesses():
+def get_all_businesses():
     all_business = Business.query.all()
     all_business_json = [business.to_dict() for business in all_business]
     return {"businesses": all_business_json}
@@ -18,9 +22,16 @@ def all_businesses():
 
 # Get one business by business ID
 @business_routes.route("/<int:business_id>")
-def get_one_business(id):
-    business = Business.query.get_or_404(id)
-    return business.to_dict()
+def get_one_business(business_id):
+
+    business = Business.query.get_or_404(business_id)
+    business_json = business.to_dict()
+    # add image to one business
+    images_by_business_id = Image.query.filter(Image.business_id == business_id).all()
+    images_by_business_id_json = [image.to_dict() for image in images_by_business_id]
+    
+    business_json.image = images_by_business_id_json ## add image list to business
+    return {"business": business_json}
 
 
 # Get all business of the Current User
@@ -117,3 +128,43 @@ def delete_business(business_id):
         return {'message': 'Successfully deleted'}
     else:
         return {'message': 'Unauthorized user', "statusCode": 403}
+
+
+
+#Create a new review
+@business_routes.route("/<int:business_id>/reviews", methods=["POST"])
+@login_required
+def create_new_review(business_id):
+    form = ReviewForm()
+    business = Business.query.get_or_404(business_id)
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        new_review = Review(
+            user_id=current_user.id,
+            business_id=business.id,
+            review=form.data['review'],
+            stars=form.data['stars'],
+        )
+        db.session.add(new_review)
+        db.session.commit()
+        return new_review
+
+    else:
+        raise Exception("Unauthorized user")
+
+
+
+# get all review for business id
+@business_routes.route('/<int:business_id>/all_review')
+@login_required
+def get_all_business_review(business_id):
+    all_review_by_business_id = Review.query.filter(Review.busioness_id == business_id).all()
+    all_review_by_business_id_json = [review.to_dict() for review in all_review_by_business_id]
+
+    images_by_business_id = Image.query.filter(Image.business_id == business_id).all()
+    images_by_business_id_json = [image.to_dict() for image in images_by_business_id]
+   
+    all_review_by_business_id_json.image = images_by_business_id_json ## add image list to review
+    return {"comments": all_review_by_business_id_json}
+
+   

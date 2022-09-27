@@ -10,3 +10,5 @@ from app.models import image
 class ImageForm(FlaskForm):
     url = StringField("Url", validators=[DataRequired(), url(),
         validators.Length(max=500, message="Url must be less than 500 characters")])
+
+    
