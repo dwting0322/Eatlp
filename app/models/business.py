@@ -9,12 +9,12 @@ class Business(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     phone = db.Column(db.String(15), nullable=False)
     address = db.Column(db.String(255), nullable=False)
-    city = db.Column(db.String(50), nullable=False)
-    state = db.Column(db.String(50), nullable=False)
-    country = db.Column(db.String(50), nullable=False)
-    zipcode = db.Column(db.String(5), nullable=False)
-    lat = db.Column(db.Float, nullable=False)
-    lng = db.Column(db.Float, nullable=False)
+    # city = db.Column(db.String(50), nullable=False)
+    # state = db.Column(db.String(50), nullable=False)
+    # country = db.Column(db.String(50), nullable=False)
+    # zipcode = db.Column(db.String(5), nullable=False)
+    # lat = db.Column(db.Float, nullable=False)
+    # lng = db.Column(db.Float, nullable=False)
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     price_range = db.Column(db.String(4), nullable=False)
@@ -28,7 +28,7 @@ class Business(db.Model):
     likes = db.relationship("User", secondary=likes, back_populates='liked_businesses', cascade="all, delete")
 
 
-    comments = db.relationship("Comment", back_populates='business', cascade="all, delete-orphan")
+    reviews = db.relationship("Review", back_populates='business', cascade="all, delete-orphan")
 
     images = db.relationship("Image", back_populates='business', cascade="all, delete-orphan")
     
@@ -46,12 +46,12 @@ class Business(db.Model):
             "name" : self.name,
             "phone" : self.phone,
             "address" : self.address,
-            "city" : self.city,
-            "state" : self.state,
-            "country" : self.country,
-            "zipcode" : self.zipcode,
-            "lat" : self.lat,
-            "lng" : self.lng,
+            # "city" : self.city,
+            # "state" : self.state,
+            # "country" : self.country,
+            # "zipcode" : self.zipcode,
+            # "lat" : self.lat,
+            # "lng" : self.lng,
             "description" : self.description,
             "price_range" : self.price_range,
             "preview_img" : self.preview_img,
@@ -59,5 +59,5 @@ class Business(db.Model):
             "updated_at": self.updated_at,
             "user": self.user.to_dict(),
             "likes": [user.id for user in self.likes],
-            "comments": [c.to_dict() for c in self.comments]
+            "reviews": [c.to_dict() for c in self.reviews]
         }

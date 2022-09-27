@@ -8,7 +8,7 @@ class Image(db.Model):
     url = db.Column(db.String(500), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     business_id = db.Column(db.Integer, db.ForeignKey('businesses.id'))
-    comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'))
+    review_id = db.Column(db.Integer, db.ForeignKey('reviews.id'))
     
     
 
@@ -16,7 +16,7 @@ class Image(db.Model):
 
     business = db.relationship('Business', back_populates='images')
 
-    comment = db.relationship('Comment', back_populates='images')
+    review = db.relationship('Review', back_populates='images')
 
 
 
@@ -26,6 +26,6 @@ class Image(db.Model):
             "url": self.url,
             "user_id": self.user_id,
             "business_id": self.business_id,
-            "comment_id": self.comment_id,
+            "review_id": self.review_id,
             "user": self.user.to_dict()
         }

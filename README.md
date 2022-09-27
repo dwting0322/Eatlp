@@ -5,7 +5,7 @@
 ## About Our Web Application!
 
 Eatlp is a full-stack web application inspired by Yelp, with a little twist!
-Our application provides users the ability to post business of their meals, leave likes and add comments to said business!
+Our application provides users the ability to post business of their meals, leave likes and add reviews to said business!
 
 With Eatlp, upload images of your business, and show everyone what you like to do for your business. 
 
@@ -104,11 +104,11 @@ npm start
 
 <img width="1790" alt="Screen Shot 2022-09-24 at 5 33 29 PM" src="">
 
-### Leave and Remove Likes / Create New Comment
+### Leave and Remove Likes / Create New Review
 
 <img width="474" alt="Screen Shot 2022-09-24 at 5 28 33 PM" src="">
 
-### Edit a Comment / Delete a Comment 
+### Edit a Review / Delete a Review 
 
 <img width="771" alt="Screen Shot 2022-09-24 at 5 30 47 PM" src="">
 

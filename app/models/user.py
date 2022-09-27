@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
 
     businesses = db.relationship('Business', back_populates="user", cascade="all, delete-orphan")
 
-    comments = db.relationship("Comment", back_populates='user', cascade="all, delete-orphan")
+    reviews = db.relationship("Review", back_populates='user', cascade="all, delete-orphan")
 
     liked_businesses = db.relationship('Business', secondary=likes, back_populates='likes', cascade="all, delete")
 
