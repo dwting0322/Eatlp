@@ -11,6 +11,11 @@ def check_preview_img(form, field):
         form.preview_img.data = 'https://s3-media0.fl.yelpcdn.com/assets/public/contentful_header_placeholder.yji-c726a4032894dcf91b72.png'
         return 
 
+def urlCheck(form,field):
+    imageUrl = field.data
+    if  ("jpg" or "png" or "jpeg" or "gif") not in imageUrl:
+        raise ValidationError("URL must be a jpg, jpeg, png , or gif")
+
 
 class BusinessForm(FlaskForm):
 
@@ -47,5 +52,5 @@ class BusinessForm(FlaskForm):
     price_range = StringField("Price range", validators=[DataRequired(), 
         validators.Length(min=1, max=4, message="Price range must be either $, $$, $$$ or $$$$")])
 
-    preview_img = StringField("Preview image", validators=[DataRequired(), check_preview_img, url(),
+    preview_img = StringField("Preview image", validators=[DataRequired(), check_preview_img, url(), urlCheck,
         validators.Length(max=500, message="Preview image must be less than 500 characters")])
