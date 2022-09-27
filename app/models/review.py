@@ -3,13 +3,13 @@ from sqlalchemy.sql import func
 
 
 
-class Comment(db.Model):
-    __tablename__ = 'comments'
+class Review(db.Model):
+    __tablename__ = 'reviews'
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     business_id = db.Column(db.Integer, db.ForeignKey('businesses.id'), nullable=False)
-    comment = db.Column(db.String(1000), nullable=False)
+    review = db.Column(db.String(1000), nullable=False)
     stars = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
@@ -17,11 +17,11 @@ class Comment(db.Model):
 
 
 
-    user = db.relationship("User", back_populates="comments")
+    user = db.relationship("User", back_populates="reviews")
 
-    business = db.relationship('Business', back_populates='comments')
+    business = db.relationship('Business', back_populates='reviews')
     
-    images = db.relationship("Image", back_populates='comment')
+    images = db.relationship("Image", back_populates='reviews')
 
 
 
@@ -30,7 +30,7 @@ class Comment(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "business_id": self.business_id,
-            "comment": self.comment,
+            "review": self.review,
             "stars": self.stars,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
