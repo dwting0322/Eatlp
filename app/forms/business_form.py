@@ -12,7 +12,7 @@ def check_preview_img(form, field):
         return 
 
 
-class PostForm(FlaskForm):
+class BusinessForm(FlaskForm):
 
     phone = StringField('Phone number', validators=[DataRequired(), 
         validators.Length(min=10, max=15, message="Phone must be between 10 - 15 characters")])

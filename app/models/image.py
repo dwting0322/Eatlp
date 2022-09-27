@@ -16,9 +16,6 @@ class Image(db.Model):
 
     comment = db.relationship('Comment', back_populates='images')
 
-    
-    def __repr__(self):
-        return f'<This is image number {self.id}>'
 
     
     def to_dict(self):
