@@ -7,6 +7,6 @@ from app.models import Comment
 
 class CommentForm(FlaskForm):
     comment = TextAreaField("Comment", validators=[DataRequired(),
-        validators.Length( min=5, max=1000, message='Comment must be between 5 and 1000 characters')])
-    stars = IntegerField('Stars rating', validators=[DataRequired(), 
+        validators.Length( min=5, max=1000, message="Comment must be between 5 and 1000 characters")])
+    stars = IntegerField("Stars rating", validators=[DataRequired(), 
         NumberRange(min=1, max=5, message="Stars rating must be between 1 and 5")])
