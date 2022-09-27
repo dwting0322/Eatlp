@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     # username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    profile_img = db.Column(db.String(500), default='https://afa.org.sg/wp-content/uploads/2014/05/icon-user-default-copy.png')
+    profile_img = db.Column(db.String(500), default='https://s3-media0.fl.yelpcdn.com/photo/u_4AtMdPnNBQgn5fWEyTnw/ss.jpg')
     
 
 
@@ -24,16 +24,20 @@ class User(db.Model, UserMixin):
 
     images = db.relationship('Image', back_populates='user', cascade="all, delete-orphan")
 
+
     @property
     def password(self):
         return self.hashed_password
+
 
     @password.setter
     def password(self, password):
         self.hashed_password = generate_password_hash(password)
 
+
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
 
     def to_dict(self):
         return {

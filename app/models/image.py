@@ -1,4 +1,5 @@
 from .db import db
+from sqlalchemy.sql import func
 
 class Image(db.Model):
     __tablename__ = 'images'
@@ -24,5 +25,6 @@ class Image(db.Model):
             "url": self.url,
             "user_id": self.user_id,
             "comment_id": self.comment_id,
-            "business_id": self.business_id
+            "business_id": self.business_id,
+            "user": self.user.to_dict()
         }
