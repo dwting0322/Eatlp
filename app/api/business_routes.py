@@ -13,7 +13,7 @@ business_routes = Blueprint('business', __name__)
 
 
 # Get all businesses
-@business_routes.route("/")
+@business_routes.route("")
 def get_all_businesses():
     all_business = Business.query.all()
     all_business_json = [business.to_dict() for business in all_business]
@@ -30,7 +30,7 @@ def get_one_business(business_id):
     images_by_business_id = Image.query.filter(Image.business_id == business_id).all()
     images_by_business_id_json = [image.to_dict() for image in images_by_business_id]
     
-    business_json.image = images_by_business_id_json ## add image list to business
+    business_json['image'] = images_by_business_id_json ## add image list to business
     return {"business": business_json}
 
 
@@ -38,11 +38,12 @@ def get_one_business(business_id):
 @business_routes.route("/current")
 @login_required
 def get_current_businesses():
-
-    if Business.owner_id != current_user.id:
+    current_business = Business.query.filter(Business.owner_id == current_user.id).all()
+    
+    if not current_business:
         return {"message": "You don't have any business", "statusCode": 404}
 
-    current_business = Business.query.filter(Business.owner_id == current_user.id).all()
+    
     current_business_json = [current_post.to_dict() for current_post in current_business]
     return {"current_business": current_business_json}
     
@@ -71,7 +72,8 @@ def create_new_business():
         )
         db.session.add(new_business)
         db.session.commit()
-        return new_business
+
+        return new_business.to_dict()
 
     else:
         return jsonify(form.errors)
@@ -80,9 +82,9 @@ def create_new_business():
 #Edit a business
 @business_routes.route("/<int:business_id>", methods=["PUT"])
 @login_required
-def edit_business():
+def edit_business(business_id):
     form = BusinessForm()
-    business = Business.query.get_or_404(id)
+    business = Business.query.get_or_404(business_id)
 
     if current_user.id != business.owner_id:
         return {"message": "You don't have authorization to update", "statusCode": 403}
@@ -106,7 +108,8 @@ def edit_business():
         )
         db.session.add(business)
         db.session.commit()
-        return business
+
+        return business.to_dict()
 
     else:
         return jsonify(form.errors)
@@ -118,8 +121,7 @@ def edit_business():
 @login_required
 def delete_business(business_id):
 
-    if Business.id != business_id:
-        return {"message": "You business have not found", "statusCode": 404}
+    business = Business.query.get_or_404(business_id)
 
     business = Business.query.filter(Business.id == business_id).first()
     if current_user.id == business.owner_id:
@@ -131,13 +133,17 @@ def delete_business(business_id):
 
 
 
-#Create a new review
+#Create a new review by business ID
 @business_routes.route("/<int:business_id>/reviews", methods=["POST"])
 @login_required
 def create_new_review(business_id):
     form = ReviewForm()
+   
     business = Business.query.get_or_404(business_id)
+    print("business******", business)
+    
     form["csrf_token"].data = request.cookies["csrf_token"]
+
     if form.validate_on_submit():
         new_review = Review(
             user_id=current_user.id,
@@ -147,7 +153,8 @@ def create_new_review(business_id):
         )
         db.session.add(new_review)
         db.session.commit()
-        return new_review
+
+        return new_review.to_dict()
 
     else:
         raise Exception("Unauthorized user")
@@ -158,13 +165,15 @@ def create_new_review(business_id):
 @business_routes.route('/<int:business_id>/all_review')
 @login_required
 def get_all_business_review(business_id):
-    all_review_by_business_id = Review.query.filter(Review.busioness_id == business_id).all()
+    all_review_by_business_id = Review.query.filter(Review.business_id == business_id).all()
     all_review_by_business_id_json = [review.to_dict() for review in all_review_by_business_id]
+    
+    for review in all_review_by_business_id_json:
+        images_by_business_id = Image.query.filter(Image.business_id == business_id).all()
+        images_json = [image.to_dict() for image in images_by_business_id]
+        review['image']= images_json
 
-    images_by_business_id = Image.query.filter(Image.business_id == business_id).all()
-    images_by_business_id_json = [image.to_dict() for image in images_by_business_id]
-   
-    all_review_by_business_id_json.image = images_by_business_id_json ## add image list to review
-    return {"comments": all_review_by_business_id_json}
+    
+    return {"reviews": all_review_by_business_id_json}
 
    

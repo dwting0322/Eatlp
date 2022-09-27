@@ -27,5 +27,4 @@ class Image(db.Model):
             "user_id": self.user_id,
             "business_id": self.business_id,
             "review_id": self.review_id,
-            "user": self.user.to_dict()
         }
