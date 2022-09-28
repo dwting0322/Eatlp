@@ -1,0 +1,57 @@
+.Navbar_Container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid lightgray;
+  
+}
+
+.Logo_image{
+    height: 30px;
+    width: 30px;
+   
+   
+}
+
+.Eatlp{
+    margin-left: 50px;
+    display: flex;
+    
+}
+
+.Login_SignUp_Container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 50px;
+    
+}
+.login{
+    margin-right: 20px;
+}
+
+.Navbar_link{
+    text-decoration: none;
+    padding: 2px;
+    font-size: 20px;
+    
+}
+
+.Eatlp_Container{
+    display: flex;
+ 
+}
+
+.Eatlp_link{
+    text-decoration: none;
+    padding: 2px;
+    font-size: 30px;
+   
+}
+
+.FindAllPlace{
+    margin-right: 20px;
+}
