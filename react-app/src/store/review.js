@@ -114,8 +114,8 @@ export const createReview = (newReviewData) => async (dispatch) => {
 
 
 // Edit a review thunk
-export const editReview = (review) => async (dispatch) => {
-    const response = await fetch(`/api/reviews/${review.id}`, {
+export const editReview = (data) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/${data.id}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data),
@@ -139,9 +139,6 @@ export const deleteReview = (reviewId) => async (dispatch) => {
     }
     return response;
   };
-
-
-
 
 
   

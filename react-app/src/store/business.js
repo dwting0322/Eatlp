@@ -141,7 +141,6 @@ const deleteABusiness = (id) => {
 
 
 
-  
 //Initial State:
 const initialState = {};
 
