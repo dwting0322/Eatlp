@@ -9,60 +9,60 @@ const DELETE_BUSINESS = "businesses/deleteBusiness";
 
 //action creator
 //get all business action
-const loadAllBusiness = (business) => {
+const loadAllBusiness = (businesses) => {
     return {
         type: LOAD_ALL_BUSINESS,
-        business,
+        businesses,
     }
 };
 
 
 //get one business action
-const loadOneBusiness = (business) => {
+const loadOneBusiness = (businesses) => {
     return {
         type: LOAD_ONE_BUSINESS,
-        business,
+        businesses,
     }
 };
 
 
 //get current owner business action
-const readOwnerBusiness = (business) => {
+const readOwnerBusiness = (businesses) => {
     return {
         type: READ_OWNER_BUSINESS,
-        business,
+        businesses,
     }
 };
 
 
 // create business action
-const addBusiness = (business) => {
+const addBusiness = (businesses) => {
     return {
         type: ADD_BUSINESS,
-        business,
+        businesses,
     }
 };
 
 
 // update business action
-const updateABusiness = (business) => {
+const updateABusiness = (businesses) => {
     return {
         type: UPDATE_BUSINESS,
-        business,
+        businesses,
     }
 };
 
 
-const deleteABusiness = (business) => {
+const deleteABusiness = (id) => {
     return {
         type: DELETE_BUSINESS,
-        business,
+        id,
     }
 };
 
 
 // thunk 
-// Get all business 
+// Get all business thunk
   export const getAllBusiness = () => async (dispatch) => {
     const response = await fetch(`/api/businesses`);
     if (response.ok) {
@@ -74,7 +74,7 @@ const deleteABusiness = (business) => {
     return response;
   };
 
-// Get all business of Current User
+// Get all business of Current User thunk
   export const getOwnerBusiness = () => async (dispatch) => {
     const response = await fetch(`/api/businesses/current`);
     if (response.ok) {
@@ -85,7 +85,7 @@ const deleteABusiness = (business) => {
     return response;
   };
 
-// Get one business by business ID
+// Get one business by business ID thunk
   export const getOneBusiness = (id) => async (dispatch) => {
     const response = await fetch(`/api/businesses/${id}`);
     if (response.ok) {
@@ -96,7 +96,7 @@ const deleteABusiness = (business) => {
     return response;
   };
 
-// Create a new business
+// Create a new business thunk
   export const createBusiness = (newPostInfo) => async (dispatch) => {
     const response = await fetch("/api/businesses/new_business", {
       method: "POST",
@@ -104,15 +104,15 @@ const deleteABusiness = (business) => {
       body: JSON.stringify(newPostInfo),
     });
     if (response.ok) {
-      const business = await response.json();
-      dispatch(addBusiness(business));
-      return business;
+      const newBusiness = await response.json();
+      dispatch(addBusiness(newBusiness));
+      return newBusiness;
     }
     return response;
   };
 
 
-  // Edit a business
+  // Edit a business thunk
   export const editBusiness = (data) => async (dispatch) => {
     const response = await fetch(`/api/businesses/${data.id}`, {
       method: "PUT",
@@ -120,15 +120,15 @@ const deleteABusiness = (business) => {
       body: JSON.stringify(data),
     });
     if (response.ok) {
-      const editBusiness = await response.json();
-      dispatch(updateABusiness(editBusiness));
-      return editBusiness;
+      const edittedBusiness = await response.json();
+      dispatch(updateABusiness(edittedBusiness));
+      return edittedBusiness;
     }
     return response;
   };
 
 
-//Delete Business
+//Delete Business thunk
   export const deleteBusiness = (businessId) => async (dispatch) => {
     const response = await fetch(`/api/posts/${businessId}`, {
       method: "DELETE",
@@ -141,7 +141,6 @@ const deleteABusiness = (business) => {
 
 
 
-  
 //Initial State:
 const initialState = {};
 
@@ -151,7 +150,7 @@ const businessReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case LOAD_ALL_BUSINESS: {
-        action.business.forEach((business) => {
+        action.businesses.forEach((business) => {
         newState[business.id] = business;
         });
         return newState;
@@ -159,12 +158,12 @@ const businessReducer = (state = initialState, action) => {
    
     case LOAD_ONE_BUSINESS: {
         newState = { ...state };
-        newState[action.business.id] = action.business;
+        newState[action.businesses.id] = action.businesses;
         return newState;
     }
 
     case READ_OWNER_BUSINESS: {
-        action.business.forEach((business) => {
+        action.businesses.forEach((business) => {
         newState[business.id] = business;
         });
         return newState;
@@ -172,19 +171,19 @@ const businessReducer = (state = initialState, action) => {
     
     case ADD_BUSINESS: {
         newState = { ...state };
-        newState[action.post.id] = action.post;
+        newState[action.businesses.id] = action.businesses;
         return newState;
     }
 
-    case UPDATE_POST: {
+    case UPDATE_BUSINESS: {
         newState = { ...state };
-        newState[action.post.id] = action.post;
+        newState[action.businesses.id] = action.businesses;
         return newState;
     }
 
-    case DELETE_POST: {
+    case DELETE_BUSINESS: {
         newState = { ...state };
-        delete newState[action.postId];
+        delete newState[action.id];
         return newState;
     }
 
