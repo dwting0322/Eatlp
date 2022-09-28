@@ -1,5 +1,5 @@
 //type:
-const LOAD_BUSINESS = "businesses/loadBusiness";
+const LOAD_ALL_BUSINESS = "businesses/loadBusiness";
 const LOAD_ONE_BUSINESS = "businesses/loadOneBusiness";
 const READ_OWNER_BUSINESS = "businesses/readOwnerBusiness";
 const ADD_BUSINESS = "businesses/addBusiness";
@@ -11,7 +11,7 @@ const DELETE_BUSINESS = "businesses/deleteBusiness";
 //get all business action
 const loadAllBusiness = (business) => {
     return {
-        type: LOAD_BUSINESS,
+        type: LOAD_ALL_BUSINESS,
         business,
     }
 };
@@ -90,7 +90,7 @@ const deleteABusiness = (business) => {
     const response = await fetch(`/api/businesses/${id}`);
     if (response.ok) {
       const data = await response.json();
-      dispatch(loadOneBusiness(data.posts)); //revist
+      dispatch(loadOneBusiness(data)); 
       return data;
     }
     return response;
@@ -138,3 +138,59 @@ const deleteABusiness = (business) => {
     }
     return response;
   };
+
+
+
+  
+//Initial State:
+const initialState = {};
+
+//Reducer:
+const businessReducer = (state = initialState, action) => {
+  let newState = {};
+  switch (action.type) {
+
+    case LOAD_ALL_BUSINESS: {
+        action.business.forEach((business) => {
+        newState[business.id] = business;
+        });
+        return newState;
+    }
+   
+    case LOAD_ONE_BUSINESS: {
+        newState = { ...state };
+        newState[action.business.id] = action.business;
+        return newState;
+    }
+
+    case READ_OWNER_BUSINESS: {
+        action.business.forEach((business) => {
+        newState[business.id] = business;
+        });
+        return newState;
+    }
+    
+    case ADD_BUSINESS: {
+        newState = { ...state };
+        newState[action.post.id] = action.post;
+        return newState;
+    }
+
+    case UPDATE_POST: {
+        newState = { ...state };
+        newState[action.post.id] = action.post;
+        return newState;
+    }
+
+    case DELETE_POST: {
+        newState = { ...state };
+        delete newState[action.postId];
+        return newState;
+    }
+
+    default:
+        return state;
+  }
+};
+
+export default businessReducer;
