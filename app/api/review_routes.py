@@ -11,7 +11,7 @@ review_routes = Blueprint('review', __name__)
 #Get all reviews
 @review_routes.route('/')
 def all_reviews():
-    all_review = Review.query.all()
+    all_review = Review.query.order_by(Review.created_at.desc()).all()
     all_review_json = [review.to_dict() for review in all_review]
     return {"reviews": all_review_json}
 
