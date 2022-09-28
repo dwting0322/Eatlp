@@ -29,8 +29,20 @@ def get_one_business(business_id):
     # add image to one business
     images_by_business_id = Image.query.filter(Image.business_id == business_id).all()
     images_by_business_id_json = [image.to_dict() for image in images_by_business_id]
-    
     business_json['image'] = images_by_business_id_json ## add image list to business
+    business_json['countReview'] = len(business.reviews)
+
+    if business.reviews:
+
+        total = 0
+        for review in business.reviews:
+            total = total + review.stars
+
+        avgRating = round(total / len(business.reviews), 2)
+        business_json['avgRating'] = avgRating
+    else:
+        business_json['avgRating'] = 0
+
     return {"business": business_json}
 
 
@@ -44,12 +56,13 @@ def get_current_businesses():
         return {"message": "You don't have any business", "statusCode": 404}
 
     
-    current_business_json = [current_post.to_dict() for current_post in current_business]
+    current_business_json = [business.to_dict() for business in current_business]
+    
     return {"current_business": current_business_json}
     
 
 #Create a new business
-@business_routes.route("new-business", methods=["POST"])
+@business_routes.route("new_business", methods=["POST"])
 @login_required
 def create_new_business():
     form = BusinessForm()
