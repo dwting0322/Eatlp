@@ -1,5 +1,5 @@
 //type:
-const LOAD_ALL_BUSINESS = "businesses/loadBusiness";
+const LOAD_ALL_BUSINESS = "businesses/loadAllBusiness";
 const LOAD_ONE_BUSINESS = "businesses/loadOneBusiness";
 const READ_OWNER_BUSINESS = "businesses/readOwnerBusiness";
 const ADD_BUSINESS = "businesses/addBusiness";
@@ -65,9 +65,10 @@ const deleteABusiness = (id) => {
 // Get all business thunk
   export const getAllBusiness = () => async (dispatch) => {
     const response = await fetch(`/api/businesses`);
+    // console.log("***********response *************", response);
     if (response.ok) {
       const data = await response.json();
-      // console.log("***********THIS IS THE DATA.POSTS *************", data.posts);
+      console.log("***********Get all business DATA *************", data.businesses);
       dispatch(loadAllBusiness(data.businesses)); 
       return data;
     }
