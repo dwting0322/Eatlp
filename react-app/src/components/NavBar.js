@@ -1,47 +1,73 @@
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import EatlpLogo from '../Picture/EatlpLogo.png';
 import "./NavBar.css";
+import { useSelector } from 'react-redux';
+import ProfileButton from './ProfileButton';
+import LoginForm from './auth/LoginForm';
 
-const NavBar = () => {
+
+const NavBar = ({ isLoaded }) => {
+
+  const history = useHistory()
+  const sessionUser = useSelector(state => state.session.user)
+
   return (
     <div className='Navbar_Container'>
-     
-        <div className='Eatlp'>
-          <div><img className="Logo_image" src={EatlpLogo} /></div>
-          <div>
+
+      <div className='Eatlp'>
+        <div><img className="Logo_image" src={EatlpLogo} /></div>
+        <div>
           <NavLink className="Eatlp_link" to='/' exact={true} activeClassName='active'>
             Eatlp
           </NavLink>
-          </div>
-        </div >
-      
-      <div className='Login_SignUp_Container'>
-        <div className='FindAllPlace'>
-          <NavLink className="Navbar_link" to='/businesses/all' exact={true} activeClassName='active'>
-            Find All Restaurant
-          </NavLink>
         </div>
-        <div>
-          <NavLink className="Navbar_link" to='/businesses' exact={true} activeClassName='active'>
-            Create Business
-          </NavLink>
+      </div >
+
+      <div className='Login_SignUp_Container'>
+
+        {sessionUser && (
+          <div >
+            <div className='Navbar_test'>
+              <div>
+                <NavLink className="Navbar_link_GetAllBiz" to='/businesses/all' exact={true} activeClassName='active'>
+                  Find All Restaurant
+                </NavLink>
+
+                <NavLink className="Navbar_link_CreateBiz" to='/businesses' exact={true} activeClassName='active'>
+                  Create Business
+                </NavLink>
+              </div>
+              <div className='Click_Me'>
+                {/* <i className="fa-solid fa-list"/> <i className="fas fa-user-circle"/> */}
+                <img className='profile_image' src={sessionUser.profile_img} />
+                <div className='login_already'>
+                  <ProfileButton user={sessionUser} />
+                </div>
+              </div>
+
+
+            </div>
+
           </div>
-        <div className='login'>
-          <NavLink className="Navbar_link" to='/login' exact={true} activeClassName='active'>
+
+        )}
+
+
+        {!sessionUser && <div className='login'>
+          <NavLink className="Navbar_link_login" to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
-        </div>
-        <div>
-          <NavLink className="Navbar_link" to='/sign-up' exact={true} activeClassName='active'>
+
+          <NavLink className="Navbar_link_signuip" to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>
-        </div>
-      <div>
-        <LogoutButton />
-      </div>
+        </div>}
+        {/* <div>
+          <LogoutButton />
+        </div> */}
       </div>
       {/* <div>
         <NavLink to='/users' exact={true} activeClassName='active'>
