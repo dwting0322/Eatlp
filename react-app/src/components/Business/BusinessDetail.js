@@ -13,6 +13,7 @@ function BusinessDetail() {
     const dispatch = useDispatch();
     const history = useHistory()
 
+    const user = useSelector((state) => state.session.user);
 
 
     const business = useSelector(state => state.businesses[id])
@@ -21,7 +22,6 @@ function BusinessDetail() {
     // const user = useSelector(state=> state.session.user)
 
     const deletebiz =  () => {
-        console.log("business", business)
         dispatch(deleteBusiness(business.id));
         alert("I have successfully eaten the comment for you!!!");
     };
@@ -53,8 +53,14 @@ function BusinessDetail() {
 
                 <div>
                     <div>
-                        <div><NavLink className="" to={`/businesses/${business.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink></div>
-                        <button className='' onClick={deletebiz}> <i className="fa-solid fa-trash-can"></i> Delete</button>
+                        <div>
+                       {user.id === business.ownerId && (
+                        <div>
+                       <NavLink className="" to={`/businesses/${business.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
+                       <button className='' onClick={deletebiz}> <i className="fa-solid fa-trash-can"></i> Delete</button>
+                       </div>
+                      )}
+                      </div>
                         <div>Name: {business.name}</div>
                         <div>Phone Number: {business.phone}</div>
                         <div>Address: {business.address}</div>
