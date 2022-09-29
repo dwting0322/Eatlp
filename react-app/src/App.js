@@ -10,6 +10,10 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import BusinessBrower from './components/Business/BusinessBrower';
 import Splash_Page from './Splash/Splash_Page';
+import BusinessDetail from './components/Business/BusinessDetail';
+import CreateBizForm from './components/Business/CreateBizForm';
+import EditBizForm from './components/Business/EditBizForm';
+
 
 
 function App() {
@@ -48,13 +52,21 @@ function App() {
           <User />
         </ProtectedRoute>
 
-        <ProtectedRoute path='/' exact={true} >
-          <Splash_Page/>
-        </ProtectedRoute>
+        <Route path='/' exact={true} >
+          <Splash_Page />
+        </Route>
 
-        <ProtectedRoute path='/businesses/all' exact={true} >
-          <BusinessBrower/>
-        </ProtectedRoute>
+        <Route path='/businesses/all' exact={true} >
+          <BusinessBrower />
+        </Route>
+
+        <Route path='/businesses/:id' exact={true} >
+        <BusinessDetail />
+        </Route>
+
+        <Route exact path="/businesses" component={CreateBizForm}/>
+
+        <Route exact path="/businesses/:businessId/edit" component={EditBizForm}/>
 
       </Switch>
     </BrowserRouter>

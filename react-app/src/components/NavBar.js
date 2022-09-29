@@ -21,9 +21,14 @@ const NavBar = () => {
       <div className='Login_SignUp_Container'>
         <div className='FindAllPlace'>
           <NavLink className="Navbar_link" to='/businesses/all' exact={true} activeClassName='active'>
-            Find All Place
+            Find All Restaurant
           </NavLink>
         </div>
+        <div>
+          <NavLink className="Navbar_link" to='/businesses' exact={true} activeClassName='active'>
+            Create Business
+          </NavLink>
+          </div>
         <div className='login'>
           <NavLink className="Navbar_link" to='/login' exact={true} activeClassName='active'>
             Login

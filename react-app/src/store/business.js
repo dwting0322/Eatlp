@@ -68,7 +68,7 @@ const deleteABusiness = (id) => {
     // console.log("***********response *************", response);
     if (response.ok) {
       const data = await response.json();
-      console.log("***********Get all business DATA *************", data.businesses);
+    //   console.log("***********Get all business DATA *************", data.businesses);
       dispatch(loadAllBusiness(data.businesses)); 
       return data;
     }
@@ -91,7 +91,7 @@ const deleteABusiness = (id) => {
     const response = await fetch(`/api/businesses/${id}`);
     if (response.ok) {
       const data = await response.json();
-      dispatch(loadOneBusiness(data)); 
+      dispatch(loadOneBusiness(data.business)); 
       return data;
     }
     return response;
@@ -104,6 +104,7 @@ const deleteABusiness = (id) => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(newPostInfo),
     });
+  
     if (response.ok) {
       const newBusiness = await response.json();
       dispatch(addBusiness(newBusiness));
@@ -120,8 +121,12 @@ const deleteABusiness = (id) => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
     });
+  
     if (response.ok) {
       const edittedBusiness = await response.json();
+
+      console.log("edittedBusiness", edittedBusiness)
+
       dispatch(updateABusiness(edittedBusiness));
       return edittedBusiness;
     }
@@ -131,9 +136,11 @@ const deleteABusiness = (id) => {
 
 //Delete Business thunk
   export const deleteBusiness = (businessId) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${businessId}`, {
+    console.log("businessId", businessId)
+    const response = await fetch(`/api/businesses/${businessId}`, {
       method: "DELETE",
     });
+    console.log("response", response)
     if (response.ok) {
       dispatch(deleteABusiness(businessId));
     }
@@ -177,8 +184,10 @@ const businessReducer = (state = initialState, action) => {
     }
 
     case UPDATE_BUSINESS: {
-        newState = { ...state };
+        // newState = { ...state };
+            // console.log("action.businesses  ", action.businesses)
         newState[action.businesses.id] = action.businesses;
+            // console.log("newState from  edit business reducer after ", newState)
         return newState;
     }
 

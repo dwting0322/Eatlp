@@ -103,23 +103,24 @@ def edit_business(business_id):
         return {"message": "You don't have authorization to update", "statusCode": 403}
 
     form["csrf_token"].data = request.cookies["csrf_token"]
+
     if form.validate_on_submit():
-        business = Business(
-            owner_id=current_user.id,
-            phone=form.data['phone'],
-            address=form.data['address'],
-            name=form.data['name'],
-            description=form.data['description'],
-            price_range=form.data['price_range'],
-            preview_img=form.data['preview_img'],
-            # city=form.data['city'],
-            # state=form.data['state'],
-            # country=form.data['country'],
-            # zipcode=form.data['zipcode'],
-            # lat=form.data['lat'],
-            # lng=form.data['lng'],
-        )
-        db.session.add(business)
+        
+        business.phone=form.data['phone']
+        business.address=form.data['address']
+        business.name=form.data['name']
+        business.description=form.data['description']
+        business.price_range=form.data['price_range']
+        business.preview_img=form.data['preview_img']
+        business.phone=form.data['phone']
+        # business.city=form.data['city'],
+        # business.state=form.data['state'],
+        # business.country=form.data['country'],
+        # business.zipcode=form.data['zipcode'],
+        # business.lat=form.data['lat'],
+        # business.lng=form.data['lng'],
+        
+      
         db.session.commit()
 
         return business.to_dict()
@@ -136,7 +137,6 @@ def delete_business(business_id):
 
     business = Business.query.get_or_404(business_id)
 
-    business = Business.query.filter(Business.id == business_id).first()
     if current_user.id == business.owner_id:
         db.session.delete(business)
         db.session.commit()

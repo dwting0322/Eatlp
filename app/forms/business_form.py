@@ -20,10 +20,10 @@ def urlCheck(form,field):
 class BusinessForm(FlaskForm):
 
     phone = StringField('Phone number', validators=[DataRequired(), 
-        validators.Length(min=10, max=15, message="Phone must be between 10 - 15 characters")])
+        validators.Length(min=12, max=12, message="Phone must be 10 characters (ex: 123-456-7890)")])
 
     address = StringField("Address", validators=[DataRequired(),
-        validators.Length(min=5, max=255, message="Address must be between 5 - 255 characters")])
+        validators.Length(min=1, max=255, message="Address must be between 5 - 255 characters")])
 
     # city = StringField("City", validators=[DataRequired(),
     #     validators.Length(min=2, max=50, message="City must be between 2 - 50 characters")])
@@ -44,13 +44,14 @@ class BusinessForm(FlaskForm):
     #     NumberRange(min=-180, max=180, message="Longitude must be between -180 to 180")])
 
     name = StringField("Name", validators=[DataRequired(), 
-        validators.Length(min=4, max=50, message="Name must be between 4 - 50 characters")])
+        validators.Length(min=1, max=50, message="Name must be between 4 - 50 characters")])
 
     description = StringField('Description', validators=[DataRequired(),
-        validators.Length(min=1, max=500, message="Description must be between 1 - 500 characters")])
+        validators.Length(min=5, max=500, message="Description must be between 1 - 500 characters")])
 
-    price_range = StringField("Price range", validators=[DataRequired(), 
-        validators.Length(min=1, max=4, message="Price range must be either $, $$, $$$ or $$$$")])
+    price_range = StringField("Price range", validators=[ 
+        validators.Length(max=4, message="Price range must be either $, $$, $$$ or $$$$")])
 
-    preview_img = StringField("Preview image", validators=[DataRequired(), check_preview_img, url(), urlCheck,
+    preview_img = StringField("Preview image", validators=[DataRequired(), check_preview_img, 
         validators.Length(max=500, message="Preview image must be less than 500 characters")])
+        # url(), urlCheck,

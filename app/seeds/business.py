@@ -5,7 +5,7 @@ from app.models import db, Business
 def seed_businesses():
     business1 = Business(
         owner_id = 1,
-        phone = "(323)111-1111",
+        phone = "323-111-1111",
         address = "111 Main Street",
         # city = "Santa Ana",
         # state = "CA",
@@ -21,7 +21,7 @@ def seed_businesses():
     )
     business2 = Business(
         owner_id = 2,
-        phone = "(909)222-2222",
+        phone = "909-2222-222",
         address = "222 Main Street",
         # city = "Santa Ana",
         # state = "CA",
@@ -35,7 +35,7 @@ def seed_businesses():
     )
     business3 = Business(
         owner_id = 3,
-        phone = "(909)333-3333",
+        phone = "909-333-3333",
         address = "333 Main Street",
         # city = "Huntington Beach",
         # state = "CA",
@@ -50,7 +50,7 @@ def seed_businesses():
     )
     business4 = Business(
         owner_id = 4,
-        phone = "(797)444-4444",
+        phone = "797-444-4444",
         address = "444 Main Street",
         # city = "Huntington Beach",
         # state = "CA",
@@ -65,7 +65,7 @@ def seed_businesses():
     )
     business5 = Business(
         owner_id = 5,
-        phone = "(626)555-5555",
+        phone = "626-555-5555",
         address = "555 Main Street",
         # city = "Huntington Beach",
         # state = "CA",
@@ -80,7 +80,7 @@ def seed_businesses():
     )
     business6 = Business(
         owner_id = 6,
-        phone = "(310)666-6666",
+        phone = "310-666-6666",
         address = "666 Main Street",
         # city = "Huntington Beach",
         # state = "CA",
@@ -95,7 +95,7 @@ def seed_businesses():
     )
     business7 = Business(
         owner_id = 7,
-        phone = "(310)777-7777",
+        phone = "310-777-7777",
         address = "777 Main St",
         # city = "Fort Worth",
         # state = "TX",
@@ -112,7 +112,7 @@ def seed_businesses():
 
     business8 = Business(
         owner_id = 8,
-        phone = "(626)888-8888",
+        phone = "626-888-8888",
         address = "888 N Main Street",
         # city = "Los Angeles",
         # state = "CA",
@@ -127,7 +127,7 @@ def seed_businesses():
     )
     business9 = Business(
         owner_id = 9,
-        phone = "(909)999-9999",
+        phone = "909-999-9999",
         address = "999 Main Street",
         # city = "Watsonville",
         # state = "CA",
@@ -142,7 +142,7 @@ def seed_businesses():
     )
     business10 = Business(
         owner_id = 10,
-        phone = "(626)000-0000",
+        phone = "626-000-0000",
         address = "1000 Main Street",
         # city = "Watsonville",
         # state = "CA",
