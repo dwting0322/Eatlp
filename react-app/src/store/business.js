@@ -68,7 +68,7 @@ const deleteABusiness = (id) => {
     // console.log("***********response *************", response);
     if (response.ok) {
       const data = await response.json();
-      console.log("***********Get all business DATA *************", data.businesses);
+    //   console.log("***********Get all business DATA *************", data.businesses);
       dispatch(loadAllBusiness(data.businesses)); 
       return data;
     }
@@ -91,7 +91,7 @@ const deleteABusiness = (id) => {
     const response = await fetch(`/api/businesses/${id}`);
     if (response.ok) {
       const data = await response.json();
-      dispatch(loadOneBusiness(data)); 
+      dispatch(loadOneBusiness(data.business)); 
       return data;
     }
     return response;
@@ -104,6 +104,7 @@ const deleteABusiness = (id) => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(newPostInfo),
     });
+  
     if (response.ok) {
       const newBusiness = await response.json();
       dispatch(addBusiness(newBusiness));
@@ -120,8 +121,10 @@ const deleteABusiness = (id) => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
     });
+    console.log("response", response)
     if (response.ok) {
       const edittedBusiness = await response.json();
+      console.log("edittedBusiness", edittedBusiness)
       dispatch(updateABusiness(edittedBusiness));
       return edittedBusiness;
     }
@@ -178,7 +181,9 @@ const businessReducer = (state = initialState, action) => {
 
     case UPDATE_BUSINESS: {
         newState = { ...state };
+            console.log("action.businesses  ", action.businesses)
         newState[action.businesses.id] = action.businesses;
+            console.log("newState from  edit business reducer after ", newState)
         return newState;
     }
 

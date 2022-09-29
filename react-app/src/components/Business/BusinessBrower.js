@@ -29,7 +29,9 @@ function BusinessBrower() {
             <div key={business.id}>
                 <div>
                     <NavLink to={`/businesses/${business.id}`}>
-                        <img src={business.preview_img} alt="Restaurant" />
+                        <img src={business.preview_img} alt="Restaurant" 
+                        onError={e => { e.currentTarget.src = "https://st2.depositphotos.com/2805411/8085/i/450/depositphotos_80851650-stock-photo-sketch-design-of-coffee-shop.jpg"}}
+                        />
                     </NavLink>
                 </div>
 
