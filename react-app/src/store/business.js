@@ -121,10 +121,12 @@ const deleteABusiness = (id) => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
     });
-    console.log("response", response)
+  
     if (response.ok) {
       const edittedBusiness = await response.json();
+
       console.log("edittedBusiness", edittedBusiness)
+
       dispatch(updateABusiness(edittedBusiness));
       return edittedBusiness;
     }
@@ -134,9 +136,11 @@ const deleteABusiness = (id) => {
 
 //Delete Business thunk
   export const deleteBusiness = (businessId) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${businessId}`, {
+    console.log("businessId", businessId)
+    const response = await fetch(`/api/businesses/${businessId}`, {
       method: "DELETE",
     });
+    console.log("response", response)
     if (response.ok) {
       dispatch(deleteABusiness(businessId));
     }
@@ -180,10 +184,10 @@ const businessReducer = (state = initialState, action) => {
     }
 
     case UPDATE_BUSINESS: {
-        newState = { ...state };
-            console.log("action.businesses  ", action.businesses)
+        // newState = { ...state };
+            // console.log("action.businesses  ", action.businesses)
         newState[action.businesses.id] = action.businesses;
-            console.log("newState from  edit business reducer after ", newState)
+            // console.log("newState from  edit business reducer after ", newState)
         return newState;
     }
 

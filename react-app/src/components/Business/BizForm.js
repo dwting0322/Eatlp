@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createBusiness, editBusiness, getOneBusiness } from '../../store/business';
+import { createBusiness, editBusiness } from '../../store/business';
 
 
 
@@ -13,20 +13,18 @@ function BizForm({ business, formType }) {
     const history = useHistory();
     const user = useSelector(state => state.session.user)
 
-
-
     //   const [city, setCity] = useState(business.city || "")
     //   const [state, setState] = useState(business.state || "")
     //   const [country, setCountry] = useState(business.country || "")
     //   const [lat, setLat] = useState(spbusinessot.lat || "")
     //   const [lng, setLng] = useState(business.lng || "")
     //   const [zipcode, setzipcode] = useState(business.lng || "")
-    const [name, setName] = useState(business.name || "")
-    const [phone, setPhone] = useState(business.phone || "")
-    const [address, setAddress] = useState(business.address || "")
-    const [description, setDescription] = useState(business.description || "")
-    const [price_range, setPrice_range] = useState(business.price_range || "")
-    const [preview_img, setPreview_img] = useState(business.preview_img || "")
+    const [name, setName] = useState(business?.name || "")
+    const [phone, setPhone] = useState(business?.phone || "")
+    const [address, setAddress] = useState(business?.address || "")
+    const [description, setDescription] = useState(business?.description || "")
+    const [price_range, setPrice_range] = useState(business?.price_range || "")
+    const [preview_img, setPreview_img] = useState(business?.preview_img || "")
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
@@ -58,15 +56,12 @@ function BizForm({ business, formType }) {
 
         if (formType === "Create Business") {
             const newBusiness = await dispatch(createBusiness(business))
-
             if (newBusiness) history.push(`/businesses/${newBusiness.id}`);
 
-
-            // console.log("newSpot: ", newSpot)
-
         } else {
-
-             dispatch(editBusiness(business))
+           
+            dispatch(editBusiness(business))
+           
             history.push(`/businesses/${business.id}`);
         }
 
@@ -89,33 +84,13 @@ function BizForm({ business, formType }) {
 
     };
 
+    // useEffect(() => {
+    //     dispatch(dispatch(getAllBusiness()))
+    // }, [dispatch])
+
 
     useEffect(() => {
         let errors = [];
-
-        // if (!city.length) {
-        //   errors.push("City is required");
-        // }
-        // if (!state.length) {
-        //   errors.push("State is required");
-        // }
-        // if (!country.length) {
-        //   errors.push("Country is required");
-        // }
-        // if (!lat) {
-        //   errors.push("Latitude is not valid");
-        // }
-        // if (lat > 90 || lat < -90) {
-        //   errors.push("Latitude must between -90 ~ 90");
-        // }
-        // if (!lng) {
-        //   errors.push("Longitude is not valid");
-        // }
-        // if (lng > 180 || lat < -180) {
-        //   errors.push("Longitude must between -180 ~ 180");
-        // }
-
-
        
         if (address.includes(".") ) {
             errors.push("Street address can't include a period");
@@ -144,13 +119,27 @@ function BizForm({ business, formType }) {
         if (description.length < 5 || description.length > 500) {
             errors.push("Description must be between 5 and 500 characters");
         }
-
-        // if (price_range !== "$" || price_range !== "$$" || price_range !== "$$$" || price_range !== "$$$$") {
-        //     errors.push("Price Range must be $, $$, $$$ and $$$$");
+        
+        // if (!city.length) {
+        //   errors.push("City is required");
         // }
-
-        // if (price_range.length > 4) {
-        //     errors.push("Price Range must be $, $$, $$$ and $$$$");
+        // if (!state.length) {
+        //   errors.push("State is required");
+        // }
+        // if (!country.length) {
+        //   errors.push("Country is required");
+        // }
+        // if (!lat) {
+        //   errors.push("Latitude is not valid");
+        // }
+        // if (lat > 90 || lat < -90) {
+        //   errors.push("Latitude must between -90 ~ 90");
+        // }
+        // if (!lng) {
+        //   errors.push("Longitude is not valid");
+        // }
+        // if (lng > 180 || lat < -180) {
+        //   errors.push("Longitude must between -180 ~ 180");
         // }
 
         if (preview_img.length > 500) {

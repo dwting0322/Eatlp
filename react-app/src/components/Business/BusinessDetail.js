@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getOneBusiness } from '../../store/business';
+import { deleteBusiness, getOneBusiness } from '../../store/business';
 import notFound from '../../Picture/404-error-page-not-found.jpg'
 import './Business.css'
 
@@ -11,13 +11,20 @@ function BusinessDetail() {
 
     const { id } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory()
 
 
 
-    const business = useSelector(state => state.businesses[+id])
+    const business = useSelector(state => state.businesses[id])
     //   const review = useSelector(state => state.reviews) // wait untiul we have review
     //   console.log("review: ", review)
     // const user = useSelector(state=> state.session.user)
+
+    const deletebiz =  () => {
+        console.log("business", business)
+        dispatch(deleteBusiness(business.id));
+        alert("I have successfully eaten the comment for you!!!");
+    };
 
 
     useEffect(() => {
@@ -47,6 +54,7 @@ function BusinessDetail() {
                 <div>
                     <div>
                         <div><NavLink className="" to={`/businesses/${business.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink></div>
+                        <button className='' onClick={deletebiz}> <i className="fa-solid fa-trash-can"></i> Delete</button>
                         <div>Name: {business.name}</div>
                         <div>Phone Number: {business.phone}</div>
                         <div>Address: {business.address}</div>
@@ -55,7 +63,7 @@ function BusinessDetail() {
                         <div>Open 10:00 AM - 10:00 PM</div>
                     </div>
                     <div>
-                        {business.avgRating ? Number.parseFloat(business.avgRating).toFixed(2) : 0}
+                        {business.avgRating ? Number.parseFloat(business.avgRating).toFixed(2) : 0} rating
                     </div>
                     <div>
                         {business.countReview ? Number.parseFloat(business.countReview).toFixed(0) : 0} reviews

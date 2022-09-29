@@ -137,7 +137,6 @@ def delete_business(business_id):
 
     business = Business.query.get_or_404(business_id)
 
-    business = Business.query.filter(Business.id == business_id).first()
     if current_user.id == business.owner_id:
         db.session.delete(business)
         db.session.commit()
