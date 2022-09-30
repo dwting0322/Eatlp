@@ -21,7 +21,7 @@ function BusinessDetail() {
     //   console.log("review: ", review)
     // const user = useSelector(state=> state.session.user)
 
-    const deletebiz =  () => {
+    const deletebiz = () => {
         dispatch(deleteBusiness(business.id));
         alert("I have successfully eaten the comment for you!!!");
     };
@@ -46,38 +46,44 @@ function BusinessDetail() {
         <div>
             <div>
                 <div>
-                    <img className='Bis_img' src={business.preview_img} alt="Restaurant" 
-                      onError={e => { e.currentTarget.src = "https://st2.depositphotos.com/2805411/8085/i/450/depositphotos_80851650-stock-photo-sketch-design-of-coffee-shop.jpg"}}
+                    <img className='Bis_img' src={business.preview_img} alt="Restaurant"
+                        onError={e => { e.currentTarget.src = "https://st2.depositphotos.com/2805411/8085/i/450/depositphotos_80851650-stock-photo-sketch-design-of-coffee-shop.jpg" }}
                     />
                 </div>
 
-                <div>
+                <div className='biz_detail_info_container'>
+
                     <div>
+                        <div className='Biz_detail_name'>Name: {business.name}</div>
                         <div>
-                       {user.id === business.ownerId && (
+                            {business.avgRating ? Number.parseFloat(business.avgRating).toFixed(2) : 0} rating
+                        </div>
                         <div>
-                       <NavLink className="" to={`/businesses/${business.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
-                       <button className='' onClick={deletebiz}> <i className="fa-solid fa-trash-can"></i> Delete</button>
-                       </div>
-                      )}
-                      </div>
-                        <div>Name: {business.name}</div>
+                            {business.countReview ? Number.parseFloat(business.countReview).toFixed(0) : 0} reviews
+                        </div>
                         <div>Phone Number: {business.phone}</div>
                         <div>Address: {business.address}</div>
-                        <div>Description: {business.description}</div>
-                        <div>{business.price_range}</div>
+                        {/* <div>Description: {business.description}</div> */}
+                        <div className='Biz_detail_discription'>{business.price_range}</div>
                         <div>Open 10:00 AM - 10:00 PM</div>
                     </div>
                     <div>
-                        {business.avgRating ? Number.parseFloat(business.avgRating).toFixed(2) : 0} rating
+                        
                     </div>
-                    <div>
-                        {business.countReview ? Number.parseFloat(business.countReview).toFixed(0) : 0} reviews
-                    </div>
-                    <div>Recommended Reviews</div>
-                </div>
-            </div>
 
+                </div>
+
+
+            </div>
+            <div className='edit_delete_biz_detail'>
+                {user.id === business.ownerId && (
+                    <div className=''>
+                        <NavLink className="edit_link" to={`/businesses/${business.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
+                        <button className='delete_bizDetail' onClick={deletebiz}> <i className="fa-solid fa-trash-can"></i> Delete</button>
+                    </div>
+                )}
+            </div>
+            <div className='Recommended'>Recommended Reviews</div>
 
 
         </div>

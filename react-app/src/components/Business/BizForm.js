@@ -96,8 +96,8 @@ function BizForm({ business, formType }) {
             errors.push("Street address can't include a period");
         }
 
-        if (address.length < 5 || address.length > 100) {
-            errors.push("Street address must be between 5 and 100 characters");
+        if (address.length < 5 || address.length > 50) {
+            errors.push("Street address must be between 5 and 50 characters");
         }
 
         if (phone.length > 12) {
@@ -108,16 +108,16 @@ function BizForm({ business, formType }) {
             errors.push("Phone number must be 10 valid digit number (ex: 123-456-7890)");
         }
 
-        if (name.length > 50 || name.length < 1) {
-            errors.push("Name must be between 1 and 50 characters");
+        if (name.length > 20 || name.length < 1) {
+            errors.push("Name must be between 1 and 20 characters");
         }
 
         if (name === ".") {
             errors.push("Name can't just be a period");
         }
 
-        if (description.length < 5 || description.length > 100) {
-            errors.push("Description must be between 5 and 100 characters");
+        if (description.length < 5 || description.length > 50) {
+            errors.push("Description must be between 5 and 50 characters");
         }
 
         // if (!city.length) {
@@ -181,10 +181,14 @@ function BizForm({ business, formType }) {
 
                     <div className="form_container">
 
-                        <div className="create_form_word">
-                            <h1>Hello!! Let’s start with your business name</h1>
-                            <div className='create_form_word'>We’ll use this information to help you claim your Eatlp page. Your business will come up automatically if it is already listed.</div>
-                        </div>
+                       { formType === "Create Business" && (<>
+                            <h1 className="create_form_word">Hello! Let’s start with your business name</h1>
+                            <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page. Your business will come up automatically if it is already listed.</div>
+                      </> )} 
+                      { formType === "Update Business" && (<div>
+                            <h1 className="create_form_word">Hello! Let’s edit with your business name</h1>
+                            <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page. Your business will come up automatically if it is already listed.</div>
+                      </div> )} 
                         <div>
                             <label>
                                 <div className='name'>* Name:</div>

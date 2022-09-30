@@ -41,12 +41,11 @@ function BusinessBrower() {
                     <NavLink className='Brower_link' to={`/businesses/${business.id}`}>
                     <div className='Brower_info'>
                         
-                            <div className='business_name'>{business.name}</div>
-                        
-                        <div>{business.phone}</div>
-                        <div>{business.address}</div>
-                        <div>{business.description}</div>
-                        <div>{business.price_range}</div>
+                        <div className='business_name'>{business.name}</div>
+                        <div className='business_phone'>{business.phone}</div>
+                        <div className='business_address'>{business.address}</div>
+                        <div className='business_description'>{business.description}</div>
+                        <div className='business_price_range'>{business.price_range}</div>
                         {/* <div>
                         {spot.avgRating ? Number.parseFloat(spot.avgRating).toFixed(2) : 0}
                         </div> */}
