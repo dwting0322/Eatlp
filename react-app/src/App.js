@@ -13,6 +13,8 @@ import Splash_Page from './Splash/Splash_Page';
 import BusinessDetail from './components/Business/BusinessDetail';
 import CreateBizForm from './components/Business/CreateBizForm';
 import EditBizForm from './components/Business/EditBizForm';
+import CreateReviewForm from './components/Review/CreateReviewForm';
+import EditReviewForm from './components/Review/EditReviewForm';
 
 
 
@@ -67,6 +69,10 @@ function App() {
         <Route exact path="/businesses" component={CreateBizForm}/>
 
         <Route exact path="/businesses/:businessId/edit" component={EditBizForm}/>
+
+        <Route exact path="/businesses/:businessId/reviews" component={CreateReviewForm}/>
+
+        <Route exact path="/reviews/:reviewId/edit" component={EditReviewForm}/>
 
       </Switch>
     </BrowserRouter>

@@ -43,8 +43,8 @@ def seed_businesses():
         # country = "USA",
         # lat = 37.7645358,
         # lng = -122.4730327,
-        name = "Restaurant #1",
-        description = "Restaurant #1",
+        name = "Restaurant #3",
+        description = "Restaurant #3",
         price_range = "$", 
         preview_img="https://silversmithsrestaurant.co.uk/wp-content/uploads/2020/03/IMG_1343-2-min-scaled.jpg",
     )
