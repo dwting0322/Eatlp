@@ -22,36 +22,45 @@ function BusinessBrower() {
     // if (!businesses) return null
 
     return (
-        <div className='test'>
-            <h1>Suggested Restaurant for you</h1>
+        <>
+        <h1 className='Suggested_word'>Suggested Restaurant for you</h1>
+        <div className='Biz_Brower_outter'>
+           
 
-        {businesses.map(business => (
-            <div key={business.id}>
-                <div>
-                    <NavLink to={`/businesses/${business.id}`}>
-                        <img src={business.preview_img} alt="Restaurant" 
-                        onError={e => { e.currentTarget.src = "https://st2.depositphotos.com/2805411/8085/i/450/depositphotos_80851650-stock-photo-sketch-design-of-coffee-shop.jpg"}}
-                        />
-                    </NavLink>
-                </div>
+            {businesses.map(business => (
 
-                <div>
-                    <div>
-                        <div>{business.name}</div>
+                <div className='Biz_Brower_container' key={business.id}>
+
+                    <div className='Brower_img'>
+                        <NavLink  to={`/businesses/${business.id}`}>
+                            <img className='Biz_Restaurant_Img' src={business.preview_img} alt="Restaurant"
+                                onError={e => { e.currentTarget.src = "https://st2.depositphotos.com/2805411/8085/i/450/depositphotos_80851650-stock-photo-sketch-design-of-coffee-shop.jpg" }}
+                            />
+                        </NavLink>
+                    </div>
+                    <NavLink className='Brower_link' to={`/businesses/${business.id}`}>
+                    <div className='Brower_info'>
+                        
+                            <div className='business_name'>{business.name}</div>
+                        
                         <div>{business.phone}</div>
                         <div>{business.address}</div>
                         <div>{business.description}</div>
-                        <div>{business.price_range}</div> 
-                    </div>
-                    {/* <div>
-                      
+                        <div>{business.price_range}</div>
+                        {/* <div>
                         {spot.avgRating ? Number.parseFloat(spot.avgRating).toFixed(2) : 0}
-                    </div> */}
+                        </div> */}
+                    </div>
+                    </NavLink>
                 </div>
-            </div>
-        ))}
-    </div>
+                
+            ))}
+           
+        </div>
+        <h1 className='Recent_word'>Recent Activity</h1>
+        </>
     )
+    
 }
 
 export default BusinessBrower
