@@ -97,6 +97,7 @@ a {
 
 .Recent_word{
     text-align: center;
+    margin: 50px 0px;
 }
 
 
@@ -338,13 +339,22 @@ a {
     display: flex;
     align-content: center;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     margin-top: -350px;
     font-size: 30px;
     color: white;
     max-width: 100%;
     overflow-wrap: break-word;
     text-shadow:0 0 5px rgb(253, 2, 2);
+    /* width: 1400px; */
+   
+}
+
+.biz_detail_info_second_container{
+    /* margin-left: -300px; */
+    max-width: 100%;
+    height: 100%;
+    /* margin-left: 190px; */
 }
 
 .notFount {
@@ -379,15 +389,15 @@ a {
     font-size: 25px;
     margin-right: 15px;
     color: blue;
+    box-shadow: none;
 }
 
 .delete_bizDetail{
     cursor: pointer;
     border: none;
-    background-color: white;
+    background-color: rgba(237, 232, 232, 0);
     font-size: 25px;
     color: red;
 }
-.Recommended{
-    margin-left: 10px;
-}
+
+

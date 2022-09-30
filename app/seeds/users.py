@@ -56,15 +56,15 @@ def seed_users():
         password='password', 
         first_name='Kevin',
         last_name='Love',
-        profile_img='https://cdnb.artstation.com/p/assets/images/images/020/071/433/large/joshua-carreras-marge-simpson-posted-to-x.jpg?1566245506'
+        profile_img='http://5b0988e595225.cdn.sohucs.com/images/20171101/be517c1f54d84181b270fd7833478547.jpeg'
         
         )
-    jordon = User(
-        email='jordon@aa.io', 
+    pikachu = User(
+        email='pikachu@aa.io', 
         password='password', 
-        first_name='Jordon',
-        last_name='James',
-        profile_img='https://img.3dmgame.com/uploads/images/news/20200721/1595316080_479085.jpg'
+        first_name='Pikachu',
+        last_name='Pika Pika',
+        profile_img='https://oyster.ignimgs.com/mediawiki/apis.ign.com/pokemon-blue-version/8/89/Pikachu.jpg'
         
         )
     carol = User(
@@ -72,7 +72,7 @@ def seed_users():
         password='password', 
         first_name='Carol',
         last_name='Alila',
-        profile_img='https://img.3dmgame.com/uploads/images/news/20191119/1574149623_755993.jpg'
+        profile_img='https://cdn2.ettoday.net/images/2071/2071134.jpg'
         
         )
     dragon = User(
@@ -91,7 +91,7 @@ def seed_users():
     db.session.add(kangaskhan)
     db.session.add(maggie)
     db.session.add(kevin)
-    db.session.add(jordon)
+    db.session.add(pikachu)
     db.session.add(carol)
     db.session.add(dragon)
 

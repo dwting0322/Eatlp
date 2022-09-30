@@ -1,3 +1,4 @@
+import { getOneBusiness } from "./business";
 
 //type:
 const LOAD_ALL_REVIEW = "review/getAllReview";
@@ -72,7 +73,7 @@ const DeleteAReview = (id) => {
 // Get all review thunk
 export const getAllReview = () => async (dispatch) => {
     const response = await fetch(`/api/reviews`);
-  
+//   console.log("response", response)
     if (response.ok) {
       const data = await response.json();
       dispatch(loadAllReview(data.reviews));
@@ -97,7 +98,7 @@ export const getBusinessAllReview = (BusinessId) => async (dispatch) => {
 // Create a review for business thunk
 export const createReview = (newReviewData) => async (dispatch) => {
     const response = await fetch(
-      `/api/businesses/${newCommentData.business_id}/reviews`,
+      `/api/businesses/${newReviewData.business_id}/reviews`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -158,8 +159,9 @@ const reviewReducer = (state = initialState, action) => {
     }
    
     case LOAD_ALL_REVIEW_BUSINESS_ID: {
-        newState = { ...state };
-        newState[action.reviews.id] = action.reviews;
+        action.reviews.forEach((review) => {
+            newState[review.id] = review;
+        });
         return newState;
     }
 
