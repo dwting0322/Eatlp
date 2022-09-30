@@ -1,0 +1,78 @@
+.profile_img_review{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.review_profile{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.review_conatiner{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2em;
+    
+}
+
+.review_second_container{
+    width: 500px;
+    height: 250px;
+    border: 1px solid lightgrey;
+    padding: 20px;
+    overflow-y: auto;
+    transition: box-shadow 0.5s;
+}
+
+.review_second_container:hover{
+    box-shadow: 0 0 10px rgb(98, 95, 95);
+}
+
+.profile_name_review{
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.Stars{
+    font-size: 20px;
+}
+
+.Review{
+    font-size: 20px;
+}
+
+.review_by_biz_contanier{
+    margin-left: 20px;
+    width: 500px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.no_review_words{
+    margin-left: 20px;
+}
+
+.profile_img_and_name_review{
+    display: flex;
+}
+
+.line{
+    width: 500px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+.review_outter_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-left: -190px; */
+}
+.Recommended{
+    margin-left: 40px;
+    padding-top: 50px;
+    margin-left: -135px;
+}

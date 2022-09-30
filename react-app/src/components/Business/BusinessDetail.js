@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteBusiness, getOneBusiness } from '../../store/business';
 import notFound from '../../Picture/404-error-page-not-found.jpg'
 import './Business.css'
+import ReviewByBusiness from '../Review/ReviewByBusiness';
 
 
 function BusinessDetail() {
@@ -53,8 +54,8 @@ function BusinessDetail() {
 
                 <div className='biz_detail_info_container'>
 
-                    <div>
-                        <div className='Biz_detail_name'>Name: {business.name}</div>
+                    <div className='biz_detail_info_second_container'>
+                        <div className='Biz_detail_name'>{business.name}</div>
                         <div>
                             {business.avgRating ? Number.parseFloat(business.avgRating).toFixed(2) : 0} rating
                         </div>
@@ -67,25 +68,19 @@ function BusinessDetail() {
                         <div className='Biz_detail_discription'>{business.price_range}</div>
                         <div>Open 10:00 AM - 10:00 PM</div>
                     </div>
+                    <div className='edit_delete_biz_detail'>
+                        {user.id === business.ownerId && (
+                            <div className='delete_edit'>
+                                <NavLink className="edit_link" to={`/businesses/${business.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
+                                <button className='delete_bizDetail' onClick={deletebiz}> <i className="fa-solid fa-trash-can"></i> Delete</button>
+                            </div>
+                        )}
+                    </div>
                     <div>
-                        
                     </div>
-
                 </div>
-
-
             </div>
-            <div className='edit_delete_biz_detail'>
-                {user.id === business.ownerId && (
-                    <div className=''>
-                        <NavLink className="edit_link" to={`/businesses/${business.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
-                        <button className='delete_bizDetail' onClick={deletebiz}> <i className="fa-solid fa-trash-can"></i> Delete</button>
-                    </div>
-                )}
-            </div>
-            <div className='Recommended'>Recommended Reviews</div>
-
-
+            <ReviewByBusiness />
         </div>
     )
 }
