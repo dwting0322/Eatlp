@@ -38,7 +38,7 @@ function ReviewBrower() {
 
                         <div className='Stars'> Stars: {review?.stars?.toFixed(1)} </div>
 
-                        <div className='Review'> Review: {review?.review} </div>
+                        <div className='Review'> Review: {review?.review} </div> 
                     </div>
                 </div>
             ))}
