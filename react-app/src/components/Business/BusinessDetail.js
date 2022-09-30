@@ -6,6 +6,7 @@ import { deleteBusiness, getOneBusiness } from '../../store/business';
 import notFound from '../../Picture/404-error-page-not-found.jpg'
 import './Business.css'
 import ReviewByBusiness from '../Review/ReviewByBusiness';
+import CreateReviewForm from '../Review/CreateReviewForm';
 
 
 function BusinessDetail() {
@@ -24,7 +25,7 @@ function BusinessDetail() {
 
     const deletebiz = () => {
         dispatch(deleteBusiness(business.id));
-        alert("I have successfully eaten the comment for you!!!");
+        alert("I have successfully eaten the business for you!!!");
     };
 
 
@@ -79,8 +80,10 @@ function BusinessDetail() {
                     <div>
                     </div>
                 </div>
+                    <div className='create_Review_lnik_div'>{user.id !== business.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review</NavLink>}</div>
             </div>
             <ReviewByBusiness />
+
         </div>
     )
 }

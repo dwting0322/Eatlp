@@ -10,7 +10,7 @@ function ReviewBrower() {
     const dispatch = useDispatch();
     const reviewsObj = useSelector((state) => state.reviews)
     const reviews = Object.values(reviewsObj)
-
+    reviews.reverse();
     // const filterReview = businesses.filter(business => business?.id === reviews?.business_id)
 
     const user = useSelector((state) => state.session.user)
@@ -35,6 +35,9 @@ function ReviewBrower() {
                             />
                             <div className='profile_name_review'>{review?.user?.first_name}</div>
                         </div>
+                        <NavLink className='business_link_review' to={`/businesses/${review.business_id}`}>
+                        <span className='business_name_review'>{review?.business_name}</span>
+                        </NavLink>
 
                         <div className='Stars'> Stars: {review?.stars?.toFixed(1)} </div>
 
