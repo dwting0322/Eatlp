@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SplashPic1 from '../Picture/SplashPic1.jpg';
 import SplashPic2 from '../Picture/SplashPic2.jpg';
 import SplashPic3 from '../Picture/SplashPic3.jpg';
-
+import LoadingPic from '../Picture/pizzaLoadingPage.gif'
 import "./Splash_Page.css";
 
 
@@ -11,6 +11,7 @@ function Splash_Page() {
   const listImage = [SplashPic1, SplashPic2, SplashPic3];
   const [image, setImage] = useState(listImage[0]);
   const [second, setSeconds] = useState(0);
+  const [loaded, setLoaded] = useState(false);
 
   const dev =
   {
@@ -36,8 +37,18 @@ function Splash_Page() {
   }, []);
 
 
+  useEffect(() => {
+    const LoadingTimeOut = setTimeout(() => {
+        setLoaded(true);
+    }, 500);
+    return () => clearTimeout(LoadingTimeOut);
+}, []);
+
+
   return (
     <div className='Splash_container'>
+      {!loaded ? (<img className='loading_page' src={LoadingPic} alt='loading page'/>) : 
+      (<>
       <img className="splash_image" src={image} />
       <div className='Welcome_words'>Welcome to Eatlp</div>
       <div className='EatlpLink_div'> <a className='EatlpLink' href="https://github.com/dwting0322/Eatlp"> Eatlp Github </a></div>
@@ -48,6 +59,8 @@ function Splash_Page() {
         <div><a className='ins' href={dev.ins}> <i className="fa-brands fa-square-instagram" /></a> </div>
         <div><a className='fb' href={dev.fb}> <i className="fa-brands fa-facebook" /></a> </div>
       </div>
+      </>
+      )}
     </div>
   )
 }

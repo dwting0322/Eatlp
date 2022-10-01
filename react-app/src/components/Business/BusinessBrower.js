@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getAllBusiness } from '../../store/business';
 import ReviewBrower from '../Review/ReviewBrower';
-
+import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
 
 
 function BusinessBrower() {
@@ -14,17 +14,27 @@ function BusinessBrower() {
     const businesses = Object.values(businessObj)
 
     const dispatch = useDispatch();
-
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         dispatch(getAllBusiness());
     }, [dispatch]);
 
-    if (!businesses) return null
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setLoaded(true);
+        }, 500);
+        return () => clearTimeout(timeout);
+    }, []);
+
 
     return (
         <>
-            <h1 className='Suggested_word'>Suggested Restaurant for you</h1>
+         {!loaded ? (<img className='loading_page' src={LoadingPic} alt='loading page'/>) : 
+         
+            (
+              <>  
+                <h1 className='Suggested_word'>Suggested Restaurant for you</h1>
             <div className='Biz_Brower_outter'>
 
 
@@ -59,6 +69,8 @@ function BusinessBrower() {
             </div>
             <h1 className='Recent_word'>Recent Reviews Activity</h1>
             <ReviewBrower />
+             </>
+            )}
         </>
     )
 
