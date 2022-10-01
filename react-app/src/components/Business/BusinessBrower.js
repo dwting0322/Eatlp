@@ -1,7 +1,7 @@
 import React from 'react';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getAllBusiness } from '../../store/business';
 import ReviewBrower from '../Review/ReviewBrower';
 
@@ -20,7 +20,7 @@ function BusinessBrower() {
         dispatch(getAllBusiness());
     }, [dispatch]);
 
-    // if (!businesses) return null
+    if (!businesses) return null
 
     return (
         <>

@@ -1,9 +1,8 @@
-import { getOneBusiness } from "./business";
 
 //type:
 const LOAD_ALL_REVIEW = "review/getAllReview";
 const LOAD_ALL_REVIEW_BUSINESS_ID = "review/getAllReviewByBusinessId";
-// const LOAD_ONE_REVIEW = "review/getOneReview";
+const LOAD_ONE_REVIEW = "review/getOneReview";
 // const READ_OWNER_REVIEW = "review/getAllReviewByUser";
 const CREATE_REVIEW = "review/createReview";
 const UPDATE_REVIEW = "review/updateReview";
@@ -29,13 +28,13 @@ const loadAllReviewByBusinessId = (reviews) => {
     };
 };
 
-// //Get one review by review ID action
-// const loadOneReview = (business) => {
-//     return {
-//         type: LOAD_ONE_REVIEW,
-//         business,
-//     }
-// };
+//Get one review by review ID action
+const loadOneReview = (reviews) => {
+    return {
+        type: LOAD_ONE_REVIEW,
+        reviews,
+    }
+};
 
 // // Get all review of the Current User action
 // const ReadOwnerReview = (review) => {
@@ -93,6 +92,22 @@ export const getBusinessAllReview = (BusinessId) => async (dispatch) => {
     }
     return response;
   };
+
+
+  //Gat one review by review id thunk
+  export const getOneReviewByReviewId = (id) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/${id}`);
+
+    console.log("response", response)
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(loadOneReview(data)); 
+      return data;
+    }
+    return response;
+  };
+
 
 
 // Create a review for business thunk
@@ -162,6 +177,12 @@ const reviewReducer = (state = initialState, action) => {
         action.reviews.forEach((review) => {
             newState[review.id] = review;
         });
+        return newState;
+    }
+
+    case LOAD_ONE_REVIEW: {
+        newState = { ...state };
+        newState[action.reviews.id] = action.reviews;
         return newState;
     }
 

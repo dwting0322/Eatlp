@@ -1,12 +1,10 @@
-
 import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
 import EatlpLogo from '../Picture/EatlpLogo.png';
 import "./NavBar.css";
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginForm from './auth/LoginForm';
+
 
 
 const NavBar = ({ isLoaded }) => {
