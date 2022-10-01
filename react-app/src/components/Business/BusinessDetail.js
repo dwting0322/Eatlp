@@ -1,12 +1,12 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteBusiness, getOneBusiness } from '../../store/business';
 import notFound from '../../Picture/404-error-page-not-found.jpg'
 import './Business.css'
 import ReviewByBusiness from '../Review/ReviewByBusiness';
-import CreateReviewForm from '../Review/CreateReviewForm';
+
 
 
 function BusinessDetail() {
@@ -14,7 +14,7 @@ function BusinessDetail() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const history = useHistory()
-
+    
     const user = useSelector((state) => state.session.user);
 
 
@@ -34,6 +34,10 @@ function BusinessDetail() {
     }, [dispatch,]); // review once review change, it re-run the  dispatch(getOneSpots(spotId))
 
     // console.log(spot)
+    if (!user) {
+        alert("Please log in/sign up before become a host!")
+        history.push("/login")
+    }
 
     if (!business) {
         return (
@@ -58,7 +62,7 @@ function BusinessDetail() {
                     <div className='biz_detail_info_second_container'>
                         <div className='Biz_detail_name'>{business.name}</div>
                         <div>
-                            {business.avgRating ? Number.parseFloat(business.avgRating).toFixed(2) : 0} rating
+                            {business.avgRating ? Number.parseFloat(business.avgRating).toFixed(1) : 0} rating
                         </div>
                         <div>
                             {business.countReview ? Number.parseFloat(business.countReview).toFixed(0) : 0} reviews
@@ -70,7 +74,7 @@ function BusinessDetail() {
                         <div>Open 10:00 AM - 10:00 PM</div>
                     </div>
                     <div className='edit_delete_biz_detail'>
-                        {user.id === business.ownerId && (
+                        {user?.id === business?.ownerId && (
                             <div className='delete_edit'>
                                 <NavLink className="edit_link" to={`/businesses/${business.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
                                 <button className='delete_bizDetail' onClick={deletebiz}> <i className="fa-solid fa-trash-can"></i> Delete</button>
@@ -80,7 +84,7 @@ function BusinessDetail() {
                     <div>
                     </div>
                 </div>
-                    <div className='create_Review_lnik_div'>{user.id !== business.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review</NavLink>}</div>
+                    <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review</NavLink>}</div>
             </div>
             <ReviewByBusiness />
 

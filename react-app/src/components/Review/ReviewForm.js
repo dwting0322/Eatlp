@@ -1,10 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createReview, editReview } from '../../store/review';
+import { createReview, editReview, getOneReviewByReviewId } from '../../store/review';
 import "./Review.css"
+
 
 
 function ReviewForm({ myReview, formType }) {
@@ -18,23 +19,15 @@ function ReviewForm({ myReview, formType }) {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
 
-    const reviewsObj = useSelector((state) => state.reviews);
-    const reviews = Object.values(reviewsObj)
-    console.log("reviews from form component: ", reviews)
+    const { reviewId } = useParams()
+    const { businessId } = useParams()
 
-    const { businessId } = useParams();
-
-    // console.log("businessId***********", businessId)
-
-    // const business = useSelector(state => state.businesses[id])
-    // console.log("business***********", business)
+    // const reviewsObj = useSelector((state) => state.reviews);
+    // const reviews = Object.values(reviewsObj)
 
     const user = useSelector(state => state.session.user)
 
 
-    // const filter = reviews.filter(review => review?.user_id !== user?.id)
-
-    // console.log("filter***************", filter)
 
 
 
@@ -56,12 +49,6 @@ function ReviewForm({ myReview, formType }) {
             review,
         };
 
-        console.log("myReviewInfo", myReviewInfo)
-
-        // if (filter.length) return alert("User already has a review for this spot")
-
-        // console.log("review", review.id)
-        // if(review.review) alert("User already has a review for this spot")
 
         if (formType === "Post Review") {
             const newReview = await dispatch(createReview(myReviewInfo))
@@ -72,20 +59,26 @@ function ReviewForm({ myReview, formType }) {
             history.push(`/businesses/${edittedReview.business_id}`);
         }
 
-
-
-        setStars('');
-        setReview('');
-        setValidationErrors([]);
-        setHasSubmitted(false);
-
         //   history.push(`/reviews/${review.id}`);
     };
 
 
+    useEffect(async () => {
+        if (reviewId) {
+            const ReviewData = await dispatch(getOneReviewByReviewId(reviewId))
+
+            setStars(ReviewData.stars);
+            setReview(ReviewData.review);
+
+        }
+    }, [dispatch, reviewId]);
+
+
+
+
     useEffect(() => {
         let errors = [];
-       
+
         if (stars > 5 || stars < 1) {
             errors.push("Stars must be an integer from 1 to 5");
         }
@@ -107,50 +100,50 @@ function ReviewForm({ myReview, formType }) {
     }
 
     return user && (
-        <form onSubmit={handleSubmit} >
-            <h2>{formType}:</h2>
+        <div className='review_form_container'>
+            <form onSubmit={handleSubmit} >
+                <h2>{formType}:</h2>
+             
 
-            <ul className="errors_ul">
-                {hasSubmitted && validationErrors.map(error => (
-                    <li className='Review_errorsList' key={error}>
-                        <i className="fa-solid fa-ban"></i> {error}
-                    </li>
-                ))}
-            </ul>
-            {/* <div className='Review_Container'> */}
-            {/* <div className='Review_Star'> */}
-            <label>
-                <div className='stars'>* Stars:</div>
-                <select className='stars_select'
-                    value={stars}
-                    onChange={e => setStars(e.target.value)}
-                    required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+                <ul className="errors_ul">
+                    {hasSubmitted && validationErrors.map(error => (
+                        <li className='Review_errorsList' key={error}>
+                            <i className="fa-solid fa-ban"></i> {error}
+                        </li>
+                    ))}
+                </ul>
+                <div>
+                    <label>
+                        * Stars:
+                        <select className='stars_select'
+                            value={stars}
+                            onChange={e => setStars(e.target.value)}
+                            required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        * Review:
+                        <textarea className='Review_ReviewForm'
+                            type="text"
+                            required
+                            placeholder="Please say something..."
+                            value={review}
+                            onChange={e => setReview(e.target.value)}
+                        />
+                    </label>
+                </div>
 
-            </label>
+                <input className='Create_a_review_button' type="submit" value={formType} />
 
-            <p>
-                <label>
-                    Review:
-
-                    <textarea className='Review_ReviewForm'
-                        type="text"
-                        required
-                        placeholder="Please say something..."
-                        value={review}
-                        onChange={e => setReview(e.target.value)}
-                    />
-                </label>
-            </p>
-
-            <input className='Create_a_review_button' type="submit" value={formType} />
-
-        </form>
+            </form>
+        </div>
     );
 }
 

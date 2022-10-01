@@ -1,7 +1,7 @@
 import React from 'react'
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { deleteReview, getBusinessAllReview } from '../../store/review'
 import './Review.css'
 
@@ -42,10 +42,10 @@ function ReviewByBusiness() {
                         />
                         <div className='profile_name_review'>{review?.user?.first_name}</div>
                     </div>
-                    <div><i className="fa-solid fa-star"></i> {review.stars} </div>
+                    <div><i className="fa-solid fa-star"></i> {review?.stars} </div>
                     <div> {new Date(review.created_at).toLocaleDateString()} </div>
-                    <div className="ReviewForm_review" > {review.review} </div>
-                    {user.id === review.user_id && (
+                    <div className="ReviewForm_review" > {review?.review} </div>
+                    {user?.id === review?.user_id && (
                         <div>
                             <NavLink className="edit_link_review" to={`/reviews/${review.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
                             <button className='delete_review' onClick={() => dispatch(deleteReview(review.id))}> <i className="fa-solid fa-trash-can"></i> Delete</button>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createBusiness, editBusiness } from '../../store/business';
+import { createBusiness, editBusiness, getOneBusiness } from '../../store/business';
 
 
 
@@ -27,8 +27,10 @@ function BizForm({ business, formType }) {
     const [preview_img, setPreview_img] = useState(business?.preview_img || "")
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
+  
 
-
+    const {businessId} = useParams()
+ 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,8 +40,8 @@ function BizForm({ business, formType }) {
         }
         if (!user) alert("Please log in/sign up before become a host!")
 
-
-        business = {
+        
+        const myBusiness = {
             ...business,
             //   city,
             //   state,
@@ -54,39 +56,37 @@ function BizForm({ business, formType }) {
             preview_img,
         };
 
+
+
         if (formType === "Create Business") {
-            const newBusiness = await dispatch(createBusiness(business))
+            const newBusiness = await dispatch(createBusiness(myBusiness))
             if (newBusiness) history.push(`/businesses/${newBusiness.id}`);
 
         } else {
 
-            dispatch(editBusiness(business))
-
-            history.push(`/businesses/${business.id}`);
+            dispatch(editBusiness(myBusiness))
+            history.push(`/businesses/${myBusiness.id}`);
         }
 
-        //   console.log("spot from SpotForm: ",spot)
-
-        setPreview_img('');
-        setAddress('');
-        // setCity('');
-        // setState('');
-        // setCountry('');
-        // setLat('');
-        // setLng('');
-        setName('');
-        setDescription('');
-        setPhone('');
-        setPrice_range('');
-        setValidationErrors([]);
-        setHasSubmitted(false);
-        //   history.push(`/`);
-
+        
     };
 
-    // useEffect(() => {
-    //     dispatch(dispatch(getAllBusiness()))
-    // }, [dispatch])
+    useEffect(async () => {
+        if (businessId) {
+         
+            const testBusiness = await dispatch(getOneBusiness(businessId))
+         
+            const bizData = testBusiness.business
+
+            setName(bizData.name);
+            setAddress(bizData.address);
+            setPhone(bizData.phone);
+            setDescription(bizData.description);
+            setPrice_range(bizData.price_range);
+            setPreview_img(bizData.preview_img);
+        }
+      }, [dispatch, businessId]);
+
 
 
     useEffect(() => {

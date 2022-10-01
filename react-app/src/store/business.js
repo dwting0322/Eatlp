@@ -184,7 +184,7 @@ const businessReducer = (state = initialState, action) => {
     }
 
     case UPDATE_BUSINESS: {
-        // newState = { ...state };
+        newState = { ...state };
             // console.log("action.businesses  ", action.businesses)
         newState[action.businesses.id] = action.businesses;
             // console.log("newState from  edit business reducer after ", newState)

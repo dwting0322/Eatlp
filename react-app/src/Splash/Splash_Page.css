@@ -23,6 +23,14 @@
     font-weight: bold;
 }
 
+.loading_page{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+    margin-top: 250px;
+}
+
 .Splash_container{
     margin: 0;
 }

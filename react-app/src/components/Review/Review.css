@@ -129,3 +129,13 @@
     word-break: break-word;
     overflow-wrap: break-word;
 }
+
+
+
+/* Create / Edit Form */
+
+.review_form_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
