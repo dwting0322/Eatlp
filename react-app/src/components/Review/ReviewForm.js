@@ -9,8 +9,9 @@ import { Rating } from "react-simple-star-rating";
 
 
 
-function ReviewForm({ myReview, formType }) {
+function ReviewForm({ myReview, formType, setShowModal, businessId}) {
 
+    console.log("myReview***********", myReview)
     const history = useHistory();
     const dispatch = useDispatch()
 
@@ -21,8 +22,8 @@ function ReviewForm({ myReview, formType }) {
 
 
     const { reviewId } = useParams()
-    const { businessId } = useParams()
-
+    // const { businessId } = useParams()
+    console.log("businessId", businessId)
     // const reviewsObj = useSelector((state) => state.reviews);
     // const reviews = Object.values(reviewsObj)
 
@@ -52,19 +53,24 @@ function ReviewForm({ myReview, formType }) {
             stars: stars / 20,
             review,
         };
-
+        // console.log("myReviewInfo*************", myReviewInfo)
 
         if (formType === "Post Review") {
             const newReview = await dispatch(createReview(myReviewInfo))
+            setShowModal(false)
             history.push(`/businesses/${newReview.business_id}`);
 
         } else {
             const edittedReview = await dispatch(editReview(myReviewInfo))
+          
             // console.log("edittedReview*************", edittedReview)
+          
+            setShowModal(false)
+            
             if (edittedReview && edittedReview.errors) {
                 return setValidationErrors(edittedReview.errors);
             }
-            history.push(`/businesses/${edittedReview.business_id}`);
+             history.push(`/businesses/${edittedReview.business_id}`);
         }
 
         //   history.push(`/reviews/${review.id}`);
@@ -73,9 +79,9 @@ function ReviewForm({ myReview, formType }) {
 
     useEffect(async () => {
         if (reviewId) {
-            console.log("reviewId***********", reviewId)
+            // console.log("reviewId***********", reviewId)
             const ReviewData = await dispatch(getOneReviewByReviewId(reviewId))
-            console.log("ReviewData************", ReviewData)
+            // console.log("ReviewData************", ReviewData)
             setStars(ReviewData.stars * 20)
             setReview(ReviewData.review);
 

@@ -1,15 +1,15 @@
-import React from 'react'
-import ReviewForm from './ReviewForm';
+// import React from 'react'
+// import ReviewForm from './ReviewForm';
 
 
 
-function CreateReviewForm() {
+// function CreateReviewForm() {
  
-    const review = {};
+//     const review = {};
 
-  return (
-    <ReviewForm myReview={review} formType="Post Review" />
-  );
-}
+//   return (
+//     <ReviewForm myReview={review} formType="Post Review" />
+//   );
+// }
 
-export default CreateReviewForm
+// export default CreateReviewForm

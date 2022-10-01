@@ -1,13 +1,16 @@
-import React from 'react'
-import { useEffect} from "react";
+import React, { useState } from 'react'
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
+import { Modal } from '../../context/Modal';
 import { deleteReview, getBusinessAllReview } from '../../store/review'
+import EditReviewModal from './EditReviewModal';
 import './Review.css'
+import ReviewForm from './ReviewForm';
 
 
 
-function ReviewByBusiness() {
+function ReviewByBusiness({ showModal, setShowModal}) {
 
     const dispatch = useDispatch();
     const { id } = useParams()
@@ -17,6 +20,8 @@ function ReviewByBusiness() {
     const reviews = Object.values(reviewsObj)
     const filter = reviews.filter(review => review?.business_id === +id)
     const user = useSelector((state) => state.session.user)
+    // const [review, setReview] = useState(null)
+    const [reviewId, setReviewId] = useState(0)
     // const deletebiz = () => {
     //     dispatch(deleteReview(review.id));
     //     alert("I have successfully eaten the review for you!!!");
@@ -47,10 +52,34 @@ function ReviewByBusiness() {
                     <div className="ReviewForm_review" > {review?.review} </div>
                     {user?.id === review?.user_id && (
                         <div>
-                            <NavLink className="edit_link_review" to={`/reviews/${review.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
+                            {/* <NavLink className="edit_link_review" to={`/reviews/${review.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink> */}
+                            <div className='edit_link' onClick={() => {
+                                // setReview(review)
+                                setReviewId(review.id)
+                                setShowModal(true)
+                            }}>
+                                <i className="fa-solid fa-pen-to-square" />
+                                <EditReviewModal reviewId={reviewId}  showModal={showModal} setShowModal={setShowModal}/>
+
+                                Edit Review </div>
+
                             <button className='delete_review' onClick={() => dispatch(deleteReview(review.id))}> <i className="fa-solid fa-trash-can"></i> Delete</button>
                         </div>
                     )}
+
+                    {/* {showModal && (
+                        <Modal onClose={() => setShowModal(false)}>
+                            <ReviewForm
+                                formType="Update Review"
+                                // myReview={review} 
+                                reviewId={reviewId}
+                                setShowModal={setShowModal}
+                                showModal={showModal}
+                                // businessId={businessId}
+                            // onHide={() => setShowModal(false)}
+                            />
+                        </Modal>
+                    )} */}
                 </div>
 
             ))) : <h1 className="no_review_words" >Currently no any review, want to be the first one?</h1>}

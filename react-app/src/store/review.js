@@ -140,12 +140,14 @@ export const editReview = (data) => async (dispatch) => {
         const edittedReview = await response.json();
         dispatch(UpdateAReview(edittedReview));
         return edittedReview;
+
     } else if (response.status < 500) {
       const data = await response.json();
       if (data.errors) {
         return data;
       }
     }  else {
+      
       return ["An error occurred. Please try again."];
     }
     return response;
