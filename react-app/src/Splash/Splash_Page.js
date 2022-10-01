@@ -41,8 +41,10 @@ function Splash_Page() {
     const LoadingTimeOut = setTimeout(() => {
         setLoaded(true);
     }, 500);
+
     return () => clearTimeout(LoadingTimeOut);
-}, []);
+
+  },[]);
 
 
   return (

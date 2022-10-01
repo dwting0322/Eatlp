@@ -20,12 +20,15 @@ function BusinessBrower() {
         dispatch(getAllBusiness());
     }, [dispatch]);
 
+    
     useEffect(() => {
-        const timeout = setTimeout(() => {
+        const LoadingTimeOut = setTimeout(() => {
             setLoaded(true);
         }, 500);
-        return () => clearTimeout(timeout);
-    }, []);
+
+        return () => clearTimeout(LoadingTimeOut);
+
+    },[]);
 
 
     return (

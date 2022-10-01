@@ -45,7 +45,7 @@ function ReviewByBusiness() {
                     <div><i className="fa-solid fa-star"></i> {review?.stars} </div>
                     <div> {new Date(review.created_at).toLocaleDateString()} </div>
                     <div className="ReviewForm_review" > {review?.review} </div>
-                    {user.id === review?.user_id && (
+                    {user?.id === review?.user_id && (
                         <div>
                             <NavLink className="edit_link_review" to={`/reviews/${review.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
                             <button className='delete_review' onClick={() => dispatch(deleteReview(review.id))}> <i className="fa-solid fa-trash-can"></i> Delete</button>

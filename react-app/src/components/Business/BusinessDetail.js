@@ -84,7 +84,7 @@ function BusinessDetail() {
                     <div>
                     </div>
                 </div>
-                    <div className='create_Review_lnik_div'>{user.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review</NavLink>}</div>
+                    <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review</NavLink>}</div>
             </div>
             <ReviewByBusiness />
 
