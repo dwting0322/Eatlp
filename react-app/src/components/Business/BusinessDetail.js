@@ -6,6 +6,7 @@ import { deleteBusiness, getOneBusiness } from '../../store/business';
 import notFound from '../../Picture/404-error-page-not-found.jpg'
 import './Business.css'
 import ReviewByBusiness from '../Review/ReviewByBusiness';
+import CreateReviewModal from '../Review/CreateReviewModal';
 
 
 
@@ -84,7 +85,8 @@ function BusinessDetail() {
                     <div>
                     </div>
                 </div>
-                    <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review</NavLink>}</div>
+                    <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review </NavLink>}</div>
+                    {/* <div className='create_Review_lnik_div'>{ user?.id !== business?.ownerId && <CreateReviewModal/> } </div> */}
             </div>
             <ReviewByBusiness />
 

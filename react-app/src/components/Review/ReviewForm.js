@@ -8,7 +8,7 @@ import "./Review.css"
 
 
 
-function ReviewForm({ myReview, formType }) {
+function ReviewForm({ myReview, formType, onHide }) {
 
     const history = useHistory();
     const dispatch = useDispatch()
@@ -53,10 +53,12 @@ function ReviewForm({ myReview, formType }) {
         if (formType === "Post Review") {
             const newReview = await dispatch(createReview(myReviewInfo))
             history.push(`/businesses/${newReview.business_id}`);
+            onHide()
 
         } else {
             const edittedReview = await dispatch(editReview(myReviewInfo))
             history.push(`/businesses/${edittedReview.business_id}`);
+            onHide()
         }
 
         //   history.push(`/reviews/${review.id}`);

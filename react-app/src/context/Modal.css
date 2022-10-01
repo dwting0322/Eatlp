@@ -19,7 +19,7 @@
     background-color: rgba(0, 0, 0, 0.7);
   }
 
-  #modal-content {
+  /* #modal-content {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -28,4 +28,9 @@
     padding: 15px;
     z-index: 6;
     font-family: 'Roboto', sans-serif;
+  } */
+
+  #modal-content {
+    position: absolute;
+    background-color:white;
   }
