@@ -26,7 +26,7 @@ function BusinessDetail() {
 
     const reviewsObj = useSelector((state) => state.reviews);
     const reviews = Object.values(reviewsObj)
-    
+
     const filter = reviews.filter(review => review?.user_id === user?.id)
     console.log("filter from component: ", filter)
     // const user = useSelector(state=> state.session.user)
@@ -34,6 +34,7 @@ function BusinessDetail() {
     const deletebiz = () => {
         dispatch(deleteBusiness(business.id));
         alert("I have successfully eaten the business for you!!!");
+        history.push("/businesses/all")
     };
 
 
@@ -59,17 +60,17 @@ function BusinessDetail() {
 
     if (!loaded) {
         return <img className='loading_page' src={LoadingPic} alt='loading page' />
-            // <>
-            //     <h1>Business not found</h1>
-            //     <img className='notFount' src={notFound} alt="Restaurant" />
-            // </>
+        // <>
+        //     <h1>Business not found</h1>
+        //     <img className='notFount' src={notFound} alt="Restaurant" />
+        // </>
     }
 
-    return  (
+    return (
         <div>
             <div>
                 <div>
-                    <img className='Bis_img' src={business.preview_img} alt="Restaurant"
+                    <img className='Bis_img' src={business?.preview_img} alt="Restaurant"
                         onError={e => { e.currentTarget.src = "https://st2.depositphotos.com/2805411/8085/i/450/depositphotos_80851650-stock-photo-sketch-design-of-coffee-shop.jpg" }}
                     />
                 </div>
@@ -77,29 +78,37 @@ function BusinessDetail() {
                 <div className='biz_detail_info_container'>
 
                     <div className='biz_detail_info_second_container'>
-                        <div className='Biz_detail_name'>{business.name}</div>
+                        <div className='Biz_detail_name'>{business?.name}</div>
                         <div>
-                            {business?.avgRating == 0 && (<div>No Rating</div>)} 
-                            
-                            {business?.avgRating >= 1 && business?.avgRating < 1.5 && (<i className="fa-solid fa-star"/>)}
-                            {business?.avgRating >= 1.5 && business?.avgRating < 2 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star-half-stroke"/></>)}
-                            {business?.avgRating >= 2 && business?.avgRating < 2.5 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
-                            {business?.avgRating >= 2.5 && business?.avgRating < 3 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star-half-stroke"/></>)}
-                            {business?.avgRating >= 3 && business?.avgRating < 3.5 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
-                            {business?.avgRating >= 3.5 && business?.avgRating < 4 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star-half-stroke"/></>)}
-                            {business?.avgRating >= 4 && business?.avgRating < 4.5 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
-                            {business?.avgRating >= 4.5 && business?.avgRating < 5 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star-half-stroke"/></>)}
-                            {business?.avgRating == 5 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
+                            {business?.avgRating == 0 && <span>No Rating</span>}
+                            {business?.avgRating >= 1 && business?.avgRating < 1.5 && (<i className="fa-solid fa-star" />)}
+                            {business?.avgRating >= 1.5 && business?.avgRating < 2 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star-half-stroke" /></>)}
+                            {business?.avgRating >= 2 && business?.avgRating < 2.5 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
+                            {business?.avgRating >= 2.5 && business?.avgRating < 3 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star-half-stroke" /></>)}
+                            {business?.avgRating >= 3 && business?.avgRating < 3.5 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
+                            {business?.avgRating >= 3.5 && business?.avgRating < 4 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star-half-stroke" /></>)}
+                            {business?.avgRating >= 4 && business?.avgRating < 4.5 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
+                            {business?.avgRating >= 4.5 && business?.avgRating < 5 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star-half-stroke" /></>)}
+                            {business?.avgRating == 5 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
 
-                        </div>
-                        <div>
-                            {business.countReview ? Number.parseFloat(business.countReview) : 0} reviews
+                        <span className='total_review'>
+                            {business?.countReview ? Number.parseFloat(business?.countReview).toFixed(0) : 0}  reviews
+                        </span>
                         </div>
                         {/* <div>Phone Number: {business.phone}</div>
                         <div>Address: {business.address}</div> */}
                         {/* <div>Description: {business.description}</div> */}
-                        <div className='Biz_detail_discription'>{business.price_range}</div>
-                        <div>Open 10:00 AM - 10:00 PM</div>
+                        <div>
+                            <span className="claim"><i className="fa-regular fa-circle-check"></i> Claimed </span>
+                            <span className="point"> • </span>
+                            <span className='Biz_detail_discription'>  {business?.price_range}</span>
+                        </div>
+                        <div className='open_time_container'>
+                            <span className='open'> Open</span>
+                            <span className='time'> 10:00 AM - 10:00 PM</span>
+
+
+                        </div>
                         <span className='edit_delete_biz_detail'>
                             {user?.id === business?.ownerId && (
                                 <div className='delete_edit'>
@@ -113,13 +122,13 @@ function BusinessDetail() {
                     </div>
                 </div>
                 {/* <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review </NavLink>}</div> */}
-                <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && !filter.length && (<CreateReviewModal businessId={business.id} />)} </div>
+                <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && !filter.length && (<CreateReviewModal businessId={business?.id} />)} </div>
             </div>
             <div className='Phone_number_Address'>
-                <ReviewByBusiness showModal={showModal} setShowModal={setShowModal} businessId={business.id} />
+                <ReviewByBusiness showModal={showModal} setShowModal={setShowModal} businessId={business?.id} />
                 <div className='biz_address_phone_container'>
-                    <div className='biz_address'><i className="fa-solid fa-phone-volume"/> Phone Number : {business.phone} </div>
-                    <div className='biz_address'><i className="fa-solid fa-location-dot"/> Address : {business.address} </div>
+                    <div className='biz_address'><i className="fa-solid fa-phone-volume" /> Phone Number : {business?.phone} </div>
+                    <div className='biz_address'><i className="fa-solid fa-location-dot" /> Address : {business?.address} </div>
                 </div>
             </div>
         </div>

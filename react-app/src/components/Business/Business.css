@@ -213,6 +213,7 @@ a {
     cursor: pointer;
     border: none;
     padding: 10px;
+    margin-top: 10px;
 }
 
 .submit:active {
@@ -340,12 +341,12 @@ a {
     align-content: center;
     justify-content: center;
     align-items: flex-end;
-    margin-top: -350px;
+    margin-top: -300px;
     font-size: 30px;
     color: white;
     max-width: 100%;
     overflow-wrap: break-word;
-    text-shadow:0 0 5px rgb(253, 2, 2);
+    text-shadow:0 0 5px rgb(49, 46, 46);
     /* width: 1400px; */
    
 }
@@ -372,6 +373,9 @@ a {
     justify-content: center;
     margin: 50px;
     padding-top: 50px;
+    margin-left: 110px;
+    min-width: 90%;
+    width: 800px;
 }
 
 .biz_address{
@@ -434,7 +438,7 @@ margin-left: 50px;
 .delete_bizDetail{
     cursor: pointer;
     border: none;
-    background-color: white ;
+ background-color: rgba(255, 0, 0, 0) ;
     font-size: 20px;
     color: red;
 }
@@ -457,3 +461,39 @@ margin-left: 50px;
     text-align: center;
 }
 
+.open_time_container{
+    margin-bottom: -10px;
+}
+
+.open{
+    color: rgb(255, 115, 0);
+    font-size: 20px;
+    text-shadow: none;
+    font-weight: none;
+    /* background-color: rgba(100, 95, 95, 0.3) ; */
+}
+.time{
+    font-size: 20px;
+    margin-left: 10px;
+    font-weight: none;
+    /* background-color: rgba(100, 95, 95, 0.3) ; */
+}
+
+.claim{
+    font-size: 20px;
+    color: rgb(6, 185, 245);
+    text-shadow: red
+}
+
+.Biz_detail_discription{
+    font-size: 20px;
+    color: gold;
+}
+.point{
+    font-size: 20px;
+}
+
+.total_review{
+    margin-left: 15px;
+    font-size: 20px;
+}
