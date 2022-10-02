@@ -6,6 +6,7 @@ from ..models.db import db
 from ..models.review import Review
 from ..forms.review_form import ReviewForm
 from ..models.image import Image
+from .auth_routes import validation_errors_to_error_messages
 
 
 business_routes = Blueprint('business', __name__)
@@ -170,7 +171,7 @@ def create_new_review(business_id):
         return new_review.to_dict()
 
     else:
-        raise Exception("Unauthorized user")
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 

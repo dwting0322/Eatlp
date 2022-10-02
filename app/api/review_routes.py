@@ -3,7 +3,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from ..models.db import db
 from ..models.review import Review
 from ..forms.review_form import ReviewForm
-
+from .auth_routes import validation_errors_to_error_messages
 
 review_routes = Blueprint('review', __name__)
 
@@ -56,7 +56,7 @@ def edit_comment(review_id):
 
         return edited_review.to_dict()
     else:
-        return {'message': 'Unauthorized user', "statusCode": 403}
+         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # delete review

@@ -5,29 +5,35 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createReview, editReview, getOneReviewByReviewId } from '../../store/review';
 import "./Review.css"
+import { Rating } from "react-simple-star-rating";
 
 
 
-function ReviewForm({ myReview, formType }) {
+function ReviewForm({ myReview, formType, showModal, setShowModal, businessId}) {
+
+    // console.log("setShowModal***********", setShowModal)
 
     const history = useHistory();
     const dispatch = useDispatch()
 
-    const [stars, setStars] = useState(myReview?.stars || "1")
+    const [stars, setStars] = useState(myReview?.stars * 20 || "")
     const [review, setReview] = useState(myReview?.review || "")
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
 
     const { reviewId } = useParams()
-    const { businessId } = useParams()
-
+    // const { businessId } = useParams()
+    console.log("businessId", businessId)
     // const reviewsObj = useSelector((state) => state.reviews);
     // const reviews = Object.values(reviewsObj)
 
     const user = useSelector(state => state.session.user)
 
 
+    const handleRating = (rate) => {
+        setStars(rate);
+    };
 
 
 
@@ -45,18 +51,25 @@ function ReviewForm({ myReview, formType }) {
             ...myReview,
             user_id: user.id,
             business_id: businessId,
-            stars,
+            stars: stars / 20,
             review,
         };
-
+        // console.log("myReviewInfo*************", myReviewInfo)
 
         if (formType === "Post Review") {
             const newReview = await dispatch(createReview(myReviewInfo))
+            setShowModal(false)
             history.push(`/businesses/${newReview.business_id}`);
 
         } else {
             const edittedReview = await dispatch(editReview(myReviewInfo))
-            history.push(`/businesses/${edittedReview.business_id}`);
+          
+            setShowModal(false)
+            
+            if (edittedReview && edittedReview.errors) {
+                return setValidationErrors(edittedReview.errors);
+            }
+             history.push(`/businesses/${edittedReview.business_id}`);
         }
 
         //   history.push(`/reviews/${review.id}`);
@@ -65,9 +78,10 @@ function ReviewForm({ myReview, formType }) {
 
     useEffect(async () => {
         if (reviewId) {
+            // console.log("reviewId***********", reviewId)
             const ReviewData = await dispatch(getOneReviewByReviewId(reviewId))
-
-            setStars(ReviewData.stars);
+            // console.log("ReviewData************", ReviewData)
+            setStars(ReviewData.stars * 20)
             setReview(ReviewData.review);
 
         }
@@ -79,12 +93,12 @@ function ReviewForm({ myReview, formType }) {
     useEffect(() => {
         let errors = [];
 
-        if (stars > 5 || stars < 1) {
-            errors.push("Stars must be an integer from 1 to 5");
-        }
-        // if (!review.length) {
-        //     errors.push("Review text is required");
+        // if (stars > 5 || stars < 1) {
+        //     errors.push("Stars must be an integer from 1 to 5");
         // }
+        if (!stars) {
+            errors.push("Stars rating is required");
+        }
         if (review.length > 255 || review.length < 1) {
             errors.push("Review number of words must be from 1 to 255");
         }
@@ -103,7 +117,9 @@ function ReviewForm({ myReview, formType }) {
         <div className='review_form_container'>
             <form onSubmit={handleSubmit} >
                 <h2>{formType}:</h2>
-             
+                <button className='XXX' onClick={() => { setShowModal(false) }}> X </button>
+                
+                {/* <input type="submit" value={formType} placeholder="X"></input> */}
 
                 <ul className="errors_ul">
                     {hasSubmitted && validationErrors.map(error => (
@@ -112,21 +128,83 @@ function ReviewForm({ myReview, formType }) {
                         </li>
                     ))}
                 </ul>
-                <div>
-                    <label>
-                        * Stars:
-                        <select className='stars_select'
-                            value={stars}
-                            onChange={e => setStars(e.target.value)}
-                            required>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </label>
+
+
+                <div className='container_review_rating'>
+
+                    <Rating className='Rating_tag'
+                        onClick={handleRating}
+                        ratingValue={stars}
+                        size={50}
+                        transition
+                        showTooltip
+                        tooltipArray={[
+                        'Not Good',
+                        'Could be better',
+                        'Average',
+                        'Good',
+                        'Great'
+                        ]}
+                        
+                    /> 
+                    {/* <input className="rating_input"
+                            type="radio"
+                            name="rating"
+                            value="5"
+                            id="rating5"
+                            onClick={(e) => setStars(e.target.value)}
+                        />
+                        <label for="rating5"  className="fas fa-star"></label>
+
+                        <input className="rating_input"
+                            type="radio"
+                            name="rating"
+                            value="4"
+                            id="rating4"
+                            onClick={(e) => setStars(e.target.value)}
+                        />
+                        <label for="rating4"  className="fas fa-star"></label>
+
+                        <input className="rating_input"
+                            type="radio"
+                            name="rating"
+                            value="3"
+                            id="rating3"
+                            onClick={(e) => setStars(e.target.value)}
+                        />
+                        <label for="rating3"  className="fas fa-star"></label>
+
+                        <input className="rating_input"
+                            type="radio"
+                            name="rating"
+                            value="2"
+                            id="rating2"
+                            onClick={(e) => setStars(e.target.value)}
+                        />
+                        <label for="rating2"  className="fas fa-star"></label>
+
+                        <input className="rating_input"
+                            type="radio"
+                            name="rating"
+                            value="1"
+                            id="rating1"
+                            onClick={(e) => setStars(e.target.value)}
+                        />
+                        <label for="rating1"  className="fas fa-star"></label> */}
+
+
+                    {/* <select className='stars_select'
+                        value={stars}
+                        onChange={e => setStars(e.target.value)}
+                        required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select> */}
                 </div>
+
                 <div>
                     <label>
                         * Review:

@@ -6,6 +6,8 @@ import { deleteBusiness, getOneBusiness } from '../../store/business';
 import notFound from '../../Picture/404-error-page-not-found.jpg'
 import './Business.css'
 import ReviewByBusiness from '../Review/ReviewByBusiness';
+import CreateReviewModal from '../Review/CreateReviewModal';
+import EditReviewModal from '../Review/EditReviewModal';
 
 
 
@@ -14,7 +16,9 @@ function BusinessDetail() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const history = useHistory()
-    
+    const [showModal, setShowModal] = useState(false);
+
+
     const user = useSelector((state) => state.session.user);
 
 
@@ -77,6 +81,7 @@ function BusinessDetail() {
                         {user?.id === business?.ownerId && (
                             <div className='delete_edit'>
                                 <NavLink className="edit_link" to={`/businesses/${business.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
+
                                 <button className='delete_bizDetail' onClick={deletebiz}> <i className="fa-solid fa-trash-can"></i> Delete</button>
                             </div>
                         )}
@@ -84,9 +89,10 @@ function BusinessDetail() {
                     <div>
                     </div>
                 </div>
-                    <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review</NavLink>}</div>
+                {/* <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review </NavLink>}</div> */}
+                <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <CreateReviewModal businessId={business.id}/>} </div>
             </div>
-            <ReviewByBusiness />
+            <ReviewByBusiness showModal={showModal} setShowModal={setShowModal} businessId={business.id} />
 
         </div>
     )

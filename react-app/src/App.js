@@ -72,7 +72,7 @@ function App() {
 
         <Route exact path="/businesses/:businessId/reviews" component={CreateReviewForm}/>
 
-        <Route exact path="/reviews/:reviewId/edit" component={EditReviewForm}/>
+        {/* <Route exact path="/reviews/:reviewId/edit" component={EditReviewForm}/> */}
 
       </Switch>
     </BrowserRouter>
