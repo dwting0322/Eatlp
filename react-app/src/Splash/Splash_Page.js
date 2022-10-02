@@ -4,6 +4,7 @@ import SplashPic2 from '../Picture/SplashPic2.jpg';
 import SplashPic3 from '../Picture/SplashPic3.jpg';
 import LoadingPic from '../Picture/pizzaLoadingPage.gif'
 import "./Splash_Page.css";
+import { NavLink } from 'react-router-dom';
 
 
 function Splash_Page() {
@@ -39,30 +40,35 @@ function Splash_Page() {
 
   useEffect(() => {
     const LoadingTimeOut = setTimeout(() => {
-        setLoaded(true);
+      setLoaded(true);
     }, 500);
 
     return () => clearTimeout(LoadingTimeOut);
 
-  },[]);
+  }, []);
 
 
   return (
     <div className='Splash_container'>
-      {!loaded ? (<img className='loading_page' src={LoadingPic} alt='loading page'/>) : 
-      (<>
-      <img className="splash_image" src={image} />
-      <div className='Welcome_words'>Welcome to Eatlp</div>
-      <div className='EatlpLink_div'> <a className='EatlpLink' href="https://github.com/dwting0322/Eatlp"> Eatlp Github </a></div>
-      <div className='FollowMe_div'>Follow Me: </div>
-      <div className='followMe' >
-        <div><a className='linkedIn' href={dev.linkedIn}> <i className="fa-brands fa-linkedin" /></a> </div>
-        <div><a className='gitHub' href={dev.gitHubLink}> <i className="fa-brands fa-github" /></a> </div>
-        <div><a className='ins' href={dev.ins}> <i className="fa-brands fa-square-instagram" /></a> </div>
-        <div><a className='fb' href={dev.fb}> <i className="fa-brands fa-facebook" /></a> </div>
-      </div>
-      </>
-      )}
+      {!loaded ? (<img className='loading_page' src={LoadingPic} alt='loading page' />) :
+        (<>
+          <img className="splash_image" src={image} />
+          <div className='Welcome_words'>Welcome to Eatlp</div>
+          <div className='explore'>
+            <NavLink className='span' to="/businesses/all"><i className="fa-solid fa-magnifying-glass" /> Explore All Restaurant</NavLink>
+          </div>
+          <div className='EatlpLink_div'> <a className='EatlpLink' href="https://github.com/dwting0322/Eatlp"> Eatlp Github </a></div>
+          <div className='splah_page_followMe_container'>
+            <div className='FollowMe_div'>Follow Me: </div>
+            <div className='followMe' >
+              <span><a className='linkedIn' href={dev.linkedIn}> <i className="fa-brands fa-linkedin" /></a> </span>
+              <span><a className='gitHub' href={dev.gitHubLink}> <i className="fa-brands fa-github" /></a> </span>
+              <span><a className='ins' href={dev.ins}> <i className="fa-brands fa-square-instagram" /></a> </span>
+              <span><a className='fb' href={dev.fb}> <i className="fa-brands fa-facebook" /></a> </span>
+            </div>
+          </div>
+        </>
+        )}
     </div>
   )
 }

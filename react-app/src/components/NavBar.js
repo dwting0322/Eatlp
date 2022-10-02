@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import EatlpLogo from '../Picture/EatlpLogo.png';
 import "./NavBar.css";
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-
+import LoginFormModal from './auth/LoginFormModal';
 
 
 const NavBar = ({ isLoaded }) => {
 
   const history = useHistory()
   const sessionUser = useSelector(state => state.session.user)
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className='Navbar_Container'>
@@ -42,7 +43,7 @@ const NavBar = ({ isLoaded }) => {
                 {/* <i className="fa-solid fa-list"/> <i className="fas fa-user-circle"/> */}
                 <img className='profile_image' src={sessionUser.profile_img} />
                 <div className='login_already'>
-                  <ProfileButton user={sessionUser} />
+                  <ProfileButton user={sessionUser} setShowModal={setShowModal} showModal={showModal} />
                 </div>
               </div>
 
@@ -58,7 +59,10 @@ const NavBar = ({ isLoaded }) => {
           <NavLink className="Navbar_link_login" to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
-
+          {/* <div> 
+          <button className="button" onClick={() => setShowModal(true)}>click me</button>
+            <LoginFormModal setShowModal={setShowModal} showModal={showModal} />   
+            </div> */}
           <NavLink className="Navbar_link_signuip" to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>

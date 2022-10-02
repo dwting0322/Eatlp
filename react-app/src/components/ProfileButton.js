@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { logout } from "../store/session";
 import "./NavBar.css";
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, setShowModal }) {
     const dispatch = useDispatch();
     const history = useHistory()
     const [showMenu, setShowMenu] = useState(false);
@@ -30,6 +30,7 @@ function ProfileButton({ user }) {
         e.preventDefault();
         await dispatch(logout());
         history.push("/");
+        // setShowModal(false) this is for close modal after logout
     };
 
     return (

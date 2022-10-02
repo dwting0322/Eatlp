@@ -39,8 +39,8 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId , 
 
 
 
-    const handleRating = (rate) => {
-        setStars(rate);
+    const handleStarRating = (starRating) => {
+        setStars(starRating);
     };
 
 
@@ -141,7 +141,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId , 
                 <div className='container_review_rating'>
 
                     <Rating className='Rating_tag'
-                        onClick={handleRating}
+                        onClick={handleStarRating}
                         ratingValue={stars}
                         size={50}
                         transition
@@ -153,7 +153,6 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId , 
                             'Good',
                             'Great'
                         ]}
-
                     />
 
                     {/* <input className="rating_input"

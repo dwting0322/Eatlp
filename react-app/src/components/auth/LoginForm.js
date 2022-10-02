@@ -5,7 +5,7 @@ import { login } from '../../store/session';
 
 
 
-const LoginForm = ({setShowModal}) => {
+const LoginForm = ({showModal, setShowModal}) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
