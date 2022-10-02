@@ -9,7 +9,7 @@ import { Rating } from "react-simple-star-rating";
 
 
 
-function ReviewForm({ myReview, formType, showModal, setShowModal, businessId}) {
+function ReviewForm({ myReview, formType, showModal, setShowModal, businessId , reviewId}) {
 
     // console.log("setShowModal***********", setShowModal)
 
@@ -22,13 +22,21 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId}) 
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
 
-    const { reviewId } = useParams()
+    const user = useSelector(state => state.session.user)
+
+    // const reviewsObj = useSelector((state) => state.reviews);
+    // const reviews = Object.values(reviewsObj)
+    
+    // const filter = reviews.filter(review => review?.user_id === user?.id)
+    // console.log("filter from component: ", filter)
+    // const { reviewId } = useParams()
+    // console.log("reviewId", reviewId)
+    // console.log("myReview", myReview)
     // const { businessId } = useParams()
-    console.log("businessId", businessId)
+    // console.log("businessId", businessId)
     // const reviewsObj = useSelector((state) => state.reviews);
     // const reviews = Object.values(reviewsObj)
 
-    const user = useSelector(state => state.session.user)
 
 
     const handleRating = (rate) => {
@@ -63,13 +71,13 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId}) 
 
         } else {
             const edittedReview = await dispatch(editReview(myReviewInfo))
-          
+            console.log("edittedReview", edittedReview)
             setShowModal(false)
-            
+
             if (edittedReview && edittedReview.errors) {
                 return setValidationErrors(edittedReview.errors);
             }
-             history.push(`/businesses/${edittedReview.business_id}`);
+            history.push(`/businesses/${edittedReview.business_id}`);
         }
 
         //   history.push(`/reviews/${review.id}`);
@@ -99,8 +107,8 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId}) 
         if (!stars) {
             errors.push("Stars rating is required");
         }
-        if (review.length > 255 || review.length < 1) {
-            errors.push("Review number of words must be from 1 to 255");
+        if (review.length > 255 || review.length < 10) {
+            errors.push("Review number of words must be from 10 to 255");
         }
 
         setValidationErrors(errors);
@@ -116,9 +124,9 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId}) 
     return user && (
         <div className='review_form_container'>
             <form onSubmit={handleSubmit} >
-                <h2>{formType}:</h2>
+                <h1 className='Update_review'>{formType}:</h1>
                 <button className='XXX' onClick={() => { setShowModal(false) }}> X </button>
-                
+
                 {/* <input type="submit" value={formType} placeholder="X"></input> */}
 
                 <ul className="errors_ul">
@@ -139,14 +147,15 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId}) 
                         transition
                         showTooltip
                         tooltipArray={[
-                        'Not Good',
-                        'Could be better',
-                        'Average',
-                        'Good',
-                        'Great'
+                            'Not Good',
+                            'Could be better',
+                            'Average',
+                            'Good',
+                            'Great'
                         ]}
-                        
-                    /> 
+
+                    />
+
                     {/* <input className="rating_input"
                             type="radio"
                             name="rating"
@@ -205,21 +214,21 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId}) 
                     </select> */}
                 </div>
 
-                <div>
-                    <label>
+                <div className='move_word_up'>
+                    <label className='REview_word'>
                         * Review:
                         <textarea className='Review_ReviewForm'
                             type="text"
                             required
-                            placeholder="Please say something..."
+                            placeholder="Doesn't look like much when you walk past, but I was practically dying of hunger so I popped in..."
                             value={review}
                             onChange={e => setReview(e.target.value)}
                         />
                     </label>
                 </div>
-
-                <input className='Create_a_review_button' type="submit" value={formType} />
-
+                <div >
+                    <input className='Create_a_review_button' type="submit" value={formType} />
+                </div>
             </form>
         </div>
     );

@@ -108,8 +108,8 @@ function BizForm({ business, formType }) {
             errors.push("Phone number must be 10 valid digit number (ex: 123-456-7890)");
         }
 
-        if (name.length > 20 || name.length < 1) {
-            errors.push("Name must be between 1 and 20 characters");
+        if (name.length > 25 || name.length < 1) {
+            errors.push("Name must be between 1 and 25 characters");
         }
 
         if (name === ".") {

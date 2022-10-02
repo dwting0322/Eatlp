@@ -7,7 +7,7 @@ import ReviewForm from "./ReviewForm";
 
 function EditReviewModal({ showModal, setShowModal, reviewId, businessId }) {
 //   const [showModal, setShowModal] = useState(false);
-// console.log("showModal***********", showModal)
+// console.log("reviewId***********", reviewId)
     // const { reviewId } = useParams();
     const review = useSelector(state => state.reviews[reviewId])
     // console.log("Review in Edit Modal*************", review)
@@ -30,7 +30,6 @@ function EditReviewModal({ showModal, setShowModal, reviewId, businessId }) {
             setShowModal={setShowModal}
             showModal={showModal}
             businessId={businessId}
-           
             // onHide={() => setShowModal(false)}
           />
           </div>

@@ -136,7 +136,7 @@ const deleteABusiness = (id) => {
 
 //Delete Business thunk
   export const deleteBusiness = (businessId) => async (dispatch) => {
-    console.log("businessId", businessId)
+    // console.log("businessId", businessId)
     const response = await fetch(`/api/businesses/${businessId}`, {
       method: "DELETE",
     });
@@ -144,7 +144,7 @@ const deleteABusiness = (id) => {
     if (response.ok) {
       dispatch(deleteABusiness(businessId));
     }
-    return response;
+    // return response;
   };
 
 

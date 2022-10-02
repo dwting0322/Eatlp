@@ -14,7 +14,7 @@ function CreateReviewModal({businessId}) {
         className="fa-solid fa-pen-to-square"
         onClick={() => setShowModal(true)}
       /> */}
-      <button onClick={() => setShowModal(true)}> Create Review</button>
+      <button className="create_review_button_modal" onClick={() => setShowModal(true)}> Create Review </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <ReviewForm

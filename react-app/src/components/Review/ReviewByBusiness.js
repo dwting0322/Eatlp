@@ -26,6 +26,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
     //     dispatch(deleteReview(review.id));
     //     alert("I have successfully eaten the review for you!!!");
     // };
+    console.log("reviewId*********", reviewId)
 
     useEffect(() => {
         dispatch(getBusinessAllReview(id));
@@ -47,24 +48,37 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
                         />
                         <div className='profile_name_review'>{review?.user?.first_name}</div>
                     </div>
-                    <div><i className="fa-solid fa-star"></i> {review?.stars} </div>
+                    <div>
+                   
+                        {review?.stars === 1 && (<i className="fa-solid fa-star"/>)}
+                        {review?.stars === 2 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
+                        {review?.stars === 3 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
+                        {review?.stars === 4 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
+                        {review?.stars === 5 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
+                        {/* {review?.stars}  */}
+
+                    </div>
                     <div> {new Date(review.created_at).toLocaleDateString()} </div>
                     <div className="ReviewForm_review" > {review?.review} </div>
                     {user?.id === review?.user_id && (
                         <div>
                             {/* <NavLink className="edit_link_review" to={`/reviews/${review.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink> */}
-                            <div className='edit_link' onClick={() => {
+                            <span className='edit_review_modal' onClick={(e) => {
                                 // setReview(review)
+                                // e.stopPropagation();
+                                
                                 setReviewId(review.id)
                                 setShowModal(true)
                             }}>
                                 <i className="fa-solid fa-pen-to-square" />
                                 <EditReviewModal reviewId={reviewId}  showModal={showModal} setShowModal={setShowModal} businessId={businessId}/>
+                                Edit
+                            </span>
 
-                                Edit Review </div>
-
-                            <button className='delete_review' onClick={() => dispatch(deleteReview(review.id))}> <i className="fa-solid fa-trash-can"></i> Delete</button>
+                            <button className='delete_review' onClick={() => dispatch(deleteReview(review.id))}> <i className="fa-solid fa-trash-can"/> Delete</button>
+                        
                         </div>
+                        
                     )}
 
                     {/* {showModal && (
