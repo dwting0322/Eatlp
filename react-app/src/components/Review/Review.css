@@ -151,30 +151,6 @@
     display: none;
 }
 
-/* .container_review_rating label{
-    font-size: 40px;
-    color: rgb(140, 137, 137);
-    padding:10px;
-    float: right;
-    transition: all 0.5s ease;
-}
-
-
-input:not(:checked) ~ label:hover,
-input:not(:checked) ~ label:hover ~ label{
-    color: #fd4
-}
-
-input:checked ~ label{
-    color: #fd4
-} */
-
-/* input#rating1:checked ~ label {
-    color: red;
-    text-shadow: 0 0 20px #952;
-} */
-
-
 
 .react-simple-star-rating-tooltip {
     width: 200px;
@@ -182,6 +158,13 @@ input:checked ~ label{
     text-align: center;
 }
 
-/* .Rating_tag::before {
-    content: "\f006";
-  } */
+
+.XXX {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    font-size: 15px;
+}

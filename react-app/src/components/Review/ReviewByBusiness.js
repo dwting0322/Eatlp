@@ -10,7 +10,7 @@ import ReviewForm from './ReviewForm';
 
 
 
-function ReviewByBusiness({ showModal, setShowModal}) {
+function ReviewByBusiness({ showModal, setShowModal, businessId}) {
 
     const dispatch = useDispatch();
     const { id } = useParams()
@@ -59,7 +59,7 @@ function ReviewByBusiness({ showModal, setShowModal}) {
                                 setShowModal(true)
                             }}>
                                 <i className="fa-solid fa-pen-to-square" />
-                                <EditReviewModal reviewId={reviewId}  showModal={showModal} setShowModal={setShowModal}/>
+                                <EditReviewModal reviewId={reviewId}  showModal={showModal} setShowModal={setShowModal} businessId={businessId}/>
 
                                 Edit Review </div>
 

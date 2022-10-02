@@ -9,9 +9,10 @@ import { Rating } from "react-simple-star-rating";
 
 
 
-function ReviewForm({ myReview, formType, setShowModal, businessId}) {
+function ReviewForm({ myReview, formType, showModal, setShowModal, businessId}) {
 
-    console.log("myReview***********", myReview)
+    // console.log("setShowModal***********", setShowModal)
+
     const history = useHistory();
     const dispatch = useDispatch()
 
@@ -62,8 +63,6 @@ function ReviewForm({ myReview, formType, setShowModal, businessId}) {
 
         } else {
             const edittedReview = await dispatch(editReview(myReviewInfo))
-          
-            // console.log("edittedReview*************", edittedReview)
           
             setShowModal(false)
             
@@ -118,7 +117,9 @@ function ReviewForm({ myReview, formType, setShowModal, businessId}) {
         <div className='review_form_container'>
             <form onSubmit={handleSubmit} >
                 <h2>{formType}:</h2>
-
+                <button className='XXX' onClick={() => { setShowModal(false) }}> X </button>
+                
+                {/* <input type="submit" value={formType} placeholder="X"></input> */}
 
                 <ul className="errors_ul">
                     {hasSubmitted && validationErrors.map(error => (
