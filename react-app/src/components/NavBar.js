@@ -5,6 +5,7 @@ import "./NavBar.css";
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from './auth/LoginFormModal';
+import EatlpLogo1 from '../Picture/logo1.png';
 
 
 const NavBar = ({ isLoaded }) => {
@@ -17,10 +18,10 @@ const NavBar = ({ isLoaded }) => {
     <div className='Navbar_Container'>
 
       <div className='Eatlp'>
-        <div><img className="Logo_image" src={EatlpLogo} /></div>
         <div>
           <NavLink className="Eatlp_link" to='/' exact={true} activeClassName='active'>
             Eatlp
+        <img className="Logo_image" src={EatlpLogo1} />
           </NavLink>
         </div>
       </div >

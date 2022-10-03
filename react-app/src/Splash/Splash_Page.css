@@ -90,7 +90,7 @@
     height: 50px;
     font-family: cursive;
     color: inherit;
-    transition: all 1s ease-in;
+    transition: all 0.5s ease-in;
     padding-left: 10px;
     padding-right: 10px;
 }
