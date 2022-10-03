@@ -19,11 +19,8 @@
 
 .Eatlp_word{
    text-align: center; 
-
-  
- 
    font-size: 30px;
-   color: red;
+   color: #d32323;
 }
 
 .new{
@@ -67,4 +64,6 @@
 
 .picture{
     margin-left: 80px;
+    margin-top: 80px;
+
 }
