@@ -105,7 +105,7 @@ a {
 /* Business Detail */
 
 .Form_errors{
-  
+    background-color: lightblue;
     list-style: none;
 }
 

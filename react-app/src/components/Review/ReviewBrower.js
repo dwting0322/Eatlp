@@ -36,12 +36,20 @@ function ReviewBrower() {
                             <div className='profile_name_review'>{review?.user?.first_name}</div>
                         </div>
                         <NavLink className='business_link_review' to={`/businesses/${review.business_id}`}>
-                        <span className='business_name_review'>{review?.business_name}</span>
+                            <span className='business_name_review'>{review?.business_name}</span>
                         </NavLink>
 
-                        <div className='Stars'> Stars: {review?.stars?.toFixed(1)} </div>
+                        <div className='Stars'>
+                            {/* Stars: {review?.stars?.toFixed(0)} */}
+                            {review?.stars === 1 && (<i className="fa-solid fa-star" />)}
+                            {review?.stars === 2 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
+                            {review?.stars === 3 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
+                            {review?.stars === 4 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
+                            {review?.stars === 5 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
 
-                        <div className='Review'> Review: {review?.review} </div> 
+                        </div>
+
+                        <div className='Review'> Review: {review?.review} </div>
                     </div>
                 </div>
             ))}

@@ -129,6 +129,7 @@ function BusinessDetail() {
                 <div className='biz_address_phone_container'>
                     <div className='biz_address'><i className="fa-solid fa-phone-volume" /> Phone Number : {business?.phone} </div>
                     <div className='biz_address'><i className="fa-solid fa-location-dot" /> Address : {business?.address} </div>
+                    <div className='biz_address'><i className="fa-solid fa-file-lines"/> Description : {business?.description} </div>
                 </div>
             </div>
         </div>
