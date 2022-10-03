@@ -96,7 +96,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
                     )} */}
                 </div>
 
-            ))) : <h1 className="no_review_words" >Currently no any review, want to be the first one?</h1>}
+            ))) : <h1 className="no_review_words" >You currently have no any review !</h1>}
             <hr className="line"></hr>
         </div>
     )
