@@ -178,7 +178,7 @@ const SignUpForm = () => {
           ></input>
         </div>
         <button className="login_button" type='submit'>Sign Up</button>
-        <div className='signup_Already_word'>Already on Yelp?
+        <div className='signup_Already_word'>Already on Eatlp?
         <NavLink className="signup_login_link" to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>

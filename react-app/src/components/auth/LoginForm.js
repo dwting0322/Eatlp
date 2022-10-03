@@ -64,7 +64,7 @@ const LoginForm = ({ showModal, setShowModal }) => {
 
         <div className='login_form_container'>
           <h2 className='Eatlp_word'> Log in to Eatlp</h2>
-          <p className='new'>New to Yelp?
+          <p className='new'>New to Eatlp?
             <NavLink className="signuip_login_page" to='/sign-up' exact={true} activeClassName='active'>
               Sign Up
             </NavLink>
