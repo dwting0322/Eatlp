@@ -26,7 +26,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
     //     dispatch(deleteReview(review.id));
     //     alert("I have successfully eaten the review for you!!!");
     // };
-    console.log("reviewId*********", reviewId)
+    // console.log("reviewId*********", reviewId)
 
     useEffect(() => {
         dispatch(getBusinessAllReview(id));

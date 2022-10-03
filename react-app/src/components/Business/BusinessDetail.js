@@ -28,7 +28,7 @@ function BusinessDetail() {
     const reviews = Object.values(reviewsObj)
 
     const filter = reviews.filter(review => review?.user_id === user?.id)
-    console.log("filter from component: ", filter)
+    // console.log("filter from component: ", filter)
     // const user = useSelector(state=> state.session.user)
 
     const deletebiz = () => {

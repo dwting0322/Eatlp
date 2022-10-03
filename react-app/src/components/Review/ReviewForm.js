@@ -5,28 +5,27 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createReview, editReview, getOneReviewByReviewId } from '../../store/review';
 import "./Review.css"
-import { Rating } from "react-simple-star-rating";
+// import { Rating } from "react-simple-star-rating";
 
 
 
-function ReviewForm({ myReview, formType, showModal, setShowModal, businessId , reviewId}) {
+function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, reviewId }) {
 
     // console.log("setShowModal***********", setShowModal)
 
     const history = useHistory();
     const dispatch = useDispatch()
 
-    const [stars, setStars] = useState(myReview?.stars * 20 || "")
+    const [stars, setStars] = useState(myReview?.stars || "")
     const [review, setReview] = useState(myReview?.review || "")
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-
 
     const user = useSelector(state => state.session.user)
 
     // const reviewsObj = useSelector((state) => state.reviews);
     // const reviews = Object.values(reviewsObj)
-    
+
     // const filter = reviews.filter(review => review?.user_id === user?.id)
     // console.log("filter from component: ", filter)
     // const { reviewId } = useParams()
@@ -37,12 +36,12 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId , 
     // const reviewsObj = useSelector((state) => state.reviews);
     // const reviews = Object.values(reviewsObj)
 
-
-
-    const handleStarRating = (starRating) => {
-        setStars(starRating);
-    };
-
+    // const handleStarRating = (starRating) => {
+    //     setStars(starRating);
+    // };
+    // const changeStyle = () => {
+    //     setStyle("background-color:gold")
+    // }
 
 
 
@@ -59,7 +58,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId , 
             ...myReview,
             user_id: user.id,
             business_id: businessId,
-            stars: stars / 20,
+            stars: stars,
             review,
         };
         // console.log("myReviewInfo*************", myReviewInfo)
@@ -71,7 +70,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId , 
 
         } else {
             const edittedReview = await dispatch(editReview(myReviewInfo))
-            console.log("edittedReview", edittedReview)
+            // console.log("edittedReview", edittedReview)
             setShowModal(false)
 
             if (edittedReview && edittedReview.errors) {
@@ -140,7 +139,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId , 
 
                 <div className='container_review_rating'>
 
-                    <Rating className='Rating_tag'
+                    {/* <Rating className='Rating_tag'
                         onClick={handleStarRating}
                         ratingValue={stars}
                         size={50}
@@ -153,8 +152,34 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId , 
                             'Good',
                             'Great'
                         ]}
-                    />
+                    /> */}
+                    <div className='gray_star'>
 
+                        <span className='star1'> <label style={{ color: stars >= 1? "gold": 'lightgray' }} onClick={() => {
+                            setStars(1)
+
+                        }} className="fas fa-star"></label></span>
+
+                        <span className='star1'> <label style={{ color: stars >= 2? "gold": 'lightgray'  }} onClick={() => {
+                            setStars(2)
+
+                        }} className="fas fa-star"></label></span>
+
+                        <span className='star1'> <label style={{ color: stars >= 3? "gold": 'lightgray'  }} onClick={() => {
+                            setStars(3)
+
+                        }} className="fas fa-star"></label></span>
+
+                        <span className='star1'> <label style={{ color: stars >= 4? "gold": 'lightgray'  }} onClick={() => {
+                            setStars(4)
+
+                        }} className="fas fa-star"></label></span>
+
+                        <span className='star1'> <label style={{ color: stars >= 5? "gold": 'lightgray'  }} onClick={() => {
+                            setStars(5)
+
+                        }} className="fas fa-star"></label></span>
+                    </div>
                     {/* <input className="rating_input"
                             type="radio"
                             name="rating"
