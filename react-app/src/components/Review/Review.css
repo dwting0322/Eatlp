@@ -43,6 +43,7 @@
 
 .Review{
     font-size: 20px;
+    word-break: break-all;
 }
 
 .review_by_biz_contanier{
