@@ -15,6 +15,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
     const dispatch = useDispatch();
     const { id } = useParams()
     const [loaded, setLoaded] = useState(false);
+    const [isloaded, isSetLoaded] = useState(false);
 
     const reviewsObj = useSelector((state) => state.reviews)
     const reviews = Object.values(reviewsObj)
@@ -41,9 +42,14 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
         const LoadingTimeOut = setTimeout(() => {
             setLoaded(true);
         }, 100);
-    
         return () => clearTimeout(LoadingTimeOut);
-    
+    }, []);
+
+    useEffect(() => {
+        const LoadingTimeOut = setTimeout(() => {
+            isSetLoaded(true);
+        }, 100);
+        return () => clearTimeout(LoadingTimeOut);
     }, []);
 
     if(!loaded) return (<img className='loading_page' src={LoadingPic} alt='loading page' />)
@@ -110,7 +116,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
                     )} */}
                 </div>
 
-            ))) : loaded && <h1 className="no_review_words" >You currently have no any review !</h1>}
+            ))) : isloaded && <h1 className="no_review_words" >You currently have no any review !</h1>}
             <hr className="line"></hr>
         </div> 
     )
