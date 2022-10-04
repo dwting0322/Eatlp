@@ -84,31 +84,52 @@ npm start
 
 ## Features Directory:
 
-### Splash page
+### Home / Splash Page
 
 ![splash page](https://user-images.githubusercontent.com/101853690/193935984-fabc5352-351a-43f5-8763-7478596e20f6.png)
 
+
 ### Create and Register a New User
 
-<img width="1791" alt="Screen Shot 2022-09-24 at 5 20 17 PM" src="">
+![sign up page](https://user-images.githubusercontent.com/101853690/193937340-f54fc1e5-08f2-459c-9fc2-36bb9c776f8d.png)
+
 
 ### Login Valid User or User Demo Login Page
 
-<img width="1792" alt="Screen Shot 2022-09-24 at 5 20 06 PM" src="">
+![login page](https://user-images.githubusercontent.com/101853690/193937352-ee0fa6fe-0566-4594-a556-8aeb522b3cb0.png)
+
+
+### Get All Business and All Recent Review Page
+
+![All restaurant page](https://user-images.githubusercontent.com/101853690/193938165-77e58ee8-bbe4-4788-94b1-0f99256dbbab.png)
+
+![recent review](https://user-images.githubusercontent.com/101853690/193938177-3e44f978-7ca5-488b-b1f1-4367b816244d.png)
+
+
+### Get One Business Detail Page
+
+![business detail page](https://user-images.githubusercontent.com/101853690/193938319-cc79bed7-7a7d-4c35-9dc7-11c5b944d444.png)
+
 
 ### Create a New Business
 
-<img width="1792" alt="Screen Shot 2022-09-24 at 5 05 42 PM" src="">
+![create business page](https://user-images.githubusercontent.com/101853690/193937419-516eb788-178d-4baa-b41d-3f0265956e3b.png)
+
 
 ### Edit a Business / Delete a Business
 
-<img width="1790" alt="Screen Shot 2022-09-24 at 5 33 29 PM" src="">
+![edit or delete business](https://user-images.githubusercontent.com/101853690/193937635-90a14954-44ec-41d6-88c0-c354a76dae7b.png)
 
-### Leave and Remove Likes / Create New Review
 
-<img width="474" alt="Screen Shot 2022-09-24 at 5 28 33 PM" src="">
+### Create New Review Modal / Edit a Review Modal
+
+![create review modal](https://user-images.githubusercontent.com/101853690/193937726-17e1743d-6c00-4b81-aff4-ee392963f51e.png)
+
+
+![edit review modal](https://user-images.githubusercontent.com/101853690/193937953-fcdf3483-12e2-45ad-acb2-0efd89aaa99f.png)
+
 
 ### Edit a Review / Delete a Review 
 
-<img width="771" alt="Screen Shot 2022-09-24 at 5 30 47 PM" src="">
+![edit or delete page](https://user-images.githubusercontent.com/101853690/193938014-00abec4a-01da-4942-aabf-8a81b4fe65a2.png)
 
