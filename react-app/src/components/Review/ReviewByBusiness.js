@@ -96,7 +96,10 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
                                 Edit
                             </span>
 
-                            <button className='delete_review' onClick={() => dispatch(deleteReview(review.id))}> <i className="fa-solid fa-trash-can"/> Delete</button>
+                            <button className='delete_review' onClick={() => {
+                                dispatch(deleteReview(review.id))
+                                alert("I have successfully eaten the message for you!!!")
+                                }}> <i className="fa-solid fa-trash-can"/> Delete</button>
                         
                         </div>
                         
