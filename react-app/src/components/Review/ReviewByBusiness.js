@@ -10,14 +10,14 @@ import ReviewForm from './ReviewForm';
 import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
 
 
-function ReviewByBusiness({ showModal, setShowModal, businessId, filter}) {
+function ReviewByBusiness({ showModal, setShowModal, businessId}) {
 
     const dispatch = useDispatch();
     const { id } = useParams()
     const [loaded, setLoaded] = useState(false);
 
-    // const reviewsObj = useSelector((state) => state.reviews)
-    // const reviews = Object.values(reviewsObj)
+    const reviewsObj = useSelector((state) => state.reviews)
+    const reviews = Object.values(reviewsObj)
     // console.log("reviews!!!!!!!!!!!!!!!!!!!!!", reviews)
     // const filter = reviews.filter(review => review?.business_id === +id)
 
@@ -52,7 +52,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId, filter}) {
         <div className='review_outter_container'>
             <h2 className='Recommended'>Recommended Reviews: </h2>
 
-            {filter.length ? (filter.map(review => (
+            {reviews.length ? (reviews.map(review => (
 
                 <div className='review_by_biz_contanier' key={review.id} >
                     <hr></hr>
