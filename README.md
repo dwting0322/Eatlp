@@ -84,7 +84,7 @@ npm start
 
 ## Features Directory:
 
-### Home / Splash Page
+### Home Page / Splash Page
 
 ![splash page](https://user-images.githubusercontent.com/101853690/193935984-fabc5352-351a-43f5-8763-7478596e20f6.png)
 
