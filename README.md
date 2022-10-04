@@ -111,12 +111,12 @@ npm start
 ![business detail page](https://user-images.githubusercontent.com/101853690/193938319-cc79bed7-7a7d-4c35-9dc7-11c5b944d444.png)
 
 
-### Create a New Business
+### Create a New Business Page / Edit a Business Page
 
 ![create business page](https://user-images.githubusercontent.com/101853690/193937419-516eb788-178d-4baa-b41d-3f0265956e3b.png)
 
 
-### Edit a Business / Delete a Business
+### Edit a Business / Delete a Business in Business Datial Page
 
 ![edit or delete business](https://user-images.githubusercontent.com/101853690/193937635-90a14954-44ec-41d6-88c0-c354a76dae7b.png)
 
@@ -129,7 +129,7 @@ npm start
 ![edit review modal](https://user-images.githubusercontent.com/101853690/193937953-fcdf3483-12e2-45ad-acb2-0efd89aaa99f.png)
 
 
-### Edit a Review / Delete a Review 
+### Edit a Review / Delete a Review in Business Datial Page
 
 ![edit or delete page](https://user-images.githubusercontent.com/101853690/193938014-00abec4a-01da-4942-aabf-8a81b4fe65a2.png)
 
