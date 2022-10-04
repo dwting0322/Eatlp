@@ -48,7 +48,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
     useEffect(() => {
         const LoadingTimeOut = setTimeout(() => {
             isSetLoaded(true);
-        }, 100);
+        }, 200);
         return () => clearTimeout(LoadingTimeOut);
     }, []);
 
