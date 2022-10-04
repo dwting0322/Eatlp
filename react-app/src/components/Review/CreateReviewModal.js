@@ -13,7 +13,7 @@ function CreateReviewModal({businessId}) {
     const LoadingTimeOut = setTimeout(() => {
         setLoaded(true);
         
-    }, 100);
+    }, 150);
 
     return () => clearTimeout(LoadingTimeOut);
 
