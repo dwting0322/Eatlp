@@ -11,7 +11,7 @@ With Eatlp, upload images of your business, and show everyone what you like to d
 
 This project mimics Yelp's ability to share and post pictures on an online platform. 
 
-[Eatlp Live Site - update later]()
+[Eatlp Live Site](https://eatlp.herokuapp.com/)
 
 ## Project Wiki Links:
 
