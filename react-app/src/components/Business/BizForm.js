@@ -108,8 +108,8 @@ function BizForm({ business, formType }) {
             errors.push("Phone number must be 10 valid digit number (ex: 123-456-7890)");
         }
 
-        if (name.length > 25 || name.length < 1) {
-            errors.push("Name must be between 1 and 25 characters");
+        if (name.length > 25 || name.length < 3) {
+            errors.push("Name must be between 3 and 25 characters");
         }
 
         if (name === ".") {
@@ -191,7 +191,7 @@ function BizForm({ business, formType }) {
                       </div> )} 
                         <div>
                             <label>
-                                <div className='name'>* Name:</div>
+                                <div className='name'>* Name :</div>
                                 <input className="form_input"
                                     type="text"
                                     placeholder="Business name..."
@@ -204,7 +204,7 @@ function BizForm({ business, formType }) {
 
                         <div className="Address_div">
                             <label>
-                                <div className='Address'>* Address:</div>
+                                <div className='Address'>* Address :</div>
                                 <input className='form_input'
                                     type="text"
                                     placeholder="Address..."
@@ -218,11 +218,11 @@ function BizForm({ business, formType }) {
 
                         <div className="Phone_div">
                             <label className="Phone">
-                                <div>* Phone Number:</div>
+                                <div>* Phone Number : (ex: 123-456-7890) </div>
                                 <input
                                     className="form_input"
                                     type="text"
-                                    placeholder="Phone Number..."
+                                    placeholder="ex: 123-456-7890..."
                                     required
                                     value={phone}
                                     onChange={(e) => setPhone(e.target.value)}
@@ -232,7 +232,7 @@ function BizForm({ business, formType }) {
 
                         <div className="Create_spot_Description">
                             <label>
-                                <div className='Description'>* Description:</div>
+                                <div className='Description'>* Description :</div>
                                 <textarea className='Description_textarea'
                                     type="text"
                                     placeholder="Description..."
@@ -245,7 +245,7 @@ function BizForm({ business, formType }) {
 
                         <div className="">
                             <label>
-                                <div className='Price'>* Price Range:</div>
+                                <div className='Price'>* Price Range :</div>
                                 <select className='Price_select'
                                     value={price_range}
                                     onChange={e => setPrice_range(e.target.value)}
@@ -261,7 +261,7 @@ function BizForm({ business, formType }) {
 
                         <div className="">
                             <label className="label_input">
-                                <div className='Preview_img'>* Preview Image:</div>
+                                <div className='Preview_img'>* Preview Image :</div>
                                 <input
                                     className="form_input"
                                     type="text"
