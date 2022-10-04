@@ -113,7 +113,7 @@ function BizForm({ business, formType }) {
         }
 
         if (name === ".") {
-            errors.push("Name can't just be a period");
+            errors.push("Name can't start a period");
         }
 
         if (description.length < 5 || description.length > 50) {
