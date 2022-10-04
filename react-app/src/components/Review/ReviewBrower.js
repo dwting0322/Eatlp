@@ -41,11 +41,11 @@ function ReviewBrower() {
 
                         <div className='Stars'>
                             {/* Stars: {review?.stars?.toFixed(0)} */}
-                            {review?.stars === 1 && (<i className="fa-solid fa-star" />)}
-                            {review?.stars === 2 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
-                            {review?.stars === 3 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
-                            {review?.stars === 4 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
-                            {review?.stars === 5 && (<><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /><i className="fa-solid fa-star" /></>)}
+                            {review?.stars === 1 && (<i className="fa-solid fa-star bizDetail_star" />)}
+                            {review?.stars === 2 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
+                            {review?.stars === 3 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
+                            {review?.stars === 4 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
+                            {review?.stars === 5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
 
                         </div>
 
