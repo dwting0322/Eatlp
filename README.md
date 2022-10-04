@@ -84,6 +84,10 @@ npm start
 
 ## Features Directory:
 
+### Splash page
+
+![splash page](https://user-images.githubusercontent.com/101853690/193935984-fabc5352-351a-43f5-8763-7478596e20f6.png)
+
 ### Create and Register a New User
 
 <img width="1791" alt="Screen Shot 2022-09-24 at 5 20 17 PM" src="">
@@ -91,10 +95,6 @@ npm start
 ### Login Valid User or User Demo Login Page
 
 <img width="1792" alt="Screen Shot 2022-09-24 at 5 20 06 PM" src="">
-
-### Home page
-
-<img width="1792" alt="Screen Shot 2022-09-24 at 5 05 09 PM" src="">
 
 ### Create a New Business
 
