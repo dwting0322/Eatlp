@@ -20,6 +20,12 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
     const [review, setReview] = useState(myReview?.review || "")
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [mouse1, setMouse1] = useState(false)
+    const [mouse2, setMouse2] = useState(false)
+    const [mouse3, setMouse3] = useState(false)
+    const [mouse4, setMouse4] = useState(false)
+    const [mouse5, setMouse5] = useState(false)
+
 
     const user = useSelector(state => state.session.user)
 
@@ -43,6 +49,15 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
     //     setStyle("background-color:gold")
     // }
 
+    const styles = {
+        "color": "lightgrey"
+    }
+
+
+    function changingColor() {
+       styles.color = "gold"
+
+    }
 
 
     const handleSubmit = async (e) => {
@@ -88,7 +103,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
             // console.log("reviewId***********", reviewId)
             const ReviewData = await dispatch(getOneReviewByReviewId(reviewId))
             // console.log("ReviewData************", ReviewData)
-            setStars(ReviewData.stars * 20)
+            setStars(ReviewData.stars)
             setReview(ReviewData.review);
 
         }
@@ -154,31 +169,98 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
                         ]}
                     /> */}
                     <div className='gray_star'>
-
-                        <span className='star1'> <label style={{ color: stars >= 1? "gold": 'lightgray' }} onClick={() => {
+                    {/* style={{ color: stars >= 1 ? "gold" : 'lightgray' ||  mouse? "gold" : "lightgray"} */}
+                        <span className='star1' style={{ color: mouse1 || stars >= 1 ? "gold" : "lightgray"}} 
+                        onMouseEnter={() => setMouse1(true)} 
+                            // setColor("gold")
+                            // changingColor()
+                            // style = {{color:`${color}`}}
+                        
+                        
+                        onMouseLeave={() =>  setMouse1(false)} 
+                        onClick={() => {
                             setStars(1)
 
-                        }} className="fas fa-star"></label></span>
-
-                        <span className='star1'> <label style={{ color: stars >= 2? "gold": 'lightgray'  }} onClick={() => {
+                        }} > <i className="fa-solid fa-star star_icon icon1" /></span>
+{/* style={{ color: stars >= 2 ? "gold" : 'lightgray' }} */}
+                        <span className='star1'  style={{ color: mouse2 || stars >= 2 ? "gold" : "lightgray"}} 
+                         
+                         onMouseEnter={() => { 
+                            setMouse2(true)
+                            setMouse1(true)
+                        }}
+                         onMouseLeave={() => { 
+                            setMouse2(false)
+                            setMouse1(false)
+                        }}
+                        onClick={() => {
                             setStars(2)
 
-                        }} className="fas fa-star"></label></span>
+                        }} > <i className="fa-solid fa-star star_icon" /></span>
 
-                        <span className='star1'> <label style={{ color: stars >= 3? "gold": 'lightgray'  }} onClick={() => {
+                        <span className='star1' style={{ color: mouse3 || stars >= 3 ? "gold" : 'lightgray' }} 
+                        onMouseEnter={() => { 
+                            setMouse3(true)
+                            setMouse2(true)
+                            setMouse1(true)
+                        }}
+                        onMouseLeave={() => { 
+                            setMouse3(false)
+                            setMouse2(false)
+                            setMouse1(false)
+                        }}
+                        
+                        onClick={() => {
                             setStars(3)
 
-                        }} className="fas fa-star"></label></span>
+                        }} > <i className="fa-solid fa-star star_icon" /></span>
 
-                        <span className='star1'> <label style={{ color: stars >= 4? "gold": 'lightgray'  }} onClick={() => {
+                        <span className='star1' style={{ color: mouse4 || stars >= 4 ? "gold" : 'lightgray' }} 
+                        onMouseEnter={() => { 
+                            setMouse4(true)
+                            setMouse3(true)
+                            setMouse2(true)
+                            setMouse1(true)
+                        }}
+                        onMouseLeave={() => { 
+                            setMouse4(false)
+                            setMouse3(false)
+                            setMouse2(false)
+                            setMouse1(false)
+                        }}
+                        
+                        onClick={() => {
                             setStars(4)
 
-                        }} className="fas fa-star"></label></span>
+                        }} > <i className="fa-solid fa-star star_icon" /></span>
 
-                        <span className='star1'> <label style={{ color: stars >= 5? "gold": 'lightgray'  }} onClick={() => {
+                        <span className='star1' style={{ color: mouse5 || stars >= 5 ? "gold" : 'lightgray' }} 
+                        onMouseEnter={() => { 
+                            setMouse5(true)
+                            setMouse4(true)
+                            setMouse3(true)
+                            setMouse2(true)
+                            setMouse1(true)
+                        }}
+                        onMouseLeave={() => { 
+                            setMouse5(false)
+                            setMouse4(false)
+                            setMouse3(false)
+                            setMouse2(false)
+                            setMouse1(false)
+                        }}
+                        
+                        onClick={() => {
                             setStars(5)
 
-                        }} className="fas fa-star"></label></span>
+                        }} > <i className="fa-solid fa-star star_icon" /></span>
+                        <span className='star_comment'>
+                            <span className='star_comment1'>{stars === 1 && <i className="fa-solid fa-poo"/>}</span>
+                            <span className='star_comment2'>{stars === 2 && <i className="fa-solid fa-face-sad-cry"/>}</span>
+                            <span className='star_comment3'>{stars === 3 && <i className="fa-solid fa-face-meh"/>}</span>
+                            <span className='star_comment4'>{stars === 4 && <i className="fa-solid fa-face-laugh"/>}</span>
+                            <span className='star_comment5'>{stars === 5 && <i className="fa-solid fa-face-grin-squint"/>}</span>
+                        </span>
                     </div>
                     {/* <input className="rating_input"
                             type="radio"

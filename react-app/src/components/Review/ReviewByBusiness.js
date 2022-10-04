@@ -7,18 +7,21 @@ import { deleteReview, getBusinessAllReview } from '../../store/review'
 import EditReviewModal from './EditReviewModal';
 import './Review.css'
 import ReviewForm from './ReviewForm';
-
+import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
 
 
 function ReviewByBusiness({ showModal, setShowModal, businessId}) {
 
     const dispatch = useDispatch();
     const { id } = useParams()
-
+    const [loaded, setLoaded] = useState(false);
 
     const reviewsObj = useSelector((state) => state.reviews)
     const reviews = Object.values(reviewsObj)
-    const filter = reviews.filter(review => review?.business_id === +id)
+    // console.log("reviews!!!!!!!!!!!!!!!!!!!!!", reviews)
+    // const filter = reviews.filter(review => review?.business_id === +id)
+
+    // console.log("filter!!!!!!!!!!!!!!!!!!!!!", filter)
     const user = useSelector((state) => state.session.user)
     // const [review, setReview] = useState(null)
     const [reviewId, setReviewId] = useState(0)
@@ -30,15 +33,26 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
 
     useEffect(() => {
         dispatch(getBusinessAllReview(id));
+       
     }, [dispatch]);
 
 
+    useEffect(() => {
+        const LoadingTimeOut = setTimeout(() => {
+            setLoaded(true);
+        }, 50);
+    
+        return () => clearTimeout(LoadingTimeOut);
+    
+    }, []);
+
+    if(!loaded) return (<img className='loading_page' src={LoadingPic} alt='loading page' />)
 
     return (
         <div className='review_outter_container'>
             <h2 className='Recommended'>Recommended Reviews: </h2>
 
-            {filter.length ? (filter.map(review => (
+            {reviews.length ? (reviews.map(review => (
 
                 <div className='review_by_biz_contanier' key={review.id} >
                     <hr></hr>
@@ -50,11 +64,11 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
                     </div>
                     <div>
                    
-                        {review?.stars === 1 && (<i className="fa-solid fa-star"/>)}
-                        {review?.stars === 2 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
-                        {review?.stars === 3 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
-                        {review?.stars === 4 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
-                        {review?.stars === 5 && (<><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/><i className="fa-solid fa-star"/></>)}
+                        {review?.stars === 1 && (<i className="fa-solid fa-star star-icon"/>)}
+                        {review?.stars === 2 && (<><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/></>)}
+                        {review?.stars === 3 && (<><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/></>)}
+                        {review?.stars === 4 && (<><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/></>)}
+                        {review?.stars === 5 && (<><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/></>)}
                         {/* {review?.stars}  */}
 
                     </div>
