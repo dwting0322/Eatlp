@@ -92,9 +92,9 @@ function BusinessDetail() {
                             {business?.avgRating >= 4.5 && business?.avgRating < 5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
                             {business?.avgRating == 5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
 
-                        <span className='total_review'>
-                            {business?.countReview ? Number.parseFloat(business?.countReview).toFixed(0) : 0}  reviews
-                        </span>
+                            <span className='total_review'>
+                                {business?.countReview ? Number.parseFloat(business?.countReview).toFixed(0) : 0}  reviews
+                            </span>
                         </div>
                         {/* <div>Phone Number: {business.phone}</div>
                         <div>Address: {business.address}</div> */}
@@ -123,18 +123,18 @@ function BusinessDetail() {
                     </div>
                 </div>
                 {/* <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review </NavLink>}</div> */}
-                <div className='create_Review_lnik_div'>{ user?.id !== business?.ownerId && !reviews.filter(review => review?.user_id === user?.id).length && loaded && (<CreateReviewModal businessId={business?.id} />)} </div>
-                                {/* {!loaded && (<div className='empty_div'></div>)} */}
+                <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && !reviews.filter(review => review?.user_id === user?.id).length && loaded && (<CreateReviewModal businessId={business?.id} />)} </div>
+                
             </div>
             <div className='Phone_number_Address'>
                 <ReviewByBusiness showModal={showModal} setShowModal={setShowModal} businessId={business?.id} filter={reviews} />
                 <div className='biz_address_phone_container'>
                     <div className='biz_address'><i className="fa-solid fa-phone-volume" /> Phone Number : {business?.phone} </div>
                     <div className='biz_address'><i className="fa-solid fa-location-dot" /> Address : {business?.address} </div>
-                    <div className='biz_address'><i className="fa-solid fa-file-lines"/> Description : {business?.description} </div>
+                    <div className='biz_address'><i className="fa-solid fa-file-lines" /> Description : {business?.description} </div>
                 </div>
             </div>
-            
+
         </div>
     )
 }

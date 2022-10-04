@@ -40,7 +40,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
     useEffect(() => {
         const LoadingTimeOut = setTimeout(() => {
             setLoaded(true);
-        }, 50);
+        }, 100);
     
         return () => clearTimeout(LoadingTimeOut);
     
@@ -110,7 +110,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
                     )} */}
                 </div>
 
-            ))) : <h1 className="no_review_words" >You currently have no any review !</h1>}
+            ))) : loaded && <h1 className="no_review_words" >You currently have no any review !</h1>}
             <hr className="line"></hr>
         </div> 
     )
