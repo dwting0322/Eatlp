@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { getAllBusiness } from '../../store/business';
 import ReviewBrower from '../Review/ReviewBrower';
 import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
@@ -12,9 +12,10 @@ function BusinessBrower() {
     const businessObj = useSelector((state) => state.businesses)
 
     const businesses = Object.values(businessObj)
-
+    const history = useHistory()
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
+    console.log("businesses>>>>>>>>", businesses)
 
     useEffect(() => {
         dispatch(getAllBusiness());
@@ -29,6 +30,11 @@ function BusinessBrower() {
         return () => clearTimeout(LoadingTimeOut);
 
     }, []);
+
+    if(!businesses){
+        alert("Business not found, please search again!!!");
+        history.push("/businesses/all")
+    }
 
 
     return (
