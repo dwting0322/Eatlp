@@ -124,6 +124,7 @@ function BusinessDetail() {
                 </div>
                 {/* <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review </NavLink>}</div> */}
                 <div className='create_Review_lnik_div'>{ user?.id !== business?.ownerId && !reviews.filter(review => review?.user_id === user?.id).length && loaded && (<CreateReviewModal businessId={business?.id} />)} </div>
+                                {/* {!loaded && (<div className='empty_div'></div>)} */}
             </div>
             <div className='Phone_number_Address'>
                 <ReviewByBusiness showModal={showModal} setShowModal={setShowModal} businessId={business?.id} filter={reviews} />
@@ -133,6 +134,7 @@ function BusinessDetail() {
                     <div className='biz_address'><i className="fa-solid fa-file-lines"/> Description : {business?.description} </div>
                 </div>
             </div>
+            
         </div>
     )
 }
