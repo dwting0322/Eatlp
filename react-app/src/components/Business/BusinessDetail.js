@@ -50,8 +50,11 @@ function BusinessDetail() {
     // }
     useEffect(() => {
         const LoadingTimeOut = setTimeout(() => {
+           
             setLoaded(true);
+
         }, 1000);
+   
 
         return () => clearTimeout(LoadingTimeOut);
 
@@ -65,6 +68,11 @@ function BusinessDetail() {
         //     <h1>Business not found</h1>
         //     <img className='notFount' src={notFound} alt="Restaurant" />
         // </>
+    }
+
+    if(!business){
+        alert("Business not found, please search again!!!");
+        history.push("/businesses/all")
     }
 
     return (

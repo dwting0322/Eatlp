@@ -20,7 +20,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
     const reviewsObj = useSelector((state) => state.reviews)
     const reviews = Object.values(reviewsObj)
     // console.log("reviews!!!!!!!!!!!!!!!!!!!!!", reviews)
-    // const filter = reviews.filter(review => review?.business_id === +id)
+    const filter = reviews.filter(review => review?.business_id === +id)
 
     // console.log("filter!!!!!!!!!!!!!!!!!!!!!", filter)
     const user = useSelector((state) => state.session.user)
@@ -53,12 +53,13 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
     }, []);
 
     if(!loaded) return (<img className='loading_page' src={LoadingPic} alt='loading page' />)
+    
 
     return (
         <div className='review_outter_container'>
             <h2 className='Recommended'>Recommended Reviews: </h2>
 
-            {reviews.length ? (reviews.map(review => (
+            {filter.length ? (filter.map(review => (
 
                 <div className='review_by_biz_contanier' key={review.id} >
                     <hr></hr>
