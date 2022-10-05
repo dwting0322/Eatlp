@@ -123,7 +123,7 @@
     cursor: pointer;
     border: none;
     background-color: rgba(237, 232, 232, 0);
-    font-size: 18px;
+    font-size: 17px;
     color: red;
 }
 
@@ -256,7 +256,7 @@
 
 .edit_review_modal {
     cursor: pointer;
-    font-size: 20px;
+    font-size: 17px;
     color: blue;
     margin-right: 5px;
 }
@@ -304,12 +304,15 @@
 
 .fa-thumbs-up{
     font-size: 25px;
-    color: rgb(46, 167, 243);
+    color: rgb(32, 133, 248);
     cursor: pointer;
+    margin-top: 5px;
 }
 
 .likes-count{
     color: coral;
+    margin-left: 5px;
+    font-size: 18px;
 }
 
 

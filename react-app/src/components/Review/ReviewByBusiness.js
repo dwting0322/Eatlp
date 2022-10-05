@@ -137,7 +137,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
 
                     )}
 
-                    <div className="likes padding sp-likes">
+                    <div className="">
                         {user && ( review?.likes?.filter((id) => id === user?.id).length ? (
                             (<i className="fa-solid fa-thumbs-up like"
                                 onClick={() => {
@@ -152,11 +152,11 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
                                 }}
                             />
                         ))}
-                        <div className="likes-count">
-                        {review?.likes?.length <= 1 && (<div className="likes-count"> {review?.likes?.length || "0"} person like this restaurant </div>)}
-                        {review?.likes?.length > 1 && (<div className="likes-count"> {review?.likes?.length || "0"} people like this restaurant </div>)}    
+                        <span className="likes-count">
+                        {review?.likes?.length <= 1 && (<span className="likes-count"> {review?.likes?.length || "0"} person like this review </span>)}
+                        {review?.likes?.length > 1 && (<span className="likes-count"> {review?.likes?.length || "0"} people like this review </span>)}    
                             {/* {review?.likes.length || "0"} likes */}
-                        </div>
+                        </span>
                     </div>
 
 
