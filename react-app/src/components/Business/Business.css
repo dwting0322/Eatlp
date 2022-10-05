@@ -509,12 +509,12 @@ margin-left: 50px;
 }
 
 .dislike{
-  
+    color: rgb(52, 52, 239);
     margin-bottom: 5px;
 }
 
 .like{
-    color: rgb(52, 52, 239);
+    color: rgb(42, 42, 240);
    
     /* padding: 1px solid white;
     border-radius: 50%;
