@@ -78,7 +78,7 @@ def delete_comment(review_id):
 
 
 @review_routes.route('/<int:review_id>/review_likes', methods = ["POST"])
-# @login_required
+@login_required
 def like_unlike_a_review(review_id):
 
     review = Review.query.get_or_404(review_id)

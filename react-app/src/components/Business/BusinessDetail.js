@@ -122,7 +122,7 @@ function BusinessDetail() {
                         <span className='edit_delete_biz_detail'>
                             {user?.id === business?.ownerId && (
                                 <div className='delete_edit'>
-                                    <NavLink className="edit_link_for_business" to={`/businesses/${business.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
+                                    <NavLink className="edit_link_for_business" to={`/businesses/${business?.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink>
                                     <button className='delete_bizDetail' onClick={deletebiz}> <i className="fa-solid fa-trash-can"></i> Delete</button>
                                 </div>
                             )}

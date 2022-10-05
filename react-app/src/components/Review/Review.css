@@ -302,6 +302,17 @@
     margin-left: 50px;
 }
 
+.fa-thumbs-up{
+    font-size: 25px;
+    color: rgb(46, 167, 243);
+    cursor: pointer;
+}
+
+.likes-count{
+    color: coral;
+}
+
+
 
 /* .star1 > .fa-solid:hover,
 .star1 > .fa-solid:hover ~ .fa-solid {
