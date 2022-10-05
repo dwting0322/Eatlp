@@ -219,10 +219,14 @@ const businessReducer = (state = initialState, action) => {
     }
 
     case LIKE_BUSINESS: {
-      newState = { ...state };
-      console.log(action.business.likes);
-      newState[action.business.id] = action.business;
-      //   console.log(newState[action.post.id]);
+      // newState = { ...state };
+      // console.log(action.business.likes);
+      // newState[action.business.id] = action.business;
+      // //   console.log(newState[action.post.id]);
+      // return newState;
+      action.businesses.forEach((business) => {
+      newState[business.id] = business;
+      });
       return newState;
     }
 
