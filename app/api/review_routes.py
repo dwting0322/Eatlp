@@ -74,4 +74,20 @@ def delete_comment(review_id):
     else:
         return {'message': 'Unauthorized user', "statusCode": 403}
 
-    
+
+
+
+@review_routes.route('/<int:review_id>/review_likes', methods = ["POST"])
+# @login_required
+def like_unlike_a_review(review_id):
+
+    review = Review.query.get_or_404(review_id)
+
+    if current_user not in review.likes:
+        review.likes.append(current_user)
+        db.session.commit()
+    else:
+        review.likes.remove(current_user)
+        db.session.commit()
+
+    return  review.to_dict()

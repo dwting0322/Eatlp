@@ -39,6 +39,7 @@ function BusinessDetail() {
     };
 
 
+
     useEffect(() => {
         dispatch(getOneBusiness(id))
     }, [dispatch, reviewsObj]); // review once review change, it re-run the  dispatch(getOneSpots(spotId))
