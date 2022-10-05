@@ -163,11 +163,11 @@ const LikeABusiness = (businesses) => {
     const response = await fetch(`/api/businesses/${business.id}/business_likes`, {
       method: "POST",
     });
+    // console.log("response in like", response)
     if (response.ok) {
       dispatch(LikeABusiness(business));
     }
   };
-
 
 
 //Initial State:
@@ -219,14 +219,10 @@ const businessReducer = (state = initialState, action) => {
     }
 
     case LIKE_BUSINESS: {
-      // newState = { ...state };
-      // console.log(action.business.likes);
+      newState = { ...state };
+      // console.log("newState", newState);
       // newState[action.business.id] = action.business;
-      // //   console.log(newState[action.post.id]);
-      // return newState;
-      action.businesses.forEach((business) => {
-      newState[business.id] = business;
-      });
+      //   console.log(newState[action.post.id]);
       return newState;
     }
 

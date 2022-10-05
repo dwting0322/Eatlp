@@ -194,7 +194,7 @@ def get_all_business_review(business_id):
 
 @business_routes.route('/<int:business_id>/business_likes', methods = ["POST"])
 @login_required
-def like_unlike_a_post(business_id):
+def like_unlike_a_business(business_id):
 
     business = Business.query.get_or_404(business_id)
 
@@ -203,6 +203,23 @@ def like_unlike_a_post(business_id):
         db.session.commit()
     else:
         business.likes.remove(current_user)
+        db.session.commit()
+
+    return {'business': business.to_dict()}
+
+
+
+@business_routes.route('/<int:business_id>/business_dislikes', methods = ["POST"])
+@login_required
+def dislike_undislike_a_business(business_id):
+
+    business = Business.query.get_or_404(business_id)
+
+    if current_user not in business.dislikes:
+        business.dislikes.append(current_user)
+        db.session.commit()
+    else:
+        business.dislikes.remove(current_user)
         db.session.commit()
 
     return {'business': business.to_dict()}

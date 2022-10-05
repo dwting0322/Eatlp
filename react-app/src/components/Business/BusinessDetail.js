@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteBusiness, getOneBusiness } from '../../store/business';
+import { deleteBusiness, getOneBusiness, likeBusiness } from '../../store/business';
 import notFound from '../../Picture/404-error-page-not-found.jpg'
 import './Business.css'
 import ReviewByBusiness from '../Review/ReviewByBusiness';
@@ -19,11 +19,16 @@ function BusinessDetail() {
     const [showModal, setShowModal] = useState(false);
     const [loaded, setLoaded] = useState(false);
     const [filter, setFliter] = useState([]);
+    const [isLikedByUser, setIsLikedByUser] = useState(false);
+    const [isNotLikedByUser, setIsNotLikedByUser] = useState(false);
 
     const user = useSelector((state) => state.session.user);
 
 
     const business = useSelector(state => state.businesses[id])
+
+    console.log("business>>>>>>>>", business)
+
 
     const reviewsObj = useSelector((state) => state.reviews);
     const reviews = Object.values(reviewsObj)
@@ -43,18 +48,60 @@ function BusinessDetail() {
         dispatch(getOneBusiness(id))
     }, [dispatch, reviewsObj]); // review once review change, it re-run the  dispatch(getOneSpots(spotId))
 
-    // console.log(spot)
-    // if (!user) {
-    //     alert("Please log in/sign up before become a host!")
-    //     history.push("/login")
-    // }
+
+
+    useEffect(() => {
+        // console.log("POST LIKE CHANGED", post.id);
+        // console.log(post.likes);
+        business?.likes?.forEach((whoLikeId) => {
+            if (user.id === whoLikeId) {
+                setIsNotLikedByUser(true);
+                return;
+            }
+        });
+    }, [business?.likes]);
+
+
+    useEffect(() => {
+        // console.log("POST LIKE CHANGED", post.id);
+        // console.log(post.likes);
+        business?.likes?.forEach((whoDislikeId) => {
+            if (user.id === whoDislikeId) {
+                setIsLikedByUser(true);
+                return;
+            }
+        });
+    }, [business?.likes]);
+
+
+
+    const likeBiz = (business) => {
+        console.log("business in like function", business);
+        dispatch(likeBusiness(business));
+        // dispatch(getAllPosts());
+        // await dispatch(getOnePostById(post.id));
+        setIsLikedByUser(!isLikedByUser);
+        const index = business?.likes?.indexOf(user?.id);
+        if (!isLikedByUser) {
+            business?.likes?.push(user?.id);
+        } else {
+            business?.likes?.splice(index, 1);
+        }
+    };
+
+
+
+
+
+
+
     useEffect(() => {
         const LoadingTimeOut = setTimeout(() => {
-           
+
             setLoaded(true);
 
         }, 1000);
-   
+
 
         return () => clearTimeout(LoadingTimeOut);
 
@@ -70,7 +117,7 @@ function BusinessDetail() {
         // </>
     }
 
-    if(!business){
+    if (!business) {
         alert("Business not found, please search again!!!");
         history.push("/businesses/all")
     }
@@ -132,7 +179,7 @@ function BusinessDetail() {
                 </div>
                 {/* <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review </NavLink>}</div> */}
                 <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && !reviews.filter(review => review?.user_id === user?.id).length && loaded && (<CreateReviewModal businessId={business?.id} />)} </div>
-                
+
             </div>
             <div className='Phone_number_Address'>
                 <ReviewByBusiness showModal={showModal} setShowModal={setShowModal} businessId={business?.id} filter={reviews} />
@@ -140,6 +187,26 @@ function BusinessDetail() {
                     <div className='biz_address'><i className="fa-solid fa-phone-volume" /> Phone Number : {business?.phone} </div>
                     <div className='biz_address'><i className="fa-solid fa-location-dot" /> Address : {business?.address} </div>
                     <div className='biz_address'><i className="fa-solid fa-file-lines" /> Description : {business?.description} </div>
+                <div className="likes padding">
+                    {isLikedByUser ? (
+                         <i class="fa-solid fa-thumbs-up like"
+
+                            onClick={() => {
+                                likeBiz(business);
+                            }}
+                        />
+
+                    ) : (
+                       <i className="fa-regular fa-thumbs-up dislike"
+
+                            onClick={() => {
+                                likeBiz(business);
+                            }}
+                        />
+                    )}
+                    {business?.likes?.length <= 1 && (<div className="likes-count"> {business?.likes?.length || "0"} person like this restaurant </div>)}
+                    {business?.likes?.length > 1 && (<div className="likes-count"> {business?.likes?.length || "0"} people like this restaurant </div>)}       
+                </div>
                 </div>
             </div>
 

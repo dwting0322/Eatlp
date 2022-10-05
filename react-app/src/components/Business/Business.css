@@ -502,4 +502,26 @@ margin-left: 50px;
     color: gold;
 }
 
+.fa-thumbs-up{
+  
+   font-size: 25px;
+    cursor: pointer;
+}
 
+.dislike{
+  
+    margin-bottom: 5px;
+}
+
+.like{
+    color: rgb(52, 52, 239);
+   
+    /* padding: 1px solid white;
+    border-radius: 50%;
+    background-color: gold; */
+    margin-bottom: 5px;
+}
+
+.likes-count{
+   color: coral;
+}

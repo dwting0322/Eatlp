@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
-import { getAllBusiness } from '../../store/business';
+import { getAllBusiness, likeBusiness } from '../../store/business';
 import ReviewBrower from '../Review/ReviewBrower';
 import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
 
@@ -12,10 +12,14 @@ function BusinessBrower() {
     const businessObj = useSelector((state) => state.businesses)
 
     const businesses = Object.values(businessObj)
+
+    const user = useSelector((state) => state.session.user);
+
     const history = useHistory()
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
-    console.log("businesses>>>>>>>>", businesses)
+
+    // console.log("businesses>>>>>>>>", businesses)
 
     useEffect(() => {
         dispatch(getAllBusiness());
@@ -67,8 +71,8 @@ function BusinessBrower() {
                                             <div className='business_description'>{business.description}</div>
                                             <div className='business_price_range'>{business.price_range}</div>
                                             {/* <div>
-                        {spot.avgRating ? Number.parseFloat(spot.avgRating).toFixed(2) : 0}
-                        </div> */}
+                                            {spot.avgRating ? Number.parseFloat(spot.avgRating).toFixed(2) : 0}
+                                            </div> */}
                                         </div>
                                     </NavLink>
                                 </div>
