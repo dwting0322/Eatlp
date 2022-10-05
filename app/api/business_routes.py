@@ -190,4 +190,19 @@ def get_all_business_review(business_id):
     
     return {"reviews": all_review_by_business_id_json}
 
-   
+
+
+@business_routes.route('/<int:business_id>/business_likes', methods = ["POST"])
+@login_required
+def like_unlike_a_post(business_id):
+
+    business = Business.query.get_or_404(business_id)
+
+    if current_user not in business.likes:
+        business.likes.append(current_user)
+        db.session.commit()
+    else:
+        business.likes.remove(current_user)
+        db.session.commit()
+
+    return {'business': business.to_dict()}

@@ -5,6 +5,7 @@ const READ_OWNER_BUSINESS = "businesses/readOwnerBusiness";
 const ADD_BUSINESS = "businesses/addBusiness";
 const UPDATE_BUSINESS = "businesses/updateBusiness";
 const DELETE_BUSINESS = "businesses/deleteBusiness";
+const LIKE_BUSINESS = "businesses/likeBusiness";
 
 
 //action creator
@@ -59,6 +60,16 @@ const deleteABusiness = (id) => {
         id,
     }
 };
+
+
+const LikeABusiness = (businesses) => {
+  return {
+    type: LIKE_BUSINESS,
+    businesses,
+  };
+};
+
+
 
 
 // thunk 
@@ -148,6 +159,16 @@ const deleteABusiness = (id) => {
   };
 
 
+  export const likeBusiness = (business) => async (dispatch) => {
+    const response = await fetch(`/api/businesses/${business.id}/business_likes`, {
+      method: "POST",
+    });
+    if (response.ok) {
+      dispatch(LikeABusiness(business));
+    }
+  };
+
+
 
 //Initial State:
 const initialState = {};
@@ -195,6 +216,14 @@ const businessReducer = (state = initialState, action) => {
         newState = { ...state };
         delete newState[action.id];
         return newState;
+    }
+
+    case LIKE_BUSINESS: {
+      newState = { ...state };
+      console.log(action.business.likes);
+      newState[action.business.id] = action.business;
+      //   console.log(newState[action.post.id]);
+      return newState;
     }
 
     default:
