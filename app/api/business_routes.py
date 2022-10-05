@@ -177,7 +177,7 @@ def create_new_review(business_id):
 
 # get all review for business id
 @business_routes.route('/<int:business_id>/all_review')
-@login_required
+# @login_required
 def get_all_business_review(business_id):
     all_review_by_business_id = Review.query.filter(Review.business_id == business_id).all()
     all_review_by_business_id_json = [review.to_dict() for review in all_review_by_business_id]

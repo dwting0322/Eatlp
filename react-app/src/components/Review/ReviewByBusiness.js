@@ -33,7 +33,9 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
     // console.log("reviewId*********", reviewId)
 
     useEffect(() => {
-        dispatch(getBusinessAllReview(id));
+        dispatch(getBusinessAllReview(id)).then(() => {
+            isSetLoaded(true);
+          })
        
     }, [dispatch]);
 

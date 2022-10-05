@@ -40,7 +40,9 @@ function BusinessDetail() {
 
 
     useEffect(() => {
-        dispatch(getOneBusiness(id))
+        dispatch(getOneBusiness(id)).then(() => {
+            setLoaded(true);
+          })
     }, [dispatch, reviewsObj]); // review once review change, it re-run the  dispatch(getOneSpots(spotId))
 
     // console.log(spot)
@@ -48,17 +50,17 @@ function BusinessDetail() {
     //     alert("Please log in/sign up before become a host!")
     //     history.push("/login")
     // }
-    useEffect(() => {
-        const LoadingTimeOut = setTimeout(() => {
+    // useEffect(() => {
+    //     const LoadingTimeOut = setTimeout(() => {
            
-            setLoaded(true);
+    //         setLoaded(true);
 
-        }, 1000);
+    //     }, 1000);
    
 
-        return () => clearTimeout(LoadingTimeOut);
+    //     return () => clearTimeout(LoadingTimeOut);
 
-    }, []);
+    // }, []);
 
 
 
