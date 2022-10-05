@@ -9,7 +9,7 @@ function EditBizForm() {
     const { businessId } = useParams();
    
     const business = useSelector(state => state.businesses[businessId])
-    console.log("Edit business conponent", business)
+    // console.log("Edit business conponent", business)
 
 
     return (

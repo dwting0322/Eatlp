@@ -125,7 +125,7 @@ const deleteABusiness = (id) => {
     if (response.ok) {
       const edittedBusiness = await response.json();
 
-      console.log("edittedBusiness", edittedBusiness)
+      // console.log("edittedBusiness", edittedBusiness)
 
       dispatch(updateABusiness(edittedBusiness));
       return edittedBusiness;
@@ -140,7 +140,7 @@ const deleteABusiness = (id) => {
     const response = await fetch(`/api/businesses/${businessId}`, {
       method: "DELETE",
     });
-    console.log("response", response)
+    // console.log("response", response)
     if (response.ok) {
       dispatch(deleteABusiness(businessId));
     }

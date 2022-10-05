@@ -27,7 +27,7 @@ function BusinessDetail() {
 
     const reviewsObj = useSelector((state) => state.reviews);
     const reviews = Object.values(reviewsObj)
-    console.log("reviews***********", reviews)
+    // console.log("reviews***********", reviews)
     // const filter = reviews.filter(review => review?.user_id === user?.id)
     // console.log("filter from component: ", filter)
     // const user = useSelector(state=> state.session.user)

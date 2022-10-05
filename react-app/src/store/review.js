@@ -98,7 +98,7 @@ export const getBusinessAllReview = (BusinessId) => async (dispatch) => {
   export const getOneReviewByReviewId = (id) => async (dispatch) => {
     const response = await fetch(`/api/reviews/${id}`);
 
-    console.log("response", response)
+    // console.log("response", response)
 
     if (response.ok) {
       const data = await response.json();

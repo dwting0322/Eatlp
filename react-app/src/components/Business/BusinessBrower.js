@@ -15,7 +15,7 @@ function BusinessBrower() {
     const history = useHistory()
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
-    console.log("businesses>>>>>>>>", businesses)
+    // console.log("businesses>>>>>>>>", businesses)
 
     useEffect(() => {
         dispatch(getAllBusiness());
