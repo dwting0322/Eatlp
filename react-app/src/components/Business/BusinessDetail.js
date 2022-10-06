@@ -18,7 +18,7 @@ function BusinessDetail() {
     const history = useHistory()
     const [showModal, setShowModal] = useState(false);
     const [loaded, setLoaded] = useState(false);
-    const [filter, setFliter] = useState([]);
+    // const [filter, setFliter] = useState([]);
 
     const user = useSelector((state) => state.session.user);
 
@@ -31,6 +31,10 @@ function BusinessDetail() {
     // const filter = reviews.filter(review => review?.user_id === user?.id)
     // console.log("filter from component: ", filter)
     // const user = useSelector(state=> state.session.user)
+
+    //    console.log("setShowModal***********", setShowModal)
+    // console.log("showModal in BusinessDetail***********", showModal)
+
 
     const deletebiz = () => {
         dispatch(deleteBusiness(business.id));
@@ -61,6 +65,12 @@ function BusinessDetail() {
     //     return () => clearTimeout(LoadingTimeOut);
 
     // }, []);
+    
+    // useEffect(async () => {
+       
+    //     // setShowModal(false)
+        
+    // }, [showModal]);
 
 
 
@@ -137,7 +147,7 @@ function BusinessDetail() {
                 
             </div>
             <div className='Phone_number_Address'>
-                <ReviewByBusiness showModal={showModal} setShowModal={setShowModal} businessId={business?.id} filter={reviews} />
+                <ReviewByBusiness showModal={showModal} setShowModal={setShowModal} businessId={business?.id} onHide={() => setShowModal(false)} />
                 <div className='biz_address_phone_container'>
                     <div className='biz_address'><i className="fa-solid fa-phone-volume" /> Phone Number : {business?.phone} </div>
                     <div className='biz_address'><i className="fa-solid fa-location-dot" /> Address : {business?.address} </div>

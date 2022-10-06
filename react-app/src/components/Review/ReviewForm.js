@@ -10,11 +10,16 @@ import "./Review.css"
 
 
 function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, reviewId }) {
-
-    // console.log("setShowModal***********", setShowModal)
-
     const history = useHistory();
     const dispatch = useDispatch()
+ 
+    // console.log("showModal in ReviewForm***********", showModal)
+    // if(reviewId){
+    //      myReview = dispatch(getOneReviewByReviewId(reviewId))
+    // } 
+   
+
+   
 
     const [stars, setStars] = useState(myReview?.stars || "")
     const [review, setReview] = useState(myReview?.review || "")
@@ -58,6 +63,16 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
        styles.color = "gold"
 
     }
+
+
+
+
+    const handlebutton = (e) => {
+        // e.preventDefault();
+    
+        setShowModal(false)
+    }
+
 
 
     const handleSubmit = async (e) => {
@@ -139,7 +154,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
         <div className='review_form_container'>
             <form onSubmit={handleSubmit} >
                 <h1 className='Update_review'>{formType}:</h1>
-                <button className='XXX' onClick={() => { setShowModal(false) }}> X </button>
+                <div className='XXX' onClick={ () =>  setShowModal(false) }> X </div>
 
                 {/* <input type="submit" value={formType} placeholder="X"></input> */}
 
