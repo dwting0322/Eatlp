@@ -32,11 +32,11 @@ const NavBar = ({ isLoaded }) => {
           <div >
             <div className='Navbar_test'>
               <div>
-                <NavLink className="Navbar_link_GetAllBiz" to='/businesses/all' exact={true} activeClassName='active'>
+                <NavLink className="Navbar_link_GetAllBiz" to='/businesses' exact={true} activeClassName='active'>
                   Find All Restaurant
                 </NavLink>
 
-                <NavLink className="Navbar_link_CreateBiz" to='/businesses' exact={true} activeClassName='active'>
+                <NavLink className="Navbar_link_CreateBiz" to='/businesses/new' exact={true} activeClassName='active'>
                   Create Business
                 </NavLink>
               </div>

@@ -23,7 +23,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar isLoaded={loaded}/>
+      <NavBar isLoaded={loaded} />
       <Switch>
 
         <Route path='/login' exact={true}>
@@ -47,7 +47,7 @@ function App() {
         </Route>
 
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
 
         <ProtectedRoute path='/users/:userId' exact={true} >
@@ -58,24 +58,29 @@ function App() {
           <Splash_Page />
         </Route>
 
-        <Route path='/businesses/all' exact={true} >
+
+
+
+
+        <Route exact path="/businesses/new" component={CreateBizForm} />
+
+        <Route exact path="/businesses/:businessId/edit" component={EditBizForm} />
+
+        <Route exact path="/businesses/:businessId/reviews" component={CreateReviewForm} />
+
+
+        <Route path='/businesses/:id' exact={true} >
+          <BusinessDetail />
+        </Route>
+
+        <Route path='/businesses' exact={true} >
           <BusinessBrower />
         </Route>
 
-        <Route path='/businesses/:id' exact={true} >
-        <BusinessDetail />
-        </Route>
-
-        <Route exact path="/businesses" component={CreateBizForm}/>
-
-        <Route exact path="/businesses/:businessId/edit" component={EditBizForm}/>
-
-        <Route exact path="/businesses/:businessId/reviews" component={CreateReviewForm}/>
-
         {/* <Route exact path="/reviews/:reviewId/edit" component={EditReviewForm}/> */}
         <Route >
-         <h1 style={{textAlign:"center"}}>404 Page Not Found</h1>
-         <img style={{width:"60%", height:"auto", marginLeft:"auto", marginRight:"auto", display: "block" }} src={notFound} alt="404 Page" />
+          <h1 style={{ textAlign: "center" }}>404 Page Not Found</h1>
+          <img style={{ width: "60%", height: "auto", marginLeft: "auto", marginRight: "auto", display: "block" }} src={notFound} alt="404 Page" />
         </Route>
 
       </Switch>

@@ -33,7 +33,7 @@ function BusinessBrower() {
 
     if(!businesses){
         Window.alert("Business not found, please search again!!!");
-        history.push("/businesses/all")
+        history.push("/businesses")
     }
 
 

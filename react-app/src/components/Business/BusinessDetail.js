@@ -39,7 +39,7 @@ function BusinessDetail() {
     const deletebiz = () => {
         dispatch(deleteBusiness(business.id));
         alert("I have successfully eaten the business for you!!!");
-        history.push("/businesses/all")
+        history.push("/businesses")
     };
 
 
@@ -84,7 +84,7 @@ function BusinessDetail() {
 
     if(!business){
         alert("Business not found, please search again!!!");
-        history.push("/businesses/all")
+        history.push("/businesses")
     }
 
     return (
