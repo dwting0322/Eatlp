@@ -81,7 +81,7 @@ function App() {
           <img style={{ width: "60%", height: "auto", marginLeft: "auto", marginRight: "auto", display: "block" }} src={notFound} alt="404 Page" />
         </Route>
 
-        <Route render={() => <Redirect to={{ pathname: "/businesses" }} />} />
+        <Route render={() => <Redirect to="/businesses" />} />
 
       </Switch>
     </BrowserRouter>
