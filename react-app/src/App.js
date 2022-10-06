@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -58,10 +58,6 @@ function App() {
           <Splash_Page />
         </Route>
 
-
-
-
-
         <Route exact path="/businesses/new" component={CreateBizForm} />
 
         <Route exact path="/businesses/:businessId/edit" component={EditBizForm} />
@@ -69,19 +65,21 @@ function App() {
         <Route exact path="/businesses/:businessId/reviews" component={CreateReviewForm} />
 
 
-        <Route exact path='/businesses/:id'  >
+        <ProtectedRoute exact path='/businesses/:id'  >
           <BusinessDetail />
-        </Route>
+        </ProtectedRoute>
 
-        <Route exact path='/businesses'  >
+        <ProtectedRoute exact path='/businesses'  >
           <BusinessBrower />
-        </Route>
+        </ProtectedRoute>
 
         {/* <Route exact path="/reviews/:reviewId/edit" component={EditReviewForm}/> */}
-        <Route >
+        <Route>
           <h1 style={{ textAlign: "center" }}>404 Page Not Found</h1>
           <img style={{ width: "60%", height: "auto", marginLeft: "auto", marginRight: "auto", display: "block" }} src={notFound} alt="404 Page" />
         </Route>
+
+        <Route render={() => <Redirect to={{ pathname: "/businesses" }} />} />
 
       </Switch>
     </BrowserRouter>
