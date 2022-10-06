@@ -16,6 +16,7 @@ import EditBizForm from './components/Business/EditBizForm';
 import CreateReviewForm from './components/Review/CreateReviewForm';
 import EditReviewForm from './components/Review/EditReviewForm';
 import notFound from './Picture/404-error-page-not-found.jpg'
+import NotFound from './404NotFound/NotFound';
 
 
 function App() {
@@ -37,6 +38,10 @@ function App() {
     <BrowserRouter>
       <NavBar isLoaded={loaded} />
       <Switch>
+
+        <Route path='/notfound' exact={true}>
+          <NotFound />
+        </Route>
 
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -74,12 +79,12 @@ function App() {
         </Route>
 
 
-        <Route>
+        {/* <Route>
           <h1 style={{ textAlign: "center" }}>404 Page Not Found</h1>
           <img style={{ width: "60%", height: "auto", marginLeft: "auto", marginRight: "auto", display: "block" }} src={notFound} alt="404 Page" />
-        </Route>
+        </Route> */}
 
-        <Redirect to="/businesses" />
+        <Route render={() => <Redirect to={{ pathname: "/notfound" }} />} />
 
 
 

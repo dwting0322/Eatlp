@@ -31,8 +31,8 @@ function BusinessBrower() {
 
     }, []);
 
-    if(!businesses){
-        Window.alert("Business not found, please search again!!!");
+    if(!businesses || !businessObj ){
+        alert("Business not found, please search again!!!");
         history.push("/businesses")
     }
 
