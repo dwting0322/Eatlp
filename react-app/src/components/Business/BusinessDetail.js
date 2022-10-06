@@ -49,7 +49,7 @@ function BusinessDetail() {
           })
     }, [dispatch, reviewsObj]); // review once review change, it re-run the  dispatch(getOneSpots(spotId))
 
-    // console.log(spot)
+    // console.log(spot) 
     // if (!user) {
     //     alert("Please log in/sign up before become a host!")
     //     history.push("/login")
