@@ -63,9 +63,14 @@ function BizForm({ business, formType }) {
             if (newBusiness) history.push(`/businesses/${newBusiness.id}`);
 
         } else {
-
-            dispatch(editBusiness(myBusiness))
-            history.push(`/businesses/${myBusiness.id}`);
+            if(user.id === myBusiness.user.id){
+                
+                dispatch(editBusiness(myBusiness))
+                history.push(`/businesses/${myBusiness.id}`);
+            } else {
+                alert("You are not allowed to edit other property!")
+                history.push("/businesses")
+            }
         }
 
         
@@ -75,7 +80,7 @@ function BizForm({ business, formType }) {
         if (businessId) {
          
             const testBusiness = await dispatch(getOneBusiness(businessId))
-            console.log("testBusiness", testBusiness)
+            // console.log("testBusiness", testBusiness)
             const bizData = testBusiness.business
 
             setName(bizData.name);
