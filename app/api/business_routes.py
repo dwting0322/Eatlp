@@ -22,9 +22,14 @@ def get_all_businesses():
 
 
 # Get one business by business ID
-@business_routes.route("/<int:business_id>")
+@business_routes.route("/<business_id>")
 def get_one_business(business_id):
-    print("business_id***********************", business_id)
+    
+    try:
+        business_id = int(business_id) 
+    except:
+        return {'message': '404 Error'}, 404
+    
     business = Business.query.get_or_404(business_id)
     business_json = business.to_dict()
     # add image to one business
@@ -148,12 +153,15 @@ def delete_business(business_id):
 
 
 #Create a new review by business ID
-@business_routes.route("/:business_id/reviews", methods=["POST"])
+@business_routes.route("/<business_id>/reviews", methods=["POST"])
 @login_required
 def create_new_review(business_id):
     form = ReviewForm()
-    if not isinstance(business_id, int):
-        return {'message': '404 Error', "statusCode": 404} 
+
+    try:
+        business_id = int(business_id) 
+    except:
+        return {'message': '404 Error'} 
         
     business = Business.query.get_or_404(business_id)
   

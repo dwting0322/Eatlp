@@ -95,7 +95,7 @@ const deleteABusiness = (id) => {
       const data = await response.json();
       // console.log("data*****************", data)
       dispatch(loadOneBusiness(data.business)); 
-      return data;
+      return response;
     }
     return response;
   };

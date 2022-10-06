@@ -44,11 +44,26 @@ function BusinessDetail() {
 
 
     useEffect(() => {
-        dispatch(getOneBusiness(id)).then(() => {
+        // dispatch(getOneBusiness(id)).then(() => {
+        //     setLoaded(true);
+           
+        //   })
+        helper()
+
+    }, [dispatch, reviewsObj]); // review once review change, it re-run the  dispatch(getOneSpots(spotId))
+
+    const helper = async () => {
+        let res = await dispatch(getOneBusiness(id))
             setLoaded(true);
            
-          })
-    }, [dispatch, reviewsObj]); // review once review change, it re-run the  dispatch(getOneSpots(spotId))
+          
+
+        if(!res.ok){
+            const body = await res.json()
+            console.log("body", body)
+            history.push("/")
+        }
+    }
 
     // console.log(spot) 
     // if (!user) {
