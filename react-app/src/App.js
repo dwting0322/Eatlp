@@ -58,23 +58,21 @@ function App() {
           <Splash_Page />
         </Route>
 
-        <Route exact path="/businesses/new" component={CreateBizForm} />
 
         <Route exact path="/businesses/:businessId/edit" component={EditBizForm} />
 
         <Route exact path="/businesses/:businessId/reviews" component={CreateReviewForm} />
 
+        <Route exact path='/businesses' >
+          <BusinessBrower />
+        </Route>
+
+        <Route exact path="/businesses/new" component={CreateBizForm} />
 
         <Route exact path='/businesses/:id'  >
           <BusinessDetail />
         </Route>
 
-        <Route exact path='/businesses'  >
-          <BusinessBrower />
-        </Route>
-
-        {/* <Route exact path="/reviews/:reviewId/edit" component={EditReviewForm}/> */}
-        
 
         <Route>
           <h1 style={{ textAlign: "center" }}>404 Page Not Found</h1>
@@ -82,6 +80,13 @@ function App() {
         </Route>
 
         <Redirect to="/businesses" />
+
+
+
+
+        {/* <Route exact path="/reviews/:reviewId/edit" component={EditReviewForm}/> */}
+        
+
 
       </Switch>
     </BrowserRouter>
