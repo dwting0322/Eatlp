@@ -44,23 +44,23 @@ function BusinessDetail() {
 
 
     useEffect(() => {
-        // dispatch(getOneBusiness(id)).then(() => {
-        //     setLoaded(true);
+        dispatch(getOneBusiness(id)).then(() => {
+            setLoaded(true);
            
-        //   })
-        helper()
+          })
+        // helper()
 
     }, [dispatch, reviewsObj]); // review once review change, it re-run the  dispatch(getOneSpots(spotId))
 
-    const helper = async () => {
-        let res = await dispatch(getOneBusiness(id))
-            setLoaded(true);
+    // const helper = async () => {
+    //     let res = await dispatch(getOneBusiness(id))
+    //         setLoaded(true);
            
         // if(!res.ok){
         //     // const body = await res.json()
         //     history.push("/")
         // }
-    }
+    // }
 
     // console.log(spot) 
     // if (!user) {
