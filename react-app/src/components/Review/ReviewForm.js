@@ -137,7 +137,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
             errors.push("Stars rating is required");
         }
         if (review.length > 255 || review.length < 10) {
-            errors.push("Review number of words must be from 10 to 255");
+            errors.push("Review number of characters must be from 10 to 255");
         }
 
         setValidationErrors(errors);

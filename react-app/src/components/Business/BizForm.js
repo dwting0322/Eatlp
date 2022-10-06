@@ -183,11 +183,11 @@ function BizForm({ business, formType }) {
 
                        { formType === "Create Business" && (<>
                             <h1 className="create_form_word">Hello! Let’s start with your business information</h1>
-                            <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page. Your business will come up automatically if it is already listed.</div>
+                            <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page.</div>
                       </> )} 
                       { formType === "Update Business" && (<div>
                             <h1 className="create_form_word">Hello! Let’s edit with your business information</h1>
-                            <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page. Your business will come up automatically if it is already listed.</div>
+                            <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page.</div>
                       </div> )} 
                         <div>
                             <label>

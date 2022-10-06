@@ -67,7 +67,7 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     transition: all .5s ease-out;
-
+    overflow-y: auto;
 }
 
 
@@ -212,7 +212,7 @@ a {
     font-size: 18px;
     cursor: pointer;
     border: none;
-    /* padding: 10px; */
+    padding: 10px;
     margin-top: 10px;
 }
 
@@ -270,6 +270,7 @@ a {
     word-break: break-all;
     height: 100px;
     background-color: white;
+    overflow-y: auto;
 }
 
 .pic_input {
@@ -383,7 +384,7 @@ a {
     word-wrap: break-word;
     word-break: break-word;
     overflow-wrap: break-word;
-    font-size: 19px;
+    font-size: 18px;
     margin-bottom: 10px;
 }
 
@@ -488,7 +489,7 @@ a {
 
 .Biz_detail_discription {
     font-size: 20px;
-    color: #00ffd1;
+    color: gold;
 }
 
 .point {
@@ -502,4 +503,112 @@ a {
 
 .bizDetail_star {
     color: gold;
+}
+
+
+.star5 {
+    margin-right: 20px;
+    width: 70px;
+}
+
+
+.star_word_and_star_bar_container {
+    display: flex;
+
+}
+
+.star_word {
+    display: flex;
+    flex-direction: column;
+}
+
+.star_bar {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.star5_bar {
+    width: 70%;
+    border-radius: 10px;
+    height: 12px;
+    background: rgb(246, 25, 25);
+   
+}
+
+
+.star4_bar {
+    width: 70%;
+    border-radius: 10px;
+    height: 12px;
+    background: rgb(255, 100, 61);
+   
+}
+
+
+
+.star3_bar {
+    width: 70%;
+    border-radius: 10px;
+    height: 12px;
+    background: rgb(255, 135, 66);
+  
+}
+
+
+
+.star2_bar {
+    width: 70%;
+    border-radius: 10px;
+    height: 12px;
+    background: rgb(255, 173, 72);
+    
+}
+
+
+
+.star1_bar {
+    position: left;
+    border-radius: 10px;
+    height: 12px;
+    background: rgb(255, 204, 75);
+}
+
+
+
+.star_container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+}
+
+.star5_container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.grey {
+    background-color: lightgrey;
+    width: 70%;
+    border-radius: 10px;
+}
+
+.Overall_rating{
+    margin-bottom: 15px;
+    margin-top: 40px;
+    font-size: 25px;
+    color: #7611ee;
+}
+
+.avg_rating_star_and_word{
+   font-size: 30px;
+}
+
+.total_avg_review{
+    font-size: 18px;
+    margin-left: 10px;
 }
