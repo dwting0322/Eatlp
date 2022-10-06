@@ -137,7 +137,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
 
                     )}
 
-                    <div className="like_icon">
+                    <div>
                         {user && ( review?.likes?.filter((id) => id === user?.id).length ? (
                             (<i className="fa-solid fa-thumbs-up like"
                                 onClick={() => {
