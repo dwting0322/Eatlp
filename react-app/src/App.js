@@ -69,11 +69,11 @@ function App() {
         <Route exact path="/businesses/:businessId/reviews" component={CreateReviewForm} />
 
 
-        <Route path='/businesses/:id' exact={true} >
+        <Route exact path='/businesses/:id'  >
           <BusinessDetail />
         </Route>
 
-        <Route path='/businesses' exact={true} >
+        <Route exact path='/businesses'  >
           <BusinessBrower />
         </Route>
 
