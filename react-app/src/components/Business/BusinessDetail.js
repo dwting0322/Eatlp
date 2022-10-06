@@ -56,10 +56,10 @@ function BusinessDetail() {
         let res = await dispatch(getOneBusiness(id))
             setLoaded(true);
            
-        if(!res.ok){
-            const body = await res.json()
-            history.push("/")
-        }
+        // if(!res.ok){
+        //     // const body = await res.json()
+        //     history.push("/")
+        // }
     }
 
     // console.log(spot) 

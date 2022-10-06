@@ -75,7 +75,7 @@ function BizForm({ business, formType }) {
         if (businessId) {
          
             const testBusiness = await dispatch(getOneBusiness(businessId))
-         
+            console.log("testBusiness", testBusiness)
             const bizData = testBusiness.business
 
             setName(bizData.name);
