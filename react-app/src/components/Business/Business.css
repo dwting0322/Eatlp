@@ -1,4 +1,3 @@
-
 /* Business Brower*/
 
 
@@ -26,7 +25,7 @@
     transition: box-shadow 0.5s;
     border-radius: 10px;
     /* padding: 10px; */
-    
+
 }
 
 
@@ -42,8 +41,8 @@
 }
 
 /* .Brower_img:hover { */
-    /* box-shadow: 0 0 10px rgb(98, 95, 95) */
- /* } */
+/* box-shadow: 0 0 10px rgb(98, 95, 95) */
+/* } */
 
 .Biz_Brower_outter {
     display: flex;
@@ -68,7 +67,7 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     transition: all .5s ease-out;
-   
+
 }
 
 
@@ -95,7 +94,7 @@ a {
     font-size: 22px;
 }
 
-.Recent_word{
+.Recent_word {
     text-align: center;
     margin: 50px 0px;
 }
@@ -104,18 +103,19 @@ a {
 
 /* Business Detail */
 
-.Form_errors{
+.Form_errors {
     background-color: lightblue;
     list-style: none;
+    font-size: 18px;
 }
 
-.Form_list_error{
+.Form_list_error {
     list-style: none;
     color: red;
     text-align: center;
 }
 
-.form_container{
+.form_container {
     display: flex;
     flex-direction: column;
     max-width: 513px;
@@ -125,7 +125,7 @@ a {
     margin-left: 100px
 }
 
-.fomr_and_pic_container{
+.fomr_and_pic_container {
     display: flex;
     background: lightblue;
     padding: 50px;
@@ -134,41 +134,41 @@ a {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-   
+
 }
 
-.create_form_word{
+.create_form_word {
     word-break: break-all;
     font-size: 38px;
     margin-left: 4px;
     margin-bottom: 10px;
 }
 
-.create_form_word2{
+.create_form_word2 {
     font-size: 15px;
     color: gray;
     margin-left: 4px;
     margin-bottom: 10px;
 }
 
-.name{
+.name {
     font-size: 23px;
 }
 
 
-.Address{
+.Address {
     font-size: 23px;
 }
 
-.Phone{
+.Phone {
     font-size: 23px;
 }
 
-.Description{
+.Description {
     font-size: 23px;
 }
 
-.form_input{
+.form_input {
     width: 500px;
     height: 35px;
     border-radius: 5px;
@@ -177,7 +177,7 @@ a {
     margin-bottom: 10px;
 }
 
-.Description_textarea{
+.Description_textarea {
     width: 500px;
     border-radius: 5px;
     margin-left: 5px;
@@ -186,11 +186,11 @@ a {
     margin-bottom: 10px;
 }
 
-.Price{
+.Price {
     font-size: 23px;
 }
 
-.Price_select{
+.Price_select {
     width: 500px;
     border-radius: 5px;
     margin-left: 5px;
@@ -198,11 +198,11 @@ a {
     margin-bottom: 10px;
 }
 
-.Preview_img{
+.Preview_img {
     font-size: 23px;
 }
 
-.submit{
+.submit {
     width: 180px;
     height: 40px;
     margin-left: 5px;
@@ -212,7 +212,7 @@ a {
     font-size: 18px;
     cursor: pointer;
     border: none;
-    padding: 10px;
+    /* padding: 10px; */
     margin-top: 10px;
 }
 
@@ -220,20 +220,20 @@ a {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
-.img_container{
+.img_container {
     display: flex;
     flex-direction: column;
     /* margin-left: 200px; */
     /* margin-right: 200px; */
     width: 50%;
-   
+
 }
 
-.img_1{
+.img_1 {
     width: 400px;
 }
 
-.img_2{
+.img_2 {
     height: 100px;
     width: 100px;
     background-color: white;
@@ -242,26 +242,26 @@ a {
     margin-left: 20px;
 }
 
-.img_3{
+.img_3 {
     width: 400px;
-    margin-top:-90px;
+    margin-top: -90px;
     margin-left: 250px;
     position: relative;
     z-index: 5;
 }
 
-.pic_and_word_order{
+.pic_and_word_order {
     display: flex;
-    margin-left:5px;
+    margin-left: 5px;
     position: relative;
     z-index: 2;
-    margin-top:-80px;
+    margin-top: -80px;
     margin-left: 30px;
     width: 440px;
-    
+
 }
 
-.pic_name_address_phone{
+.pic_name_address_phone {
     position: relative;
     z-index: 2;
     padding-left: 5px;
@@ -272,52 +272,52 @@ a {
     background-color: white;
 }
 
-.pic_input{
+.pic_input {
     border: none;
     background-color: lightblue;
 
 }
 
-.name_not_in_pic{
+.name_not_in_pic {
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 5px;
     margin-top: 10px;
-    
+
 }
 
-.name_in_pic{
+.name_in_pic {
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 5px;
     margin-top: 10px;
-   
+
 }
 
-.address_in_pic{
+.address_in_pic {
     font-size: 13px;
     color: rgb(176, 173, 173);
     margin-bottom: 5px;
-    
+
 }
 
-.address_not_in_pic{
+.address_not_in_pic {
     font-size: 13px;
     color: rgb(176, 173, 173);
     margin-bottom: 5px;
-   
+
 }
 
-.phone_not_in_pic{
+.phone_not_in_pic {
     font-size: 13px;
     color: rgb(176, 173, 173);
-   
+
 }
 
-.phone_in_pic{
+.phone_in_pic {
     font-size: 13px;
     color: rgb(176, 173, 173);
-   
+
 
 }
 
@@ -334,7 +334,7 @@ a {
 }
 
 
-.biz_detail_info_container{
+.biz_detail_info_container {
     position: relative;
     z-index: 2;
     display: flex;
@@ -346,12 +346,12 @@ a {
     color: white;
     max-width: 100%;
     overflow-wrap: break-word;
-    text-shadow:0 0 5px rgb(49, 46, 46);
+    text-shadow: 0 0 5px rgb(49, 46, 46);
     /* width: 1400px; */
-   
+
 }
 
-.biz_detail_info_second_container{
+.biz_detail_info_second_container {
     margin-right: 20px;
     max-width: 100%;
     height: 100%;
@@ -366,7 +366,7 @@ a {
     height: 80vh;
 }
 
-.Phone_number_Address{
+.Phone_number_Address {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -378,47 +378,47 @@ a {
     width: 800px;
 }
 
-.biz_address{
+.biz_address {
     width: 500px;
     word-wrap: break-word;
     word-break: break-word;
     overflow-wrap: break-word;
-    font-size: 18px;
+    font-size: 19px;
     margin-bottom: 10px;
 }
 
 
-.biz_address_phone_container{
-margin-left: 50px;
+.biz_address_phone_container {
+    margin-left: 100px;
 }
 
 
-.Biz_detail_name{
-   font-size: 50px;
-   font-weight: bold;
+.Biz_detail_name {
+    font-size: 50px;
+    font-weight: bold;
 }
 
-.delete_edit{
+.delete_edit {
     margin-top: -30px;
     margin-bottom: -20px;
 }
 
 
-.edit_delete_biz_detail{
+.edit_delete_biz_detail {
     position: relative;
     z-index: 2;
     margin-top: 20px;
     margin-left: 10px;
 }
 
-.edit_biz_detail{
+.edit_biz_detail {
     position: relative;
     z-index: 2;
     /* margin-top: 100px; */
-  
+
 }
 
-.edit_link{
+.edit_link {
     color: inherit;
     font-size: 20px;
     margin-right: 15px;
@@ -429,26 +429,26 @@ margin-left: 50px;
 
 }
 
-.edit_link:hover{
+.edit_link:hover {
     background-color: rgba(233, 228, 228, 0.2);
 }
 
 
 
-.delete_bizDetail{
+.delete_bizDetail {
     cursor: pointer;
     border: none;
- background-color: rgba(255, 0, 0, 0) ;
+    background-color: rgba(255, 0, 0, 0);
     font-size: 20px;
     color: red;
 }
 
-.delete_bizDetail:hover{
+.delete_bizDetail:hover {
     text-shadow: 0px 0px 5px rgb(189, 187, 187);
-   
+
 }
 
-.create_Review_lnik{
+.create_Review_lnik {
     color: white;
     border: 1px solid red;
     background-color: red;
@@ -456,50 +456,50 @@ margin-left: 50px;
     font-size: 20px;
 }
 
-.create_Review_lnik_div{
+.create_Review_lnik_div {
     height: 57px;
     text-align: center;
 }
 
-.open_time_container{
+.open_time_container {
     margin-bottom: -10px;
 }
 
-.open{
+.open {
     color: rgb(255, 115, 0);
     font-size: 20px;
     text-shadow: none;
     font-weight: none;
     /* background-color: rgba(100, 95, 95, 0.3) ; */
 }
-.time{
+
+.time {
     font-size: 20px;
     margin-left: 10px;
     font-weight: none;
     /* background-color: rgba(100, 95, 95, 0.3) ; */
 }
 
-.claim{
+.claim {
     font-size: 20px;
     color: rgb(6, 185, 245);
     text-shadow: red
 }
 
-.Biz_detail_discription{
+.Biz_detail_discription {
     font-size: 20px;
     color: #00ffd1;
 }
-.point{
+
+.point {
     font-size: 20px;
 }
 
-.total_review{
+.total_review {
     margin-left: 15px;
     font-size: 20px;
 }
 
-.bizDetail_star{
+.bizDetail_star {
     color: gold;
 }
-
-
