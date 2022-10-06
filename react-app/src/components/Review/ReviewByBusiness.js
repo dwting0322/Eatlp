@@ -20,10 +20,10 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
 
     const reviewsObj = useSelector((state) => state.reviews)
     const reviews = Object.values(reviewsObj)
-    console.log("reviews!!!!!!!!!!!!!!!!!!!!!", reviews)
+    // console.log("reviews!!!!!!!!!!!!!!!!!!!!!", reviews)
     const filter = reviews.filter(review => review?.business_id === +id)
 
-    console.log("filter!!!!!!!!!!!!!!!!!!!!!", filter)
+    // console.log("filter!!!!!!!!!!!!!!!!!!!!!", filter)
     const user = useSelector((state) => state.session.user)
     // const [review, setReview] = useState(null)
     const [reviewId, setReviewId] = useState(0)
@@ -36,7 +36,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
     // console.log("filterLike!!!!!!!!!!!!!!!!!!!!!", filterLike)
 
     const likeReview = (review) => {
-        console.log("review in likeReview function", review);
+        // console.log("review in likeReview function", review);
         dispatch(likeAReview(review));
        
         setIsLikedByUser(!isLikedByUser);
@@ -111,7 +111,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
                         {/* {review?.stars}  */}
 
                     </div>
-                    <div> {new Date(review.created_at).toLocaleDateString()} </div>
+                    <div className='Review_date'> {new Date(review.created_at).toLocaleDateString()} </div>
                     <div className="ReviewForm_review" > {review?.review} </div>
                     {user?.id === review?.user_id && (
                         <div>
@@ -137,7 +137,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
 
                     )}
 
-                    <div className="">
+                    <div className="like_icon">
                         {user && ( review?.likes?.filter((id) => id === user?.id).length ? (
                             (<i className="fa-solid fa-thumbs-up like"
                                 onClick={() => {

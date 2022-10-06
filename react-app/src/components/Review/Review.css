@@ -136,6 +136,8 @@
     word-wrap: break-word;
     word-break: break-word;
     overflow-wrap: break-word;
+    font-size: 17px;
+    margin-bottom: 5px;
 }
 
 
@@ -236,8 +238,18 @@
 
 .star-icon {
     color: gold;
+    font-size: 22px;
+    margin: 5px 0;
 }
 
+.Review_date{
+    font-size: 17px;
+    margin-bottom: 2px;
+}
+
+.like_icon{
+    
+}
 
 .create_review_button_modal {
     border: none;

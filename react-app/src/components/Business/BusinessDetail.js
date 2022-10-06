@@ -51,15 +51,20 @@ function BusinessDetail() {
     // }
     useEffect(() => {
         const LoadingTimeOut = setTimeout(() => {
-           
+
             setLoaded(true);
 
         }, 1000);
-   
+
 
         return () => clearTimeout(LoadingTimeOut);
 
     }, []);
+
+
+    let abc = business?.reviews.filter((review) => review.stars === 1 ).length / business?.reviews.length *100
+    console.log("abc", abc)
+    
 
 
 
@@ -71,7 +76,7 @@ function BusinessDetail() {
         // </>
     }
 
-    if(!business){
+    if (!business) {
         alert("Business not found, please search again!!!");
         history.push("/businesses/all")
     }
@@ -133,7 +138,7 @@ function BusinessDetail() {
                 </div>
                 {/* <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && <NavLink className="create_Review_lnik" to={`/businesses/${business.id}/reviews`}><i className="fa-solid fa-pen-to-square"></i> Post Review </NavLink>}</div> */}
                 <div className='create_Review_lnik_div'>{user?.id !== business?.ownerId && !reviews.filter(review => review?.user_id === user?.id).length && loaded && (<CreateReviewModal businessId={business?.id} />)} </div>
-                
+
             </div>
             <div className='Phone_number_Address'>
                 <ReviewByBusiness showModal={showModal} setShowModal={setShowModal} businessId={business?.id} filter={reviews} />
@@ -141,6 +146,62 @@ function BusinessDetail() {
                     <div className='biz_address'><i className="fa-solid fa-phone-volume" /> Phone Number : {business?.phone} </div>
                     <div className='biz_address'><i className="fa-solid fa-location-dot" /> Address : {business?.address} </div>
                     <div className='biz_address'><i className="fa-solid fa-file-lines" /> Description : {business?.description} </div>
+                    
+
+                    <div className='Overall_rating'>Overall rating : </div>
+
+                    <div className='avg_rating_star_and_word'>
+                            {business?.avgRating == 0 && <span>No Rating</span>}
+                            {business?.avgRating >= 1 && business?.avgRating < 1.5 && (<i className="fa-solid fa-star bizDetail_star" />)}
+                            {business?.avgRating >= 1.5 && business?.avgRating < 2 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
+                            {business?.avgRating >= 2 && business?.avgRating < 2.5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
+                            {business?.avgRating >= 2.5 && business?.avgRating < 3 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
+                            {business?.avgRating >= 3 && business?.avgRating < 3.5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
+                            {business?.avgRating >= 3.5 && business?.avgRating < 4 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
+                            {business?.avgRating >= 4 && business?.avgRating < 4.5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
+                            {business?.avgRating >= 4.5 && business?.avgRating < 5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
+                            {business?.avgRating == 5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
+
+                            <span className='total_avg_review'>(
+                                {business?.countReview ? Number.parseFloat(business?.countReview).toFixed(0) : 0}  reviews)
+                            </span>
+                        </div>
+
+                    <div className='star5_container'>
+                        <div className='star5'>5 Stars  </div>
+                        <div className='grey'>
+                         <div style={{width:`${business?.reviews.filter((review) => review.stars === 5 ).length / business?.reviews.length * 100}%`}} className='star5_bar'></div>
+                        </div>
+                    </div>
+
+                    <div className='star_container'>
+                        <div className='star5'>4 Stars  </div>
+                        <div className='grey'>
+                         <div style={{width:`${business?.reviews.filter((review) => review.stars === 4 ).length / business?.reviews.length * 100}%`}} className='star4_bar'></div>
+                        </div>
+                    </div>
+
+                    <div className='star_container'>
+                        <div className='star5'>3 Stars  </div>
+                        <div className='grey'>
+                         <div style={{width:`${business?.reviews.filter((review) => review.stars === 3 ).length / business?.reviews.length * 100}%`}} className='star3_bar'></div>
+                        </div>
+                    </div>
+
+                    <div className='star_container'>
+                        <div className='star5'>2 Stars  </div>
+                        <div className='grey'>
+                         <div style={{width:`${business?.reviews.filter((review) => review.stars === 2 ).length / business?.reviews.length * 100}%`}} className='star2_bar'></div>
+                        </div>
+                    </div>
+
+                    <div className='star_container'>
+                        <div className='star5'>1 Stars  </div>
+                        <div className='grey'>
+                         <div style={{width:`${business?.reviews.filter((review) => review.stars === 1 ).length / business?.reviews.length * 100}%`}} className='star1_bar'></div>
+                        </div>
+                    </div>
+                
                 </div>
             </div>
 
