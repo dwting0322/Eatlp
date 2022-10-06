@@ -88,9 +88,12 @@ const deleteABusiness = (id) => {
 
 // Get one business by business ID thunk
   export const getOneBusiness = (id) => async (dispatch) => {
+    
     const response = await fetch(`/api/businesses/${id}`);
+    // console.log("response*****************", response)
     if (response.ok) {
       const data = await response.json();
+      // console.log("data*****************", data)
       dispatch(loadOneBusiness(data.business)); 
       return data;
     }
