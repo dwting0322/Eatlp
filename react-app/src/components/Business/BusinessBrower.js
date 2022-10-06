@@ -32,7 +32,7 @@ function BusinessBrower() {
     }, []);
 
     if(!businesses){
-        alert("Business not found, please search again!!!");
+        Window.alert("Business not found, please search again!!!");
         history.push("/businesses/all")
     }
 
