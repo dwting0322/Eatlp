@@ -3,14 +3,14 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { Modal } from '../../context/Modal';
-import { deleteReview, getBusinessAllReview } from '../../store/review'
+import { deleteReview, getBusinessAllReview, getOneReviewByReviewId } from '../../store/review'
 import EditReviewModal from './EditReviewModal';
 import './Review.css'
 import ReviewForm from './ReviewForm';
 import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
 
 
-function ReviewByBusiness({ showModal, setShowModal, businessId}) {
+function ReviewByBusiness({ showModal, setShowModal, businessId, onHide }) {
 
     const dispatch = useDispatch();
     const { id } = useParams()
@@ -22,21 +22,26 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
     // console.log("reviews!!!!!!!!!!!!!!!!!!!!!", reviews)
     const filter = reviews.filter(review => review?.business_id === +id)
 
-    // console.log("filter!!!!!!!!!!!!!!!!!!!!!", filter)
+    // console.log("showModal in ReviewByBusiness!!!!!!!!!!!!!!!!!!!!!", showModal)
     const user = useSelector((state) => state.session.user)
     // const [review, setReview] = useState(null)
-    const [reviewId, setReviewId] = useState(0)
+    const [reviewId, setReviewId] = useState("")
     // const deletebiz = () => {
     //     dispatch(deleteReview(review.id));
     //     alert("I have successfully eaten the review for you!!!");
     // };
     // console.log("reviewId*********", reviewId)
 
+    const reviewPassDown = useSelector(state => state.reviews[reviewId])
+    // console.log("reviewPassDown*********", reviewPassDown)
+    
+
+
     useEffect(() => {
         dispatch(getBusinessAllReview(id)).then(() => {
             isSetLoaded(true);
-          })
-       
+        })
+
     }, [dispatch]);
 
 
@@ -54,8 +59,8 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
         return () => clearTimeout(LoadingTimeOut);
     }, []);
 
-    if(!loaded) return (<img className='loading_page' src={LoadingPic} alt='loading page' />)
-    
+    if (!loaded) return (<img className='loading_page' src={LoadingPic} alt='loading page' />)
+
 
     return (
         <div className='review_outter_container'>
@@ -72,12 +77,12 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
                         <div className='profile_name_review'>{review?.user?.first_name}</div>
                     </div>
                     <div>
-                   
-                        {review?.stars === 1 && (<i className="fa-solid fa-star star-icon"/>)}
-                        {review?.stars === 2 && (<><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/></>)}
-                        {review?.stars === 3 && (<><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/></>)}
-                        {review?.stars === 4 && (<><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/></>)}
-                        {review?.stars === 5 && (<><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/><i className="fa-solid fa-star star-icon"/></>)}
+
+                        {review?.stars === 1 && (<i className="fa-solid fa-star star-icon" />)}
+                        {review?.stars === 2 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
+                        {review?.stars === 3 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
+                        {review?.stars === 4 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
+                        {review?.stars === 5 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
                         {/* {review?.stars}  */}
 
                     </div>
@@ -89,22 +94,36 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
                             <span className='edit_review_modal' onClick={(e) => {
                                 // setReview(review)
                                 // e.stopPropagation();
-                                
+
                                 setReviewId(review.id)
                                 setShowModal(true)
                             }}>
                                 <i className="fa-solid fa-pen-to-square" />
-                                <EditReviewModal reviewId={reviewId}  showModal={showModal} setShowModal={setShowModal} businessId={businessId}/>
+                                {/* <EditReviewModal reviewId={reviewId} showModal={showModal} setShowModal={setShowModal} businessId={businessId} onHide={onHide} /> */}
                                 Edit
                             </span>
+
+                            {showModal && (<Modal onClose={() => setShowModal(false)}>
+                                <ReviewForm
+                                    myReview={reviewPassDown}
+                                    formType="Update Review"
+                                    setShowModal={setShowModal}
+                                  
+                                    businessId={businessId}
+                                 
+                                />
+
+                            </Modal>)}
+
+
 
                             <button className='delete_review' onClick={() => {
                                 dispatch(deleteReview(review.id))
                                 alert("I have successfully eaten the message for you!!!")
-                                }}> <i className="fa-solid fa-trash-can"/> Delete</button>
-                        
+                            }}> <i className="fa-solid fa-trash-can" /> Delete</button>
+
                         </div>
-                        
+
                     )}
 
                     {/* {showModal && (
@@ -124,7 +143,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId}) {
 
             ))) : isloaded && <h1 className="no_review_words" >You currently have no any review !</h1>}
             <hr className="line"></hr>
-        </div> 
+        </div>
     )
 }
 
