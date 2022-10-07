@@ -64,6 +64,7 @@ function BusinessDetail() {
 
     let abc = business?.reviews.filter((review) => review.stars === 1 ).length / business?.reviews.length *100
     console.log("abc", abc)
+  
     
 
 
@@ -170,35 +171,35 @@ function BusinessDetail() {
                     <div className='star5_container'>
                         <div className='star5'>5 Stars  </div>
                         <div className='grey'>
-                         <div style={{width:`${business?.reviews.filter((review) => review.stars === 5 ).length / business?.reviews.length * 100}%`}} className='star5_bar'></div>
+                        {business?.reviews.length ? <div style={{width:`${business?.reviews.filter((review) => review.stars === 5 ).length / business?.reviews.length * 100}%`}} className='star5_bar'></div> : <div className='empty_grey_bar'></div>}
                         </div>
                     </div>
 
                     <div className='star_container'>
                         <div className='star5'>4 Stars  </div>
                         <div className='grey'>
-                         <div style={{width:`${business?.reviews.filter((review) => review.stars === 4 ).length / business?.reviews.length * 100}%`}} className='star4_bar'></div>
+                        {business?.reviews.length ? <div style={{width:`${business?.reviews.filter((review) => review.stars === 4 ).length / business?.reviews.length * 100}%`}} className='star4_bar'></div> : <div className='empty_grey_bar'></div>}
                         </div>
                     </div>
 
                     <div className='star_container'>
                         <div className='star5'>3 Stars  </div>
                         <div className='grey'>
-                         <div style={{width:`${business?.reviews.filter((review) => review.stars === 3 ).length / business?.reviews.length * 100}%`}} className='star3_bar'></div>
+                        {business?.reviews.length ? <div style={{width:`${business?.reviews.filter((review) => review.stars === 3 ).length / business?.reviews.length * 100}%`}} className='star3_bar'></div> : <div className='empty_grey_bar'></div>}
                         </div>
                     </div>
 
                     <div className='star_container'>
                         <div className='star5'>2 Stars  </div>
                         <div className='grey'>
-                         <div style={{width:`${business?.reviews.filter((review) => review.stars === 2 ).length / business?.reviews.length * 100}%`}} className='star2_bar'></div>
+                        {business?.reviews.length ? <div style={{width:`${business?.reviews.filter((review) => review.stars === 2 ).length / business?.reviews.length * 100}%`}} className='star2_bar'></div> : <div className='empty_grey_bar'></div>}
                         </div>
                     </div>
 
                     <div className='star_container'>
                         <div className='star5'>1 Stars  </div>
                         <div className='grey'>
-                         <div style={{width:`${business?.reviews.filter((review) => review.stars === 1 ).length / business?.reviews.length * 100}%`}} className='star1_bar'></div>
+                        {business?.reviews.length ? <div style={{width:`${business?.reviews.filter((review) => review.stars === 1 ).length / business?.reviews.length * 100}%`}} className='star1_bar'></div> : <div className='empty_grey_bar'></div>}
                         </div>
                     </div>
                 
