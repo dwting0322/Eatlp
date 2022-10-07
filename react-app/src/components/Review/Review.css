@@ -90,6 +90,7 @@
 .business_name_review {
     margin-top: 10px;
     font-size: 25px;
+    overflow-wrap: break-word;
 }
 
 .business_link_review {
@@ -123,7 +124,7 @@
     cursor: pointer;
     border: none;
     background-color: rgba(237, 232, 232, 0);
-    font-size: 18px;
+    font-size: 17px;
     color: red;
 }
 
@@ -136,6 +137,8 @@
     word-wrap: break-word;
     word-break: break-word;
     overflow-wrap: break-word;
+    font-size: 17px;
+    margin-bottom: 5px;
 }
 
 
@@ -236,6 +239,13 @@
 
 .star-icon {
     color: gold;
+    font-size: 22px;
+    margin: 5px 0;
+}
+
+.Review_date{
+    font-size: 17px;
+    margin-bottom: 2px;
 }
 
 
@@ -256,7 +266,7 @@
 
 .edit_review_modal {
     cursor: pointer;
-    font-size: 20px;
+    font-size: 17px;
     color: blue;
     margin-right: 5px;
 }
@@ -301,6 +311,20 @@
 .icon1{
     margin-left: 50px;
 }
+
+.fa-thumbs-up{
+    font-size: 25px;
+    color: rgb(32, 133, 248);
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.likes-count{
+    color: coral;
+    margin-left: 5px;
+    font-size: 18px;
+}
+
 
 
 /* .star1 > .fa-solid:hover,
