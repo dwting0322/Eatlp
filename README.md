@@ -2,7 +2,7 @@
 
 ## Welcome to Eatlp, our project clone of Yelp.
 
-## About Our Web Application!
+## About My Web Application!
 
 Eatlp is a full-stack web application inspired by Yelp, with a little twist!
 Our application provides users the ability to post business of their meals, leave likes and add reviews to said business!
