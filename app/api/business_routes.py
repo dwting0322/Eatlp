@@ -7,7 +7,7 @@ from ..models.review import Review
 from ..forms.review_form import ReviewForm
 from ..models.image import Image
 from .auth_routes import validation_errors_to_error_messages
-from app.api.aws import (
+from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
 
@@ -202,4 +202,28 @@ def get_all_business_review(business_id):
     
     return {"reviews": all_review_by_business_id_json}
 
-   
+
+
+# add image to AWS S3 bucket, return url to image
+@business_routes.route('/upload', methods=['POST'])
+@login_required
+def upload_image():
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+    image = request.files["image"]
+
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+    url = upload["url"]
+    return {"url": url}

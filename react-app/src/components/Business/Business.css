@@ -612,3 +612,8 @@ a {
     font-size: 18px;
     margin-left: 10px;
 }
+
+.choose_file{
+    cursor: pointer;
+    width: 200px;
+}
