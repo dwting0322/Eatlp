@@ -28,9 +28,9 @@ function BizForm({ business, formType }) {
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState(false);
     const [imageLoading, setImageLoading] = useState(false);
-
+    const [mouse, setMouse] = useState(false)
 
     const { businessId } = useParams()
 
@@ -59,7 +59,7 @@ function BizForm({ business, formType }) {
             preview_img,
         };
 
-
+        
 
         if (formType === "Create Business") {
             const newBusiness = await dispatch(createBusiness(myBusiness))
@@ -178,19 +178,19 @@ function BizForm({ business, formType }) {
         // some sort of loading message is a good idea
         setImageLoading(true);
 
-        const res = await fetch('/api/locations/upload', {
+        const res = await fetch('/api/businesses/upload', {
             method: "POST",
             body: formData,
         });
+        
 
         if (res.ok) {
-            const response = await res.json();
-            setPreview_img(response.url);
-
+            const data = await res.json();
+           
+            setPreview_img(data.url);
             setImageLoading(false);
-            // history.push("/images");
-        }
-        else {
+            
+        } else {
             setImageLoading(false);
             // a real app would probably use more advanced
             // error handling
@@ -308,35 +308,42 @@ function BizForm({ business, formType }) {
                             </label>
                         </div>
 
-                        <div>
-                            <label>Preview Image:
-                                <div className='choose_file' >
-                                <input
+                        <div className='Preview_img'>
+                            <label  >* Preview Image:   </label>
+                                <div className='file_input'
+                                // style={{ cursor: mouse ? "pointer" : ""}} 
+                                // onMouseEnter={() => setMouse(true)} 
+                                // onMouseLeave={() =>  setMouse(false)} 
+                                >
+                                    
+                                <input className='file_input'
                                     type="file"
                                     accept="image/*"
                                     onChange={updateImage}
-                                    className='file-input'
-                                    id='file-input'
+                                    id='upload_file'
+                                    // style={{ cursor: mouse ? "pointer" : ""}} 
+                                    // onMouseEnter={() => setMouse(true)} 
+                                    // onMouseLeave={() =>  setMouse(false)} 
                                 />
                                 </div>
-                                <div>
-                                    <button
+                                <div className='upload_delete_button_div'>
+                                
+                                    <button className={`upload_button ${image ? 'upload' : ''}`}
                                         onClick={handleSubmitImage}
-                                        // className={`file-input-button ${image ? 'active' : ''}`}
-                                        disabled={image === null}
-                                    >Submit</button>
-                                    <button
+                                        disabled={image === false}
+                                    > <i className="fa-solid fa-cloud-arrow-up"/> Upload</button>
+
+                                    <button className={`upload_button ${image ? 'upload' : ''}`}
                                         onClick={() => {
-                                            setImage(null)
+                                            setImage(false)
                                             setPreview_img('')
-                                            document.getElementById('file-input').value = null;
+                                            document.getElementById('upload_file').value = null;
                                         }}
-                                        // className={`file-input-button ${image ? 'active' : ''}`}
-                                        disabled={image === null}
-                                    >Delete</button>
+                                        disabled={image === false}
+                                    > <i className="fa-solid fa-trash-can"></i> Delete</button>
                                 </div>
-                                {(imageLoading) && <p>Loading...</p>}
-                            </label>
+                                {(imageLoading) && <p className='uploading'>Uploading...</p>}
+                          
 
                         </div>
 
@@ -359,7 +366,7 @@ function BizForm({ business, formType }) {
                     <div className='img_container'>
                         <div> <img className='img_1' src="https://s3-media0.fl.yelpcdn.com/assets/public/cityscape_300x233_v2.yji-deccc3d10e15b4494be1.svg" /> </div>
                         <div className='pic_and_word_order'>
-                            <img className='img_2' src="https://s3-media0.fl.yelpcdn.com/assets/public/default_biz_avatar_68x68_v2@2x.yji-712bb14a8601910d7e50.png" />
+                            {preview_img ? <img className='img_2' src={`${preview_img}`} /> : <img className='img_2' src="https://s3-media0.fl.yelpcdn.com/assets/public/default_biz_avatar_68x68_v2@2x.yji-712bb14a8601910d7e50.png" />}
                             <div className='pic_name_address_phone'>
                                 {/* <input className="pic_input"
                                     type="text"
