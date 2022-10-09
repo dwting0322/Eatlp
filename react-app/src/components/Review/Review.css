@@ -242,7 +242,7 @@
     margin: 5px 0;
 }
 
-.Review_date{
+.Review_date {
     font-size: 17px;
     margin-bottom: 2px;
 }
@@ -304,27 +304,37 @@
     font-size: 45px;
     margin-left: 10px;
     padding: 10px;
-   
+
 }
 
-.icon1{
+.icon1 {
     margin-left: 50px;
 }
 
-.fa-thumbs-up{
+.fa-thumbs-up {
     font-size: 25px;
     color: rgb(32, 133, 248);
     cursor: pointer;
     margin-top: 5px;
+    transition: all 0.2s;
+
 }
 
-.likes-count{
+
+.dislike:active {
+    transform: rotate(-45deg) scale(3);
+    -webkit-transform: rotate(-45deg) scale(3);
+    -ms-transform: rotate(45deg) scale(3);
+    /* -ms- for IE and webkit for safari and chorm */
+}
+
+
+
+.likes-count {
     color: coral;
     margin-left: 5px;
     font-size: 18px;
 }
-
-
 
 /* .star1 > .fa-solid:hover,
 .star1 > .fa-solid:hover ~ .fa-solid {
