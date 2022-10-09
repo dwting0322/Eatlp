@@ -11,6 +11,7 @@ class Review(db.Model):
     business_id = db.Column(db.Integer, db.ForeignKey('businesses.id'), nullable=False)
     review = db.Column(db.String(1000), nullable=False)
     stars = db.Column(db.Integer, nullable=False)
+    review_img = db.Column(db.String(500))
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
@@ -32,6 +33,7 @@ class Review(db.Model):
             "business_id": self.business_id,
             "review": self.review,
             "stars": self.stars,
+            "review_img":self.review_img,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "user": self.user.to_dict(),

@@ -10,3 +10,5 @@ class ReviewForm(FlaskForm):
         validators.Length( min=5, max=1000, message="Review must be between 5 and 1000 characters")])
     stars = IntegerField("Stars rating", validators=[DataRequired(), 
         NumberRange(min=1, max=5, message="Stars rating must be between 1 and 5")])
+    review_img = StringField("Review image", validators=[
+        validators.Length(max=500, message="Review image must be less than 500 characters")])

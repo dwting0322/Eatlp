@@ -176,6 +176,7 @@ def create_new_review(business_id):
             business_id=business.id,
             review=form.data['review'],
             stars=form.data['stars'],
+            review_img=form.data['review_img']
         )
         db.session.add(new_review)
         db.session.commit()

@@ -141,7 +141,27 @@
     margin-bottom: 5px;
 }
 
+.ReviewForm_reviewImg{
+    width: 480px;
+    height: 300px;
+    margin-left: 0;
+}
 
+#upload_file {
+    cursor: pointer;
+    margin: 10px 10px;
+    font-size: 17px;
+    margin: 10px, 0px
+}
+
+.Review_img{
+    font-size: 25px;
+    margin: 20px;
+}
+
+.optional{
+    color: rgb(0, 187, 255);
+}
 
 /* Create / Edit Form */
 

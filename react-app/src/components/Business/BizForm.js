@@ -30,7 +30,7 @@ function BizForm({ business, formType }) {
 
     const [image, setImage] = useState(false);
     const [imageLoading, setImageLoading] = useState(false);
-    const [mouse, setMouse] = useState(false)
+
 
     const { businessId } = useParams()
 
@@ -178,7 +178,7 @@ function BizForm({ business, formType }) {
         // some sort of loading message is a good idea
         setImageLoading(true);
 
-        const res = await fetch('/api/businesses/upload', {
+        const res = await fetch('/api/reviews/upload', {
             method: "POST",
             body: formData,
         });
@@ -189,7 +189,8 @@ function BizForm({ business, formType }) {
            
             setPreview_img(data.url);
             setImageLoading(false);
-            
+            // history.push("/images");
+            alert("Successfully uploaded the image.");
         } else {
             setImageLoading(false);
             // a real app would probably use more advanced
@@ -311,19 +312,12 @@ function BizForm({ business, formType }) {
                         <div className='Preview_img'>
                             <label  >* Preview Image:   </label>
                                 <div className='file_input'
-                                // style={{ cursor: mouse ? "pointer" : ""}} 
-                                // onMouseEnter={() => setMouse(true)} 
-                                // onMouseLeave={() =>  setMouse(false)} 
                                 >
-                                    
                                 <input className='file_input'
                                     type="file"
                                     accept="image/*"
                                     onChange={updateImage}
                                     id='upload_file'
-                                    // style={{ cursor: mouse ? "pointer" : ""}} 
-                                    // onMouseEnter={() => setMouse(true)} 
-                                    // onMouseLeave={() =>  setMouse(false)} 
                                 />
                                 </div>
                                 <div className='upload_delete_button_div'>
