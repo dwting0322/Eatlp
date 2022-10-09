@@ -406,7 +406,7 @@ console.log("review_img", review_img)
                             id='upload_file'
                         />
                     </div>
-                    <div className='upload_delete_button_div'>
+                    <div className='upload_delete_button_div_review'>
 
                         <button className={`upload_button ${image ? 'upload' : ''}`}
                             onClick={handleSubmitImage}

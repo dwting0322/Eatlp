@@ -622,7 +622,7 @@ input[type=file] {
 }
 
 .upload_delete_button_div{
-    margin-left: 5px;
+    margin-left: 10px;
     margin-top: 5px;
     margin-bottom: 10px;
   
@@ -641,8 +641,9 @@ input[type=file] {
 
 .upload_button{
     border-radius: 5px;
-    border: none;
+    border: thin solid lightgrey;
     margin-right: 5px;
+    font-size: 15px;
 }
 
 
