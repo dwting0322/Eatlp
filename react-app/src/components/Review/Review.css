@@ -141,6 +141,34 @@
     margin-bottom: 5px;
 }
 
+.ReviewForm_reviewImg{
+    width: 480px;
+    height: 300px;
+    margin-left: 0;
+}
+
+#upload_file {
+    cursor: pointer;
+    margin: 10px 10px;
+    font-size: 17px;
+    margin: 10px, 0px
+}
+
+.Review_img{
+    font-size: 25px;
+    margin: 20px;
+}
+
+.optional{
+    color: rgb(0, 187, 255);
+}
+
+.upload_delete_button_div_review{
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
 
 
 /* Create / Edit Form */

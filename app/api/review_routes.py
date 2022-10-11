@@ -4,6 +4,9 @@ from ..models.db import db
 from ..models.review import Review
 from ..forms.review_form import ReviewForm
 from .auth_routes import validation_errors_to_error_messages
+from app.aws import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
+
 
 review_routes = Blueprint('review', __name__)
 
@@ -52,6 +55,7 @@ def edit_comment(review_id):
     if form.validate_on_submit():
         edited_review.review = form.data['review']
         edited_review.stars = form.data['stars']
+        edited_review.review_img=form.data['review_img']
         db.session.commit()
 
         return edited_review.to_dict()
@@ -75,6 +79,29 @@ def delete_comment(review_id):
         return {'message': 'Unauthorized user', "statusCode": 403}
 
 
+# add image to AWS S3 bucket, return url to image
+@review_routes.route('/upload', methods=['POST'])
+@login_required
+def upload_image():
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+    image = request.files["image"]
+   
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+    
+    upload = upload_file_to_s3(image)
+   
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+    url = upload["url"]
+    return {"url": url}
 
 
 @review_routes.route('/<int:review_id>/review_likes', methods = ["POST"])

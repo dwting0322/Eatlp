@@ -27,10 +27,13 @@ function BizForm({ business, formType }) {
     const [preview_img, setPreview_img] = useState(business?.preview_img || "")
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-  
 
-    const {businessId} = useParams()
- 
+    const [image, setImage] = useState(false);
+    const [imageLoading, setImageLoading] = useState(false);
+
+
+    const { businessId } = useParams()
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,7 +43,7 @@ function BizForm({ business, formType }) {
         }
         if (!user) alert("Please log in/sign up before become a host!")
 
-        
+
         const myBusiness = {
             ...business,
             //   city,
@@ -56,15 +59,15 @@ function BizForm({ business, formType }) {
             preview_img,
         };
 
-
+        
 
         if (formType === "Create Business") {
             const newBusiness = await dispatch(createBusiness(myBusiness))
             if (newBusiness) history.push(`/businesses/${newBusiness.id}`);
 
         } else {
-            if(user.id === myBusiness.user.id){
-                
+            if (user.id === myBusiness.user.id) {
+
                 dispatch(editBusiness(myBusiness))
                 history.push(`/businesses/${myBusiness.id}`);
             } else {
@@ -73,12 +76,12 @@ function BizForm({ business, formType }) {
             }
         }
 
-        
+
     };
 
     useEffect(async () => {
         if (businessId) {
-         
+
             const testBusiness = await dispatch(getOneBusiness(businessId))
             // console.log("testBusiness", testBusiness)
             const bizData = testBusiness.business
@@ -90,7 +93,7 @@ function BizForm({ business, formType }) {
             setPrice_range(bizData.price_range);
             setPreview_img(bizData.preview_img);
         }
-      }, [dispatch, businessId]);
+    }, [dispatch, businessId]);
 
 
 
@@ -163,6 +166,48 @@ function BizForm({ business, formType }) {
 
     }, [address, name, phone, description, price_range, preview_img]);
 
+
+
+
+    const handleSubmitImage = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("image", image);
+
+        // aws uploads can be a bit slow—displaying
+        // some sort of loading message is a good idea
+        setImageLoading(true);
+
+        const res = await fetch('/api/reviews/upload', {
+            method: "POST",
+            body: formData,
+        });
+        
+
+        if (res.ok) {
+            const data = await res.json();
+           
+            setPreview_img(data.url);
+            setImageLoading(false);
+            // history.push("/images");
+            alert("Successfully uploaded the image.");
+        } else {
+            setImageLoading(false);
+            // a real app would probably use more advanced
+            // error handling
+            alert("An error occurred while uploading the image.");
+
+        }
+    }
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+    }
+
+
+
+
     if (!user) {
         alert("Please log in/sign up before become a host!")
         history.push("/login")
@@ -186,14 +231,14 @@ function BizForm({ business, formType }) {
 
                     <div className="form_container">
 
-                       { formType === "Create Business" && (<>
+                        {formType === "Create Business" && (<>
                             <h1 className="create_form_word">Hello! Let’s start with your business information</h1>
                             <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page.</div>
-                      </> )} 
-                      { formType === "Update Business" && (<div>
+                        </>)}
+                        {formType === "Update Business" && (<div>
                             <h1 className="create_form_word">Hello! Let’s edit with your business information</h1>
                             <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page.</div>
-                      </div> )} 
+                        </div>)}
                         <div>
                             <label>
                                 <div className='name'>* Name :</div>
@@ -264,7 +309,39 @@ function BizForm({ business, formType }) {
                             </label>
                         </div>
 
-                        <div className="">
+                        <div className='Preview_img'>
+                            <label  >* Preview Image:   </label>
+                                <div className='file_input'
+                                >
+                                <input className='file_input'
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={updateImage}
+                                    id='upload_file'
+                                />
+                                </div>
+                                <div className='upload_delete_button_div'>
+                                
+                                    <button className={`upload_button ${image ? 'upload' : ''}`}
+                                        onClick={handleSubmitImage}
+                                        disabled={image === false}
+                                    > <i className="fa-solid fa-cloud-arrow-up"/> Upload</button>
+
+                                    <button className={`upload_button ${image ? 'upload' : ''}`}
+                                        onClick={() => {
+                                            setImage(false)
+                                            setPreview_img('')
+                                            document.getElementById('upload_file').value = null;
+                                        }}
+                                        disabled={image === false}
+                                    > <i className="fa-solid fa-trash-can"></i> Delete</button>
+                                </div>
+                                {(imageLoading) && <p className='uploading'>Uploading...</p>}
+                          
+
+                        </div>
+
+                        {/* <div className="">
                             <label className="label_input">
                                 <div className='Preview_img'>* Preview Image :</div>
                                 <input
@@ -276,14 +353,14 @@ function BizForm({ business, formType }) {
                                     onChange={(e) => setPreview_img(e.target.value)}
                                 />
                             </label>
-                        </div>
+                        </div> */}
                         <input className="submit" type="submit" value={formType} />
                     </div>
 
                     <div className='img_container'>
                         <div> <img className='img_1' src="https://s3-media0.fl.yelpcdn.com/assets/public/cityscape_300x233_v2.yji-deccc3d10e15b4494be1.svg" /> </div>
                         <div className='pic_and_word_order'>
-                            <img className='img_2' src="https://s3-media0.fl.yelpcdn.com/assets/public/default_biz_avatar_68x68_v2@2x.yji-712bb14a8601910d7e50.png" />
+                            {preview_img ? <img className='img_2' src={`${preview_img}`} /> : <img className='img_2' src="https://s3-media0.fl.yelpcdn.com/assets/public/default_biz_avatar_68x68_v2@2x.yji-712bb14a8601910d7e50.png" />}
                             <div className='pic_name_address_phone'>
                                 {/* <input className="pic_input"
                                     type="text"

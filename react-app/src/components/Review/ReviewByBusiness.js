@@ -127,6 +127,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
                     </div>
                     <div className='Review_date'> {new Date(review.created_at).toLocaleDateString()} </div>
                     <div className="ReviewForm_review" > {review?.review} </div>
+                    {review?.review_img ? <img className="ReviewForm_reviewImg" src={review?.review_img}/> : null } 
                     {user?.id === review?.user_id && (
                         <div>
                             {/* <NavLink className="edit_link_review" to={`/reviews/${review.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink> */}
