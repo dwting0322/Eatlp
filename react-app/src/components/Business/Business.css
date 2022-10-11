@@ -530,7 +530,7 @@ a {
 
 
 .star5_bar {
-    width: 70%;
+   
     border-radius: 10px;
     height: 12px;
     background: rgb(246, 25, 25);
@@ -539,7 +539,7 @@ a {
 
 
 .star4_bar {
-    width: 70%;
+  
     border-radius: 10px;
     height: 12px;
     background: rgb(255, 100, 61);
@@ -549,7 +549,7 @@ a {
 
 
 .star3_bar {
-    width: 70%;
+ 
     border-radius: 10px;
     height: 12px;
     background: rgb(255, 135, 66);
@@ -559,7 +559,7 @@ a {
 
 
 .star2_bar {
-    width: 70%;
+
     border-radius: 10px;
     height: 12px;
     background: rgb(255, 173, 72);
@@ -569,7 +569,6 @@ a {
 
 
 .star1_bar {
-    position: left;
     border-radius: 10px;
     height: 12px;
     background: rgb(255, 204, 75);
@@ -596,6 +595,14 @@ a {
     width: 70%;
     border-radius: 10px;
 }
+
+
+.empty_grey_bar {
+    border-radius: 10px;
+    height: 12px;
+    background: lightgrey;
+}
+
 
 .Overall_rating{
     margin-bottom: 15px;

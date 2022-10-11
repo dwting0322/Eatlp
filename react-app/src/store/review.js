@@ -8,6 +8,8 @@ const CREATE_REVIEW = "review/createReview";
 const UPDATE_REVIEW = "review/updateReview";
 const DELETE_REVIEW = "review/deleteReview";
 
+const LIKE_REVIEW = "review/likeReview";
+
 
 
 //Action Creators:
@@ -65,6 +67,14 @@ const DeleteAReview = (id) => {
     type: DELETE_REVIEW,
     id,
     };
+};
+
+// Like review action
+const actionLikeReview = (review) => {
+  return {
+    type: LIKE_REVIEW,
+    review,
+  };
 };
 
 
@@ -163,6 +173,16 @@ export const deleteReview = (reviewId) => async (dispatch) => {
       dispatch(DeleteAReview(reviewId));
     }
     return response;
+  };
+
+
+  export const likeAReview = (review) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/${review.id}/review_likes`, {
+      method: "POST",
+    });
+    if (response.ok) {
+      dispatch(actionLikeReview(review));
+    }
   };
 
 

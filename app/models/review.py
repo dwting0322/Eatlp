@@ -1,6 +1,6 @@
 from .db import db
 from sqlalchemy.sql import func
-
+from .like import likes
 
 
 class Review(db.Model):
@@ -23,6 +23,7 @@ class Review(db.Model):
     
     images = db.relationship("Image", back_populates='review')
 
+    likes = db.relationship("User", secondary=likes, back_populates='liked_reviews')
 
 
     def to_dict(self):
@@ -35,5 +36,6 @@ class Review(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "user": self.user.to_dict(),
-            "business_name": self.business.name
+            "business_name": self.business.name,
+            "likes": [user.id for user in self.likes],
         }

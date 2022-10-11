@@ -1,6 +1,6 @@
 from .db import db
 from sqlalchemy.sql import func
-from .like import likes
+
 
 class Business(db.Model):
     __tablename__ = 'businesses'
@@ -25,7 +25,7 @@ class Business(db.Model):
 
     user = db.relationship("User", back_populates="businesses")
 
-    likes = db.relationship("User", secondary=likes, back_populates='liked_businesses', cascade="all, delete")
+    
 
 
     reviews = db.relationship("Review", back_populates='business', cascade="all, delete-orphan")
@@ -58,6 +58,5 @@ class Business(db.Model):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "user": self.user.to_dict(),
-            "likes": [user.id for user in self.likes],
             "reviews": [c.to_dict() for c in self.reviews]
         }
