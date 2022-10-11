@@ -37,11 +37,11 @@ class BusinessForm(FlaskForm):
     # zipcode = StringField('Zip code', validators=[DataRequired(),
     #     validators.Length(min=5, max=5, message="Zipcode must be 5 characters")])
 
-    # lat = FloatField("Latitude", validators=[DataRequired(), 
-    #     NumberRange(min=-90, max=90, message="Latitude must be between -90 to 90")])
+    lat = FloatField("Latitude", validators=[ 
+        NumberRange(min=-90, max=90, message="Latitude must be between -90 to 90")])
     
-    # lng = FloatField("Longitude", validators=[DataRequired(), 
-    #     NumberRange(min=-180, max=180, message="Longitude must be between -180 to 180")])
+    lng = FloatField("Longitude", validators=[
+        NumberRange(min=-180, max=180, message="Longitude must be between -180 to 180")])
 
     name = StringField("Name", validators=[DataRequired(), 
         validators.Length(min=1, max=50, message="Name must be between 4 - 50 characters")])

@@ -88,8 +88,8 @@ def create_new_business():
             # state=form.data['state'],
             # country=form.data['country'],
             # zipcode=form.data['zipcode'],
-            # lat=form.data['lat'],
-            # lng=form.data['lng'],
+            lat=form.data['lat'],
+            lng=form.data['lng'],
         )
         db.session.add(new_business)
         db.session.commit()
@@ -125,8 +125,8 @@ def edit_business(business_id):
         # business.state=form.data['state'],
         # business.country=form.data['country'],
         # business.zipcode=form.data['zipcode'],
-        # business.lat=form.data['lat'],
-        # business.lng=form.data['lng'],
+        business.lat=form.data['lat'],
+        business.lng=form.data['lng'],
         
       
         db.session.commit()
