@@ -3,19 +3,25 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { Modal } from '../../context/Modal';
-import { deleteReview, getBusinessAllReview, getOneReviewByReviewId } from '../../store/review'
+
+import { deleteReview, getBusinessAllReview, likeAReview, getOneReviewByReviewId } from '../../store/review'
+
+
 import EditReviewModal from './EditReviewModal';
 import './Review.css'
 import ReviewForm from './ReviewForm';
 import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
 
 
-function ReviewByBusiness({ showModal, setShowModal, businessId, onHide }) {
+
+function ReviewByBusiness({ showModal, setShowModal, businessId }) {
+
 
     const dispatch = useDispatch();
     const { id } = useParams()
     const [loaded, setLoaded] = useState(false);
     const [isloaded, isSetLoaded] = useState(false);
+    const [isLikedByUser, setIsLikedByUser] = useState(false);
 
     const reviewsObj = useSelector((state) => state.reviews)
     const reviews = Object.values(reviewsObj)
@@ -31,6 +37,37 @@ function ReviewByBusiness({ showModal, setShowModal, businessId, onHide }) {
     //     alert("I have successfully eaten the review for you!!!");
     // };
     // console.log("reviewId*********", reviewId)
+    // const filterLike = reviews.filter(review => review?.likes === user.id)
+    // console.log("filterLike!!!!!!!!!!!!!!!!!!!!!", filterLike)
+
+    const likeReview = (review) => {
+        // console.log("review in likeReview function", review);
+        dispatch(likeAReview(review));
+       
+        setIsLikedByUser(!isLikedByUser);
+        const index = review?.likes?.indexOf(user?.id);
+        
+        // console.log("index ", index)
+        if (index == -1) {
+            review?.likes?.push(user?.id);
+        } else {
+            review?.likes?.splice(index, 1);
+        }
+    };
+
+    // useEffect(() => {
+    //     // console.log("POST LIKE CHANGED", post.id);
+    //     // console.log(post.likes);
+    //    
+    //    
+    //     reviews.forEach((review) => {
+    //       if (review.id === review.likes[0]) {
+    //         setIsLikedByUser(true);
+    //         return;
+    //       }
+    //     });
+    // }, []);
+
 
     const reviewPassDown = useSelector(state => state.reviews[reviewId])
     // console.log("reviewPassDown*********", reviewPassDown)
@@ -38,9 +75,11 @@ function ReviewByBusiness({ showModal, setShowModal, businessId, onHide }) {
 
 
     useEffect(() => {
+
         dispatch(getBusinessAllReview(id)).then(() => {
             isSetLoaded(true);
         })
+
 
     }, [dispatch]);
 
@@ -86,7 +125,7 @@ function ReviewByBusiness({ showModal, setShowModal, businessId, onHide }) {
                         {/* {review?.stars}  */}
 
                     </div>
-                    <div> {new Date(review.created_at).toLocaleDateString()} </div>
+                    <div className='Review_date'> {new Date(review.created_at).toLocaleDateString()} </div>
                     <div className="ReviewForm_review" > {review?.review} </div>
                     {review?.review_img ? <img className="ReviewForm_reviewImg" src={review?.review_img}/> : null } 
                     {user?.id === review?.user_id && (
@@ -100,7 +139,9 @@ function ReviewByBusiness({ showModal, setShowModal, businessId, onHide }) {
                                 setShowModal(true)
                             }}>
                                 <i className="fa-solid fa-pen-to-square" />
+
                                 {/* <EditReviewModal reviewId={reviewId} showModal={showModal} setShowModal={setShowModal} businessId={businessId} onHide={onHide} /> */}
+
                                 Edit
                             </span>
 
@@ -127,19 +168,29 @@ function ReviewByBusiness({ showModal, setShowModal, businessId, onHide }) {
 
                     )}
 
-                    {/* {showModal && (
-                        <Modal onClose={() => setShowModal(false)}>
-                            <ReviewForm
-                                formType="Update Review"
-                                // myReview={review} 
-                                reviewId={reviewId}
-                                setShowModal={setShowModal}
-                                showModal={showModal}
-                                // businessId={businessId}
-                            // onHide={() => setShowModal(false)}
+                    <div>
+                        {user && ( review?.likes?.filter((id) => id === user?.id).length ? (
+                            (<i className="fa-solid fa-thumbs-up like"
+                                onClick={() => {
+                                    likeReview(review);
+                                }}
+                            />)
+                        ) : (
+                            <i className="fa-regular fa-thumbs-up dislike"
+
+                                onClick={() => {
+                                    likeReview(review);
+                                }}
                             />
-                        </Modal>
-                    )} */}
+                        ))}
+                        <span className="likes-count">
+                        {review?.likes?.length <= 1 && (<span className="likes-count"> {review?.likes?.length || "0"} person like this review </span>)}
+                        {review?.likes?.length > 1 && (<span className="likes-count"> {review?.likes?.length || "0"} people like this review </span>)}    
+                            {/* {review?.likes.length || "0"} likes */}
+                        </span>
+                    </div>
+
+
                 </div>
 
             ))) : isloaded && <h1 className="no_review_words" >You currently have no any review !</h1>}

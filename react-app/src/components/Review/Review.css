@@ -333,10 +333,10 @@
     font-size: 45px;
     margin-left: 10px;
     padding: 10px;
-   
+
 }
 
-.icon1{
+.icon1 {
     margin-left: 50px;
 }
 
@@ -345,9 +345,23 @@
     color: rgb(32, 133, 248);
     cursor: pointer;
     margin-top: 5px;
+    transition: all 0.2s;
+
 }
 
+
+.dislike:active {
+    transform: rotate(-45deg) scale(3);
+    -webkit-transform: rotate(-45deg) scale(3);
+    -ms-transform: rotate(45deg) scale(3);
+    /* -ms- for IE and webkit for safari and chorm */
+}
+
+
+
+
 .likes-count{
+
     color: coral;
     margin-left: 5px;
     font-size: 18px;

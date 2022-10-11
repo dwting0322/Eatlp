@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
 
     reviews = db.relationship("Review", back_populates='user', cascade="all, delete-orphan")
 
-    liked_businesses = db.relationship('Business', secondary=likes, back_populates='likes', cascade="all, delete")
+    liked_reviews = db.relationship('Review', secondary=likes, back_populates='likes')
 
     images = db.relationship('Image', back_populates='user', cascade="all, delete-orphan")
 
