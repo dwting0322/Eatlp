@@ -20,10 +20,10 @@ def seed_users():
 
         )
     goku = User(
-        email='bobbie@aa.io', 
+        email='goku@aa.io', 
         password='password', 
         first_name='Goku',
-        last_name='Son',
+        last_name='Sun',
         profile_img='https://comisoku.com/wp-content/uploads/2020/12/20201207183158.jpg'
        
         )

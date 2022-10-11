@@ -3,14 +3,19 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { Modal } from '../../context/Modal';
-import { deleteReview, getBusinessAllReview, likeAReview } from '../../store/review'
+
+import { deleteReview, getBusinessAllReview, likeAReview, getOneReviewByReviewId } from '../../store/review'
+
+
 import EditReviewModal from './EditReviewModal';
 import './Review.css'
 import ReviewForm from './ReviewForm';
 import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
 
 
+
 function ReviewByBusiness({ showModal, setShowModal, businessId }) {
+
 
     const dispatch = useDispatch();
     const { id } = useParams()
@@ -23,10 +28,10 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
     // console.log("reviews!!!!!!!!!!!!!!!!!!!!!", reviews)
     const filter = reviews.filter(review => review?.business_id === +id)
 
-    // console.log("filter!!!!!!!!!!!!!!!!!!!!!", filter)
+    // console.log("showModal in ReviewByBusiness!!!!!!!!!!!!!!!!!!!!!", showModal)
     const user = useSelector((state) => state.session.user)
     // const [review, setReview] = useState(null)
-    const [reviewId, setReviewId] = useState(0)
+    const [reviewId, setReviewId] = useState("")
     // const deletebiz = () => {
     //     dispatch(deleteReview(review.id));
     //     alert("I have successfully eaten the review for you!!!");
@@ -64,8 +69,17 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
     // }, []);
 
 
+    const reviewPassDown = useSelector(state => state.reviews[reviewId])
+    // console.log("reviewPassDown*********", reviewPassDown)
+    
+
+
     useEffect(() => {
-        dispatch(getBusinessAllReview(id));
+
+        dispatch(getBusinessAllReview(id)).then(() => {
+            isSetLoaded(true);
+        })
+
 
     }, [dispatch]);
 
@@ -124,9 +138,25 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
                                 setShowModal(true)
                             }}>
                                 <i className="fa-solid fa-pen-to-square" />
-                                <EditReviewModal reviewId={reviewId} showModal={showModal} setShowModal={setShowModal} businessId={businessId} />
+
+                                {/* <EditReviewModal reviewId={reviewId} showModal={showModal} setShowModal={setShowModal} businessId={businessId} onHide={onHide} /> */}
+
                                 Edit
                             </span>
+
+                            {showModal && (<Modal onClose={() => setShowModal(false)}>
+                                <ReviewForm
+                                    myReview={reviewPassDown}
+                                    formType="Update Review"
+                                    setShowModal={setShowModal}
+                                  
+                                    businessId={businessId}
+                                 
+                                />
+
+                            </Modal>)}
+
+
 
                             <button className='delete_review' onClick={() => {
                                 dispatch(deleteReview(review.id))

@@ -63,9 +63,14 @@ function BizForm({ business, formType }) {
             if (newBusiness) history.push(`/businesses/${newBusiness.id}`);
 
         } else {
-
-            dispatch(editBusiness(myBusiness))
-            history.push(`/businesses/${myBusiness.id}`);
+            if(user.id === myBusiness.user.id){
+                
+                dispatch(editBusiness(myBusiness))
+                history.push(`/businesses/${myBusiness.id}`);
+            } else {
+                alert("You are not allowed to edit other property!")
+                history.push("/businesses")
+            }
         }
 
         
@@ -75,7 +80,7 @@ function BizForm({ business, formType }) {
         if (businessId) {
          
             const testBusiness = await dispatch(getOneBusiness(businessId))
-         
+            // console.log("testBusiness", testBusiness)
             const bizData = testBusiness.business
 
             setName(bizData.name);
@@ -183,11 +188,11 @@ function BizForm({ business, formType }) {
 
                        { formType === "Create Business" && (<>
                             <h1 className="create_form_word">Hello! Let’s start with your business information</h1>
-                            <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page. Your business will come up automatically if it is already listed.</div>
+                            <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page.</div>
                       </> )} 
                       { formType === "Update Business" && (<div>
                             <h1 className="create_form_word">Hello! Let’s edit with your business information</h1>
-                            <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page. Your business will come up automatically if it is already listed.</div>
+                            <div className='create_form_word2'>We’ll use this information to help you claim your Eatlp page.</div>
                       </div> )} 
                         <div>
                             <label>

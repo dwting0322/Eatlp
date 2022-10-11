@@ -21,7 +21,7 @@ def seed_businesses():
     )
     business2 = Business(
         owner_id = 2,
-        phone = "909-2222-222",
+        phone = "909-222-2222",
         address = "222 Main Street, Santa Ana, CA 92701",
         # city = "Santa Ana",
         # state = "CA",
@@ -30,8 +30,8 @@ def seed_businesses():
         # lng = -122.4730327,
         name = "Restaurant #2",
         description = "This is Restaurant #2",
-        price_range = "$", 
-        preview_img="https://i.pinimg.com/originals/b8/d7/78/b8d77820b71296821ad5ff50a5135bbf.jpg",
+        price_range = "$$$", 
+        preview_img="https://www.visitplano.com/wp-content/uploads/2020/08/5-Patio-KAI-Interiors13243-3.jpg",
     )
     business3 = Business(
         owner_id = 3,
@@ -45,8 +45,8 @@ def seed_businesses():
         # lng = -122.4730327,
         name = "Restaurant #3",
         description = "This is Restaurant #3",
-        price_range = "$", 
-        preview_img="https://silversmithsrestaurant.co.uk/wp-content/uploads/2020/03/IMG_1343-2-min-scaled.jpg",
+        price_range = "$$$$", 
+        preview_img="http://gavineats.com/wp-content/uploads/2017/11/2382447488_c1a4f971df_o.jpg",
     )
     business4 = Business(
         owner_id = 4,
@@ -60,7 +60,7 @@ def seed_businesses():
         # lng = -122.4730327,
         name = "Restaurant #4",
         description = "This is Restaurant #4",
-        price_range = "$", 
+        price_range = "$$$$", 
         preview_img="http://www.trussvilletribune.com/wp-content/uploads/2018/06/DSC_0439.jpg",
     )
     business5 = Business(
@@ -122,7 +122,7 @@ def seed_businesses():
         # lng = -122.4730327,
         name = "Restaurant #8",
         description = "This is Restaurant #8",
-        price_range = "$",
+        price_range = "$$",
         preview_img="https://worldbranddesign.com/wp-content/uploads/2020/11/820.jpg"
     )
     business9 = Business(
@@ -152,8 +152,72 @@ def seed_businesses():
         # lng = -122.4730327,
         name = "Restaurant #10",
         description = "This is Restaurant #10",
-        price_range = "$$", 
+        price_range = "$", 
+        preview_img="https://mcbridedesign.com/assets/images/home/ESCARDA-0562F.jpg",
+    )
+
+    business11 = Business(
+        owner_id = 1,
+        phone = "211-011-0011",
+        address = "1011 Main Street,Watsonville, CA 95076",
+        # city = "Watsonville",
+        # state = "CA",
+        # zipcode = 95076,
+        # country = "USA",
+        # lat = 37.7645358,
+        # lng = -122.4730327,
+        name = "Restaurant #11",
+        description = "This is Restaurant #11",
+        price_range = "$$$$", 
         preview_img="https://jooinn.com/images/interior-design-restaurant-2.jpg",
+    )
+
+    business12 = Business(
+        owner_id = 2,
+        phone = "212-012-0012",
+        address = "1012 Main Street,Watsonville, CA 95076",
+        # city = "Watsonville",
+        # state = "CA",
+        # zipcode = 95076,
+        # country = "USA",
+        # lat = 37.7645358,
+        # lng = -122.4730327,
+        name = "Restaurant #12",
+        description = "This is Restaurant #12",
+        price_range = "$$$", 
+        preview_img="https://www.hoteliermiddleeast.com/2021/06/Karam-Al-Bahr-InterContinental-Dubai-Festival-City-2-3.jpg",
+    )
+
+    business13 = Business(
+        owner_id = 3,
+        phone = "213-013-0013",
+        address = "1013 Main Street,Watsonville, CA 95076",
+        # city = "Watsonville",
+        # state = "CA",
+        # zipcode = 95076,
+        # country = "USA",
+        # lat = 37.7645358,
+        # lng = -122.4730327,
+        name = "Restaurant #13",
+        description = "This is Restaurant #13",
+        price_range = "$", 
+        preview_img="https://swinerton.com/wp-content/uploads/2019/02/Coasterra_Interior_Bar1.jpg",
+    )
+
+    business14 = Business(
+        owner_id = 4,
+        phone = "214-014-0014",
+        address = "1014 Main Street,Watsonville, CA 95076",
+        # city = "Watsonville",
+        # state = "CA",
+        # zipcode = 95076,
+        # country = "USA",
+        # lat = 37.7645358,
+        # lng = -122.4730327,
+        name = "Restaurant #14",
+        description = "This is Restaurant #14",
+        price_range = "$$$", 
+        preview_img="https://www.tourismvictoria.com/sites/default/files/listing_68026_4.jpg",
     )
     
 
@@ -168,6 +232,10 @@ def seed_businesses():
     db.session.add(business8)
     db.session.add(business9)
     db.session.add(business10)
+    db.session.add(business11)
+    db.session.add(business12)
+    db.session.add(business13)
+    db.session.add(business14)
 
     db.session.commit()
 

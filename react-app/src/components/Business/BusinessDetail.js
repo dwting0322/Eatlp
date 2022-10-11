@@ -18,7 +18,7 @@ function BusinessDetail() {
     const history = useHistory()
     const [showModal, setShowModal] = useState(false);
     const [loaded, setLoaded] = useState(false);
-    const [filter, setFliter] = useState([]);
+    // const [filter, setFliter] = useState([]);
 
     const user = useSelector((state) => state.session.user);
 
@@ -32,34 +32,61 @@ function BusinessDetail() {
     // console.log("filter from component: ", filter)
     // const user = useSelector(state=> state.session.user)
 
+    //    console.log("setShowModal***********", setShowModal)
+    // console.log("showModal in BusinessDetail***********", showModal)
+
+
     const deletebiz = () => {
         dispatch(deleteBusiness(business.id));
         alert("I have successfully eaten the business for you!!!");
-        history.push("/businesses/all")
+        history.push("/businesses")
     };
 
 
 
     useEffect(() => {
-        dispatch(getOneBusiness(id))
+        dispatch(getOneBusiness(id)).then(() => {
+            setLoaded(true);
+           
+          })
+        // helper()
+
     }, [dispatch, reviewsObj]); // review once review change, it re-run the  dispatch(getOneSpots(spotId))
 
-    // console.log(spot)
+    // const helper = async () => {
+    //     let res = await dispatch(getOneBusiness(id))
+    //         setLoaded(true);
+           
+        // if(!res.ok){
+        //     // const body = await res.json()
+        //     history.push("/")
+        // }
+    // }
+
+    // console.log(spot) 
     // if (!user) {
     //     alert("Please log in/sign up before become a host!")
     //     history.push("/login")
     // }
-    useEffect(() => {
-        const LoadingTimeOut = setTimeout(() => {
 
-            setLoaded(true);
+    // useEffect(() => {
+    //     const LoadingTimeOut = setTimeout(() => {
+           
+    //         setLoaded(true);
 
-        }, 1000);
+    //     }, 1000);
+   
 
 
-        return () => clearTimeout(LoadingTimeOut);
+    //     return () => clearTimeout(LoadingTimeOut);
 
-    }, []);
+    // }, []);
+    
+    // useEffect(async () => {
+       
+    //     // setShowModal(false)
+        
+    // }, [showModal]);
 
 
     let abc = business?.reviews.filter((review) => review.stars === 1 ).length / business?.reviews.length *100
@@ -79,7 +106,7 @@ function BusinessDetail() {
 
     if (!business) {
         alert("Business not found, please search again!!!");
-        history.push("/businesses/all")
+        history.push("/businesses")
     }
 
     return (
@@ -142,7 +169,7 @@ function BusinessDetail() {
 
             </div>
             <div className='Phone_number_Address'>
-                <ReviewByBusiness showModal={showModal} setShowModal={setShowModal} businessId={business?.id} filter={reviews} />
+                <ReviewByBusiness showModal={showModal} setShowModal={setShowModal} businessId={business?.id} onHide={() => setShowModal(false)} />
                 <div className='biz_address_phone_container'>
                     <div className='biz_address'><i className="fa-solid fa-phone-volume" /> Phone Number : {business?.phone} </div>
                     <div className='biz_address'><i className="fa-solid fa-location-dot" /> Address : {business?.address} </div>
