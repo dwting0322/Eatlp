@@ -390,7 +390,7 @@ console.log("review_img", review_img)
                             onChange={e => setReview(e.target.value)}
                         />
                     </label>
-                </div>
+                </div> 
 
 
                 <div className='Review_img'>
