@@ -124,7 +124,7 @@ const deleteABusiness = (id) => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data),
     });
-  
+  console.log("response", response)
     if (response.ok) {
       const edittedBusiness = await response.json();
 

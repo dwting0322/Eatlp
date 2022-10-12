@@ -3,12 +3,12 @@ import { useEffect } from 'react';
 import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteBusiness, getOneBusiness } from '../../store/business';
-import notFound from '../../Picture/404-error-page-not-found.jpg'
 import './Business.css'
 import ReviewByBusiness from '../Review/ReviewByBusiness';
 import CreateReviewModal from '../Review/CreateReviewModal';
-import EditReviewModal from '../Review/EditReviewModal';
 import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
+import GoogleMapReact from 'google-map-react';
+require('dotenv').config();
 
 
 function BusinessDetail() {
@@ -18,7 +18,8 @@ function BusinessDetail() {
     const history = useHistory()
     const [showModal, setShowModal] = useState(false);
     const [loaded, setLoaded] = useState(false);
-    // const [filter, setFliter] = useState([]);
+    const [googleMapAPIKey, setGoogleMapAPIKey] = useState(null);
+   
 
     const user = useSelector((state) => state.session.user);
 
@@ -36,6 +37,44 @@ function BusinessDetail() {
     // console.log("showModal in BusinessDetail***********", showModal)
 
 
+    const googleMapKeyHelper = async (business) => {
+
+        if (!business) {
+            return <img className='loading_page' src={LoadingPic} alt='loading page' />
+        } 
+
+        const response = await fetch(`/GOOGLE_MAP_API_KEY`);
+        const data = await response.json();
+        setGoogleMapAPIKey(data)
+        return
+    }
+
+
+    function googleMap(lat, lng, googleMapAPIKey) {
+          return googleMapAPIKey && (
+            <div style={{ height: '40vh', width: '90%' }}>
+             
+                <GoogleMapReact
+                    bootstrapURLKeys={{ key: googleMapAPIKey }}
+                    defaultCenter={{ lat: lat, lng: lng }}
+                    defaultZoom={15}
+                    yesIWantToUseGoogleMapApiInternals={true}
+                    isMarkerShown={true}
+                >
+                </GoogleMapReact>
+            </div>
+        ) 
+    }
+
+
+
+    useEffect(() => {
+        googleMapKeyHelper(business);
+    }, [business]);
+
+
+
+
     const deletebiz = () => {
         dispatch(deleteBusiness(business.id));
         alert("I have successfully eaten the business for you!!!");
@@ -47,8 +86,8 @@ function BusinessDetail() {
     useEffect(() => {
         dispatch(getOneBusiness(id)).then(() => {
             setLoaded(true);
-           
-          })
+
+        })
         // helper()
 
     }, [dispatch, reviewsObj]); // review once review change, it re-run the  dispatch(getOneSpots(spotId))
@@ -56,11 +95,11 @@ function BusinessDetail() {
     // const helper = async () => {
     //     let res = await dispatch(getOneBusiness(id))
     //         setLoaded(true);
-           
-        // if(!res.ok){
-        //     // const body = await res.json()
-        //     history.push("/")
-        // }
+
+    // if(!res.ok){
+    //     // const body = await res.json()
+    //     history.push("/")
+    // }
     // }
 
     // console.log(spot) 
@@ -71,28 +110,25 @@ function BusinessDetail() {
 
     // useEffect(() => {
     //     const LoadingTimeOut = setTimeout(() => {
-           
+
     //         setLoaded(true);
 
     //     }, 1000);
-   
+
 
 
     //     return () => clearTimeout(LoadingTimeOut);
 
     // }, []);
-    
+
     // useEffect(async () => {
-       
+
     //     // setShowModal(false)
-        
+
     // }, [showModal]);
 
 
-    let abc = business?.reviews.filter((review) => review.stars === 1 ).length / business?.reviews.length *100
-    console.log("abc", abc)
-  
-    
+
 
 
 
@@ -174,62 +210,64 @@ function BusinessDetail() {
                     <div className='biz_address'><i className="fa-solid fa-phone-volume" /> Phone Number : {business?.phone} </div>
                     <div className='biz_address'><i className="fa-solid fa-location-dot" /> Address : {business?.address} </div>
                     <div className='biz_address'><i className="fa-solid fa-file-lines" /> Description : {business?.description} </div>
-                    
+
 
                     <div className='Overall_rating'>Overall rating : </div>
 
                     <div className='avg_rating_star_and_word'>
-                            {business?.avgRating == 0 && <span>No Rating</span>}
-                            {business?.avgRating >= 1 && business?.avgRating < 1.5 && (<i className="fa-solid fa-star bizDetail_star" />)}
-                            {business?.avgRating >= 1.5 && business?.avgRating < 2 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
-                            {business?.avgRating >= 2 && business?.avgRating < 2.5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
-                            {business?.avgRating >= 2.5 && business?.avgRating < 3 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
-                            {business?.avgRating >= 3 && business?.avgRating < 3.5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
-                            {business?.avgRating >= 3.5 && business?.avgRating < 4 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
-                            {business?.avgRating >= 4 && business?.avgRating < 4.5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
-                            {business?.avgRating >= 4.5 && business?.avgRating < 5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
-                            {business?.avgRating == 5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
+                        {business?.avgRating == 0 && <span>No Rating</span>}
+                        {business?.avgRating >= 1 && business?.avgRating < 1.5 && (<i className="fa-solid fa-star bizDetail_star" />)}
+                        {business?.avgRating >= 1.5 && business?.avgRating < 2 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
+                        {business?.avgRating >= 2 && business?.avgRating < 2.5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
+                        {business?.avgRating >= 2.5 && business?.avgRating < 3 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
+                        {business?.avgRating >= 3 && business?.avgRating < 3.5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
+                        {business?.avgRating >= 3.5 && business?.avgRating < 4 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
+                        {business?.avgRating >= 4 && business?.avgRating < 4.5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
+                        {business?.avgRating >= 4.5 && business?.avgRating < 5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star-half-stroke bizDetail_star" /></>)}
+                        {business?.avgRating == 5 && (<><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /><i className="fa-solid fa-star bizDetail_star" /></>)}
 
-                            <span className='total_avg_review'>(
-                                {business?.countReview ? Number.parseFloat(business?.countReview).toFixed(0) : 0}  reviews)
-                            </span>
-                        </div>
+                        <span className='total_avg_review'>(
+                            {business?.countReview ? Number.parseFloat(business?.countReview).toFixed(0) : 0}  reviews)
+                        </span>
+                    </div>
 
                     <div className='star5_container'>
                         <div className='star5'>5 Stars  </div>
                         <div className='grey'>
-                        {business?.reviews.length ? <div style={{width:`${business?.reviews.filter((review) => review.stars === 5 ).length / business?.reviews.length * 100}%`}} className='star5_bar'></div> : <div className='empty_grey_bar'></div>}
+                            {business?.reviews.length ? <div style={{ width: `${business?.reviews.filter((review) => review.stars === 5).length / business?.reviews.length * 100}%` }} className='star5_bar'></div> : <div className='empty_grey_bar'></div>}
                         </div>
                     </div>
 
                     <div className='star_container'>
                         <div className='star5'>4 Stars  </div>
                         <div className='grey'>
-                        {business?.reviews.length ? <div style={{width:`${business?.reviews.filter((review) => review.stars === 4 ).length / business?.reviews.length * 100}%`}} className='star4_bar'></div> : <div className='empty_grey_bar'></div>}
+                            {business?.reviews.length ? <div style={{ width: `${business?.reviews.filter((review) => review.stars === 4).length / business?.reviews.length * 100}%` }} className='star4_bar'></div> : <div className='empty_grey_bar'></div>}
                         </div>
                     </div>
 
                     <div className='star_container'>
                         <div className='star5'>3 Stars  </div>
                         <div className='grey'>
-                        {business?.reviews.length ? <div style={{width:`${business?.reviews.filter((review) => review.stars === 3 ).length / business?.reviews.length * 100}%`}} className='star3_bar'></div> : <div className='empty_grey_bar'></div>}
+                            {business?.reviews.length ? <div style={{ width: `${business?.reviews.filter((review) => review.stars === 3).length / business?.reviews.length * 100}%` }} className='star3_bar'></div> : <div className='empty_grey_bar'></div>}
                         </div>
                     </div>
 
                     <div className='star_container'>
                         <div className='star5'>2 Stars  </div>
                         <div className='grey'>
-                        {business?.reviews.length ? <div style={{width:`${business?.reviews.filter((review) => review.stars === 2 ).length / business?.reviews.length * 100}%`}} className='star2_bar'></div> : <div className='empty_grey_bar'></div>}
+                            {business?.reviews.length ? <div style={{ width: `${business?.reviews.filter((review) => review.stars === 2).length / business?.reviews.length * 100}%` }} className='star2_bar'></div> : <div className='empty_grey_bar'></div>}
                         </div>
                     </div>
 
                     <div className='star_container'>
                         <div className='star5'>1 Stars  </div>
                         <div className='grey'>
-                        {business?.reviews.length ? <div style={{width:`${business?.reviews.filter((review) => review.stars === 1 ).length / business?.reviews.length * 100}%`}} className='star1_bar'></div> : <div className='empty_grey_bar'></div>}
+                            {business?.reviews.length ? <div style={{ width: `${business?.reviews.filter((review) => review.stars === 1).length / business?.reviews.length * 100}%` }} className='star1_bar'></div> : <div className='empty_grey_bar'></div>}
                         </div>
                     </div>
-                
+                    <div>
+                        {business && googleMapKeyHelper && loaded && googleMap(business.lat, business.lng, googleMapAPIKey)}
+                    </div>
                 </div>
             </div>
 

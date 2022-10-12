@@ -22,6 +22,8 @@ function BizForm({ business, formType }) {
     const [name, setName] = useState(business?.name || "")
     const [phone, setPhone] = useState(business?.phone || "")
     const [address, setAddress] = useState(business?.address || "")
+    const [lat, setLat] = useState(business?.lat || "");
+    const [lng, setLng] = useState(business?.lng || "");
     const [description, setDescription] = useState(business?.description || "")
     const [price_range, setPrice_range] = useState(business?.price_range || "$")
     const [preview_img, setPreview_img] = useState(business?.preview_img || "")
@@ -33,7 +35,7 @@ function BizForm({ business, formType }) {
 
 
     const { businessId } = useParams()
-
+console.log("business", business)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -49,17 +51,17 @@ function BizForm({ business, formType }) {
             //   city,
             //   state,
             //   country,
-            //   lat,
-            //   lng,
             address,
             phone,
             name,
             description,
             price_range,
             preview_img,
+            lat,
+            lng,
         };
 
-        
+console.log("myBusiness", myBusiness)
 
         if (formType === "Create Business") {
             const newBusiness = await dispatch(createBusiness(myBusiness))
@@ -88,6 +90,8 @@ function BizForm({ business, formType }) {
 
             setName(bizData.name);
             setAddress(bizData.address);
+            setLat(bizData.lat);
+            setLng(bizData.lng);
             setPhone(bizData.phone);
             setDescription(bizData.description);
             setPrice_range(bizData.price_range);
@@ -137,18 +141,14 @@ function BizForm({ business, formType }) {
         // if (!country.length) {
         //   errors.push("Country is required");
         // }
-        // if (!lat) {
-        //   errors.push("Latitude is not valid");
-        // }
-        // if (lat > 90 || lat < -90) {
-        //   errors.push("Latitude must between -90 ~ 90");
-        // }
-        // if (!lng) {
-        //   errors.push("Longitude is not valid");
-        // }
-        // if (lng > 180 || lat < -180) {
-        //   errors.push("Longitude must between -180 ~ 180");
-        // }
+       
+        if (lat > 90 || lat < -90) {
+            errors.push("Latitude must be between -90 ~ 90");
+        }
+       
+        if (lng > 180 || lng < -180) {
+            errors.push("Longitude must be between -180 ~ 180");
+        }
 
         if (preview_img.length > 500) {
             errors.push("Image's url must less than 500 characters");
@@ -164,7 +164,7 @@ function BizForm({ business, formType }) {
 
         setValidationErrors(errors);
 
-    }, [address, name, phone, description, price_range, preview_img]);
+    }, [address, lat, lng, name, phone, description, price_range, preview_img]);
 
 
 
@@ -182,11 +182,11 @@ function BizForm({ business, formType }) {
             method: "POST",
             body: formData,
         });
-        
+
 
         if (res.ok) {
             const data = await res.json();
-           
+
             setPreview_img(data.url);
             setImageLoading(false);
             // history.push("/images");
@@ -265,10 +265,40 @@ function BizForm({ business, formType }) {
                                 />
                             </label>
                         </div>
+                        
+                        <div>
+                            <label className="Phone">* Latitude :
+                                <input className='form_input'
+                                    type='number'
+                                    placeholder="Latitude...(-90 ~ 90)"
+                                    min={-90}
+                                    max={90}
+                                    step={0.000001}
+                                    required
+                                    value={lat}
+                                    onChange={e => setLat(e.target.value)}
+                                />
+                            </label>
+                        </div>
+                        
+                        <div>
+                            <label className="Phone">* Longitude :
+                                <input className='form_input'
+                                    type='number'
+                                    placeholder="Longitude...(-180 ~ 180)"
+                                    min={-180}
+                                    max={180}
+                                    step={0.000001}
+                                    required
+                                    value={lng}
+                                    onChange={e => setLng(e.target.value)}
+                                />
+                            </label>
+                        </div>
 
                         <div className="Phone_div">
                             <label className="Phone">
-                                <div>* Phone Number : (ex: 123-456-7890) </div>
+                                <div>* Phone Number : </div>
                                 <input
                                     className="form_input"
                                     type="text"
@@ -311,33 +341,33 @@ function BizForm({ business, formType }) {
 
                         <div className='Preview_img'>
                             <label  >* Preview Image:   </label>
-                                <div className='file_input'
-                                >
+                            <div className='file_input'
+                            >
                                 <input className='file_input'
                                     type="file"
                                     accept="image/*"
                                     onChange={updateImage}
                                     id='upload_file'
                                 />
-                                </div>
-                                <div className='upload_delete_button_div'>
-                                
-                                    <button className={`upload_button ${image ? 'upload' : ''}`}
-                                        onClick={handleSubmitImage}
-                                        disabled={image === false}
-                                    > <i className="fa-solid fa-cloud-arrow-up"/> Upload</button>
+                            </div>
+                            <div className='upload_delete_button_div'>
 
-                                    <button className={`upload_button ${image ? 'upload' : ''}`}
-                                        onClick={() => {
-                                            setImage(false)
-                                            setPreview_img('')
-                                            document.getElementById('upload_file').value = null;
-                                        }}
-                                        disabled={image === false}
-                                    > <i className="fa-solid fa-trash-can"></i> Delete</button>
-                                </div>
-                                {(imageLoading) && <p className='uploading'>Uploading...</p>}
-                          
+                                <button className={`upload_button ${image ? 'upload' : ''}`}
+                                    onClick={handleSubmitImage}
+                                    disabled={image === false}
+                                > <i className="fa-solid fa-cloud-arrow-up" /> Upload</button>
+
+                                <button className={`upload_button ${image ? 'upload' : ''}`}
+                                    onClick={() => {
+                                        setImage(false)
+                                        setPreview_img('')
+                                        document.getElementById('upload_file').value = null;
+                                    }}
+                                    disabled={image === false}
+                                > <i className="fa-solid fa-trash-can"></i> Delete</button>
+                            </div>
+                            {(imageLoading) && <p className='uploading'>Uploading...</p>}
+
 
                         </div>
 

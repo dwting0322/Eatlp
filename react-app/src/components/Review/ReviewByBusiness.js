@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Modal } from '../../context/Modal';
 
-import { deleteReview, getBusinessAllReview, likeAReview, getOneReviewByReviewId } from '../../store/review'
+import { deleteReview, getBusinessAllReview, likeAReview } from '../../store/review'
 
-
-import EditReviewModal from './EditReviewModal';
 import './Review.css'
 import ReviewForm from './ReviewForm';
 import LoadingPic from '../../Picture/pizzaLoadingPage.gif'

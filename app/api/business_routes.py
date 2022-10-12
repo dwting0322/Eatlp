@@ -88,8 +88,8 @@ def create_new_business():
             # state=form.data['state'],
             # country=form.data['country'],
             # zipcode=form.data['zipcode'],
-            # lat=form.data['lat'],
-            # lng=form.data['lng'],
+            lat=form.data['lat'],
+            lng=form.data['lng'],
         )
         db.session.add(new_business)
         db.session.commit()
@@ -114,26 +114,27 @@ def edit_business(business_id):
 
     if form.validate_on_submit():
         
-        business.phone=form.data['phone']
         business.address=form.data['address']
+        business.phone=form.data['phone']
         business.name=form.data['name']
         business.description=form.data['description']
         business.price_range=form.data['price_range']
         business.preview_img=form.data['preview_img']
-        business.phone=form.data['phone']
-        # business.city=form.data['city'],
-        # business.state=form.data['state'],
-        # business.country=form.data['country'],
-        # business.zipcode=form.data['zipcode'],
-        # business.lat=form.data['lat'],
-        # business.lng=form.data['lng'],
+        # business.phone=form.data['phone']
+        # business.city=form.data['city']
+        # business.state=form.data['state']
+        # business.country=form.data['country']
+        # business.zipcode=form.data['zipcode']
+        business.lat=form.data['lat']
+        business.lng=form.data['lng']
         
       
         db.session.commit()
-
+        print("business.to_dict()", business.to_dict())
         return business.to_dict()
 
     else:
+        print("jsonify(form.errors)", jsonify(form.errors))
         return jsonify(form.errors)
 
 

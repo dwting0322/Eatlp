@@ -13,8 +13,8 @@ class Business(db.Model):
     # state = db.Column(db.String(50), nullable=False)
     # country = db.Column(db.String(50), nullable=False)
     # zipcode = db.Column(db.String(5), nullable=False)
-    # lat = db.Column(db.Float, nullable=False)
-    # lng = db.Column(db.Float, nullable=False)
+    lat = db.Column(db.Float, nullable=False)
+    lng = db.Column(db.Float, nullable=False)
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     price_range = db.Column(db.String(4), nullable=False)
@@ -50,8 +50,8 @@ class Business(db.Model):
             # "state" : self.state,
             # "country" : self.country,
             # "zipcode" : self.zipcode,
-            # "lat" : self.lat,
-            # "lng" : self.lng,
+            "lat" : self.lat,
+            "lng" : self.lng,
             "description" : self.description,
             "price_range" : self.price_range,
             "preview_img" : self.preview_img,
