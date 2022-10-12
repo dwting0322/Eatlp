@@ -3,13 +3,12 @@ import { useEffect } from 'react';
 import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteBusiness, getOneBusiness } from '../../store/business';
-import notFound from '../../Picture/404-error-page-not-found.jpg'
 import './Business.css'
 import ReviewByBusiness from '../Review/ReviewByBusiness';
 import CreateReviewModal from '../Review/CreateReviewModal';
-import EditReviewModal from '../Review/EditReviewModal';
 import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
 import GoogleMapReact from 'google-map-react';
+require('dotenv').config();
 
 
 function BusinessDetail() {
@@ -20,7 +19,7 @@ function BusinessDetail() {
     const [showModal, setShowModal] = useState(false);
     const [loaded, setLoaded] = useState(false);
     const [googleMapAPIKey, setGoogleMapAPIKey] = useState(null);
-    // const [filter, setFliter] = useState([]);
+   
 
     const user = useSelector((state) => state.session.user);
 
@@ -37,28 +36,24 @@ function BusinessDetail() {
     //    console.log("setShowModal***********", setShowModal)
     // console.log("showModal in BusinessDetail***********", showModal)
 
-    const googleMapApi = async (business) => {
-        if (!business) return null;
 
-        try {
-            const response = await fetch(`/GOOGLE_MAP_API_KEY`);
-            console.log("response", response)
-            const data = await response.json();
-            console.log("data", data)
-            setGoogleMapAPIKey(data)
-        }
-        catch (e) {
-            setGoogleMapAPIKey(null)
-            console.log("e", e)
-        }
-        setLoaded(true)
+    const googleMapKeyHelper = async (business) => {
+
+        if (!business) {
+            return <img className='loading_page' src={LoadingPic} alt='loading page' />
+        } 
+
+        const response = await fetch(`/GOOGLE_MAP_API_KEY`);
+        const data = await response.json();
+        setGoogleMapAPIKey(data)
         return
     }
 
 
     function googleMap(lat, lng, googleMapAPIKey) {
-        return (
+          return googleMapAPIKey && (
             <div style={{ height: '40vh', width: '90%' }}>
+             
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: googleMapAPIKey }}
                     defaultCenter={{ lat: lat, lng: lng }}
@@ -68,12 +63,14 @@ function BusinessDetail() {
                 >
                 </GoogleMapReact>
             </div>
-        )
+        ) 
     }
 
 
 
-
+    useEffect(() => {
+        googleMapKeyHelper(business);
+    }, [business]);
 
 
 
@@ -269,7 +266,7 @@ function BusinessDetail() {
                         </div>
                     </div>
                     <div>
-                        {googleMapApi && googleMap(business.lat, business.lng, googleMapAPIKey)}
+                        {business && googleMapKeyHelper && loaded && googleMap(business.lat, business.lng, googleMapAPIKey)}
                     </div>
                 </div>
             </div>

@@ -35,7 +35,7 @@ function BizForm({ business, formType }) {
 
 
     const { businessId } = useParams()
-
+console.log("business", business)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -51,17 +51,17 @@ function BizForm({ business, formType }) {
             //   city,
             //   state,
             //   country,
-            lat,
-            lng,
             address,
             phone,
             name,
             description,
             price_range,
             preview_img,
+            lat,
+            lng,
         };
 
-
+console.log("myBusiness", myBusiness)
 
         if (formType === "Create Business") {
             const newBusiness = await dispatch(createBusiness(myBusiness))
