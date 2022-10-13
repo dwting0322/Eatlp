@@ -10,7 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.business_routes import business_routes
 from .api.review_routes import review_routes
-
+from .api.open_ai_route import open_ai_routes
 
 
 
@@ -38,6 +38,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(business_routes, url_prefix='/api/businesses')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
+app.register_blueprint(open_ai_routes, url_prefix='/api/ai')
 
 db.init_app(app)
 Migrate(app, db)
@@ -83,3 +84,8 @@ def react_root(path):
 @app.route('/GOOGLE_MAP_API_KEY')
 def google_map_api_key():
     return jsonify(app.config['REACT_APP_GOOGLE_MAPS_API_KEY'])
+
+
+@app.route('/open_ai_api_key')
+def open_ai_api_key():
+    return jsonify(app.config['OPENAI_API_KEY'])
