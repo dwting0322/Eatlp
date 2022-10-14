@@ -28,6 +28,7 @@ def call_ai():
             presence_penalty=0
         )
         if response.choices[0].text:
-            response_string = response.choices[0].text.split('.')
-            print(response_string)
+            response_string = response.choices[0].text.split('\n')
+            response_array = response_string[1:]
+            response_string = ''.join(response_array)
             return jsonify(response_string) 
