@@ -130,11 +130,11 @@ def edit_business(business_id):
         
       
         db.session.commit()
-        print("business.to_dict()", business.to_dict())
+        # print("business.to_dict()", business.to_dict())
         return business.to_dict()
 
     else:
-        print("jsonify(form.errors)", jsonify(form.errors))
+        # print("jsonify(form.errors)", jsonify(form.errors))
         return jsonify(form.errors)
 
 
