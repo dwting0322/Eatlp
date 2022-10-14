@@ -30,4 +30,4 @@ def call_ai():
         if response.choices[0].text:
             response_string = response.choices[0].text.split('.')
             print(response_string)
-            return jsonify(response_string)
+            return jsonify(response_string) 
