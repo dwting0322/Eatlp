@@ -5,7 +5,7 @@ import os
 import openai
 from app.forms.open_ai_form import AIForm
 
-ai_routes = Blueprint('ai', __name__)
+open_ai_routes = Blueprint('ai', __name__)
 dotenv.load_dotenv()
 
 openai.api_key = os.environ.get('OPENAI_API_KEY')
@@ -13,8 +13,8 @@ openai.api_key = os.environ.get('OPENAI_API_KEY')
 
 
 
-@ai_routes.route('', methods=['POST'])
-def call_robot():
+@open_ai_routes.route('', methods=['POST'])
+def call_ai():
     form = AIForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -27,4 +27,7 @@ def call_robot():
             frequency_penalty=0,
             presence_penalty=0
         )
-        
+        if response.choices[0].text:
+            response_string = response.choices[0].text.split('.')
+            print(response_string)
+            return jsonify(response_string)
