@@ -39,7 +39,6 @@ def edit_profile(userId):
     gender = editForm.data['gender']
     profile_img = editForm.data['profile_img']
 
-
     userprofile.first_name = first_name
     userprofile.last_name = last_name
     userprofile.bio = bio
