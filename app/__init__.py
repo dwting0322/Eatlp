@@ -11,7 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.business_routes import business_routes
 from .api.review_routes import review_routes
 from .api.open_ai_route import open_ai_routes
-
+from .api.profile_page_route import profile_route
 
 
 from .seeds import seed_commands
@@ -39,6 +39,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(business_routes, url_prefix='/api/businesses')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(open_ai_routes, url_prefix='/api/ai')
+app.register_blueprint(profile_route, url_prefix='/api/profile')
 
 db.init_app(app)
 Migrate(app, db)
