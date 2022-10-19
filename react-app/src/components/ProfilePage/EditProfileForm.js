@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { editUserProfile, loadUserProfile } from '../../store/profile';
-
+import "./ProfilePage.css"
 
 
 function EditProfileForm() {
@@ -23,17 +23,17 @@ function EditProfileForm() {
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    
+
     const redirectBack = (e) => {
         e.preventDefault();
         history.push(`/profile/${userId}`);
     };
 
     useEffect(async () => {
-   
+
         if (userId) {
-           
-            const userProfile = await  dispatch(loadUserProfile(userId))
+
+            const userProfile = await dispatch(loadUserProfile(userId))
             const userProfileData = userProfile.profile
 
             setFirst_name(userProfileData.first_name);
@@ -41,7 +41,7 @@ function EditProfileForm() {
             setBio(userProfileData.bio);
             setGender(userProfileData.gender);
             setProfile_img(userProfileData.profile_img);
-      
+
         }
     }, [dispatch, userId]);
 
@@ -65,7 +65,7 @@ function EditProfileForm() {
             profile_img,
         };
 
-    //    console.log("edittedData", edittedData)
+        //    console.log("edittedData", edittedData)
 
         const edittedProfile = await dispatch(editUserProfile(userId, edittedData)) // updates state.profile.profile
         // console.log("edittedProfile", edittedProfile)
@@ -90,20 +90,20 @@ function EditProfileForm() {
         if (gender?.length > 25) {
             errors.push("Gender can't over 25 characters");
         }
-    
+
         if (
-          !profile_img?.includes("jpg") &&
-          !profile_img?.includes("jpeg") &&
-          !profile_img?.includes("png")
+            !profile_img?.includes("jpg") &&
+            !profile_img?.includes("jpeg") &&
+            !profile_img?.includes("png")
         ) {
-          errors.push("Please provide validate url form jpg, jpeg or png");
+            errors.push("Please provide validate url form jpg, jpeg or png");
         }
-    
+
         setValidationErrors(errors);
-      }, [profile_img, gender, bio, first_name, last_name]);
+    }, [profile_img, gender, bio, first_name, last_name]);
 
 
-      if (!userId) {
+    if (!userId) {
         alert("Please log in before see your current profile!")
         history.push("/login")
     }
@@ -120,82 +120,85 @@ function EditProfileForm() {
                         </li>
                     ))}
                 </ul>
+                <div className='edit_profile_container'>
+                    <div className="profilePreview">
+                        <img className="profilePicEdit" src={profile_img} alt="profile image"
+                            onError={e => { e.currentTarget.src = "https://s3-media0.fl.yelpcdn.com/photo/u_4AtMdPnNBQgn5fWEyTnw/ss.jpg" }}
+                        ></img>
+                        <div className="profilePreviewName">{first_name}</div>
+                        <div className="profilePreviewName">{last_name}</div>
+                        <div className="profilePreviewBio">"{bio}"</div>
+                    </div>
+                    <div className='edit_input_container'>
+                        <div className='edit_title'>Edit Profile</div>
+                        <label>
+                            <span className='firstName'>First Name:</span>
+                            <input className='edit_input'
+                                type="text"
+                                placeholder="First Name"
+                                value={first_name}
+                                onChange={(e) => setFirst_name(e.target.value)}
+                                required
+                                maxlength="25"
+                            />
+                        </label>
 
-                <div className="profilePreview">
-                    <img className="profilePicEdit" src={profile_img} alt="profile image"
-                    onError={e => { e.currentTarget.src = "https://s3-media0.fl.yelpcdn.com/photo/u_4AtMdPnNBQgn5fWEyTnw/ss.jpg" }}
-                    ></img>
-                    <div className="profilePreviewName">{first_name}</div>
-                    <div className="profilePreviewName">{last_name}</div>
-                    <div className="profilePreviewBio">{bio}</div>
+                        <label>
+                            <span className='lastName'>Last Name:</span>
+                            <input className='edit_input'
+                                type="text"
+                                placeholder="Last Name"
+                                value={last_name}
+                                onChange={(e) => setLast_name(e.target.value)}
+                                required
+                                maxlength="25"
+                            />
+                        </label>
+
+                        <label>
+                            <span className='edit_Gender'>Gender:</span>
+                            <input className='edit_input'
+                                type="text"
+                                placeholder="Gender"
+                                value={gender}
+                                onChange={(e) => setGender(e.target.value)}
+                                maxlength="25"
+                            />
+                        </label>
+
+                        <label>
+                            <span className='edit_Bio'>Bio:</span>
+                            <input className='edit_input'
+                                type="text"
+                                placeholder="Bio"
+                                value={bio}
+                                onChange={(e) => setBio(e.target.value)}
+                                maxlength="225"
+                            />
+                        </label>
+
+                        <label>
+                            <span className='edit_Profile_Image'>Profile Image:</span>
+                            <input className='edit_input'
+                                type="text"
+                                placeholder="Profile Image URL"
+                                value={profile_img}
+                                onChange={(e) => setProfile_img(e.target.value)}
+
+                            />
+                        </label>
+
+                        <div className="editProfileButton">
+                            <button className="backButton" onClick={redirectBack}>
+                            <i className="fa-solid fa-power-off"></i>  Cancel
+                            </button>
+                            <button className="editProfileButton" type="submit">
+                            <i className="fa-solid fa-pen-to-square pen"></i> Edit Profile
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
-
-                <label>
-                    <span>* First Name:</span>
-                    <input
-                        type="text"
-                        placeholder="First Name"
-                        value={first_name}
-                        onChange={(e) => setFirst_name(e.target.value)}
-                        required
-                        maxlength="25"
-                    />
-                </label>
-
-                <label>
-                    <span>* Last Name:</span>
-                    <input
-                        type="text"
-                        placeholder="Last Name"
-                        value={last_name}
-                        onChange={(e) => setLast_name(e.target.value)}
-                        required
-                        maxlength="25"
-                    />
-                </label>
-
-                <label>
-                    <span>Gender:</span>
-                    <input
-                        type="text"
-                        placeholder="Gender"
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value)}
-                        maxlength="25"
-                    />
-                </label>
-
-                <label>
-                    <span>Bio:</span>
-                    <input
-                        type="text"
-                        placeholder="Bio"
-                        value={bio}
-                        onChange={(e) => setBio(e.target.value)}
-                        maxlength="225"
-                    />
-                </label>
-
-                <label>
-                    <span>Profile Image:</span>
-                    <input
-                        type="text"
-                        placeholder="Profile Image URL"
-                        value={profile_img}
-                        onChange={(e) => setProfile_img(e.target.value)}
-                 
-                    />
-                </label>
-
-                <div className="editProfileButton">
-                    <button className="backButton" onClick={redirectBack}>
-                        Cancel
-                    </button>
-                    <button className="editProfileButton" type="submit">
-                        Edit Profile
-                    </button>
-                </div>
-
             </form>
 
 

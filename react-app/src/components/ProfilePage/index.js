@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loadUserProfile } from "../../store/profile";
-import "./ProfilePage.css"
 import { getOwnerBusiness } from "../../store/business";
 import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
+import "./ProfilePage.css"
 
 
 
