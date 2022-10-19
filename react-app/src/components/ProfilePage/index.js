@@ -1,85 +1,118 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loadUserProfile } from "../../store/profile";
 import "./ProfilePage.css"
+import { getOwnerBusiness } from "../../store/business";
+import LoadingPic from '../../Picture/pizzaLoadingPage.gif'
+
+
 
 const ProfilePage = () => {
   const history = useHistory();
   let { userId } = useParams();
   userId = Number(userId);
-
   const dispatch = useDispatch();
+  const [isloaded, setIsloaded] = useState(false)
+
   const user = useSelector((state) => state.session.user);
-  // const userBizObj = useSelector((state) => state.businesses);
-  // console.log("userBizObj", userBizObj)
+  const userBizObj = useSelector((state) => state.businesses);
+  let userBiz
+  if (userBizObj) userBiz = Object.values(userBizObj)
+
 
   const profile = useSelector((state) => state.profile.profile);
+
+  const helper = async () => {
+    const userProfile = await dispatch(loadUserProfile(userId));
+    const res = await dispatch(getOwnerBusiness())
+      .then(() => {
+        setIsloaded(true);
+      })
+      
+  };
 
 
 
   useEffect(() => {
-    dispatch(loadUserProfile(userId));
+    // dispatch(loadUserProfile(userId));
+    // dispatch(getOwnerBusiness())
+    // setIsload(true)
+    helper();
   }, [dispatch, userId]);
 
-  return (
+  if (!isloaded) {
+    return <img className='loading_page' src={LoadingPic} alt='loading page' />
+  }
+
+  return isloaded && (
     <div className="Profile_outter_container">
-    <div className="Profile_container">
-      <div>
-        <img className="profilePage_img" src={profile?.profile_img}
-          onError={e => { e.currentTarget.src = "https://s3-media0.fl.yelpcdn.com/photo/u_4AtMdPnNBQgn5fWEyTnw/ss.jpg" }}
-        />
-      </div>
-      <div className="second_container">
-
-        <div className="word_container">
-          <div className="First">
-            First Name:
-          </div>
-          <div className="First">
-            {profile?.first_name}
-          </div>
+      <div className="Profile_container">
+        <div>
+          <img className="profilePage_img" src={profile?.profile_img}
+            onError={e => { e.currentTarget.src = "https://s3-media0.fl.yelpcdn.com/photo/u_4AtMdPnNBQgn5fWEyTnw/ss.jpg" }}
+          />
         </div>
+        <div className="second_container">
 
-        <div className="word_container">
-          <div className="Last">
-            Last Name:
+          <div className="word_container">
+            <div className="First">
+              First Name:
+            </div>
+            <div className="First">
+              {profile?.first_name}
+            </div>
           </div>
-          <div className="Last">
-            {profile?.last_name}
-          </div>
-        </div>
 
-        <div className="word_container">
-          <div className="Gender">
-            Gender:
+          <div className="word_container">
+            <div className="Last">
+              Last Name:
+            </div>
+            <div className="Last">
+              {profile?.last_name}
+            </div>
           </div>
-          {profile?.gender ?
+
+          <div className="word_container">
             <div className="Gender">
-              {profile?.gender}
-            </div> : <div>You have no edit your gender yet</div>}
-        </div>
-
-        <div className="word_container">
-          <div className="Bio">
-            Bio:
+              Gender:
+            </div>
+            {profile?.gender ?
+              <div className="Gender">
+                {profile?.gender}
+              </div> : <div>You have no edit your gender yet</div>}
           </div>
-          {profile?.bio ?
+
+          <div className="word_container">
             <div className="Bio">
-              {profile?.bio}
-            </div> : <div>You have not edit your bio yet</div>}
+              Bio:
+            </div>
+            {profile?.bio ?
+              <div className="Bio">
+                {profile?.bio}
+              </div> : <div>You have not edit your bio yet</div>}
+          </div>
+
         </div>
-      
+
       </div>
-      
+      <hr className="line1"></hr>
+      <div className="business"><i className="fa-solid fa-utensils" /> My Businesses</div>
+
+       <div className="business_img_in_profile_container">
+        {userBiz.map(business => (
+
+          <div key={business.id}>
+            <NavLink to={`/businesses/${business.id}`}>
+              <img className="business_img_in_profile" src={business.preview_img}></img>
+            </NavLink>
+          </div>
+
+        ))}
+      </div>
+
     </div>
-    <hr className="line1"></hr>
-    <div className="business"><i className="fa-solid fa-utensils"/> Businesses</div>
 
-
-
-    </div>
-    
   );
 
 }

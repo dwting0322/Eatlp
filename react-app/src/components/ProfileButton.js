@@ -50,8 +50,11 @@ function ProfileButton({ user, setShowModal }) {
                 </div>
                 <hr></hr>
 
-                <NavLink to={`/profile/${user.id}`} exact={true} activeClassName='active'>
-                    Profile Page
+                <NavLink to={`/profile/${user.id}`} exact={true} activeClassName='active' >
+                    <div className="profile_name_email">
+                        <i className="fa-solid fa-image-portrait"/> Profile
+                    </div>
+
                 </NavLink>
                 
                 <hr></hr>
