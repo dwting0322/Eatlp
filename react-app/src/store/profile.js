@@ -13,10 +13,10 @@ const loadProfile = ( profile) => {
     };
   };
   
-  const editProfile = (userId) => {
+  const editProfile = (profile) => {
     return {
       type: EDIT_USERPROFILE,
-      userId,
+      profile,
     };
   };
 
@@ -24,26 +24,42 @@ const loadProfile = ( profile) => {
 //Thunks:
 export const loadUserProfile = (userId) => async (dispatch) => {
     const res = await fetch(`/api/profile/${userId}`);
+   
     if (res.ok) {
       const data = await res.json();
-       dispatch(loadProfile( data.profile));
-       
-      // return { businesses: data.businesses, profile: data.profile };
+     
+       const profile = dispatch(loadProfile( data.profile));
+  
+      return profile
     }
   };
   
   export const editUserProfile = (userId, profile) => async (dispatch) => {
-    const res = await fetch(`/api/profile/edit/${userId}`, {
+    const response = await fetch(`/api/profile/edit/${userId}`,{
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(profile),
-    });
-    if (res.ok) {
-      const editedUserProfile = await res.json();
-      dispatch(editProfile(editedUserProfile));
-      return editedUserProfile;
+  });
+    // console.log("response in thunk", response)
+    if (response.ok) {
+      const editedUserProfile = await response.json();
+    
+      const test = dispatch(editProfile(editedUserProfile));
+    console.log("test", test)
+      return test;
+
+    } else if (response.status < 500) {
+      const data = await response.json();
+      if (data.errors) {
+        return data;
+      }
+    }  else {
+      
+      return ["An error occurred. Please try again."];
     }
-  };
+    return response;
+    };
+  
   
   //Initial State:
   const initialState = {};
@@ -53,21 +69,17 @@ export const loadUserProfile = (userId) => async (dispatch) => {
     let newState = {};
     switch (action.type) {
       case LOAD_USERPROFILE:{
-        // newState = { ...state };
-        // console.log("action.business", action.business)
-        // newState.business = action.business;
-        // newState.profile = action.profile;
-        // return newState
-  
         newState = { ...state };
-        console.log("action.profile", action.profile)
         newState.profile = action.profile;
         return newState;
-
       }
 
       case EDIT_USERPROFILE:{
-        newState = action.userId;
+        newState = { ...state };
+        console.log("action.profile ",action.profile)
+        // newState = action.userId;
+        newState.profile = action.profile;
+        console.log("newState ",newState)
         return newState
       }
 

@@ -5,7 +5,7 @@
     margin-top: 50px;
 }
 
-.Profile_outter_container{
+.Profile_outter_container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,47 +20,52 @@
 
 }
 
-.second_container{
+.second_container {
     font-size: 18px;
-    width: 300px;
+    width: 500px;
 }
 
-.First{
+.First {
     margin-bottom: 5px;
-    font-family:cursive;
+    font-family: cursive;
     font-weight: bold;
 }
 
-.Last{
+.Last {
     margin-bottom: 5px;
-    font-family:cursive;
+    font-family: cursive;
     font-weight: bold;
 }
 
-.Gender{
+.Gender {
     margin-bottom: 5px;
-    font-family:cursive;
+    font-family: cursive;
     font-weight: bold;
-   
-   
+
+
 }
 
-.Bio{
+.Bio {
+    font-family: cursive;
+    font-weight: bold;
+}
+
+.Bio1 {
     word-break: break-all;
-    font-family:cursive;
+    font-family: cursive;
     font-weight: bold;
- 
+
 }
 
-.word_container{
+.word_container {
     display: flex;
     gap: 1rem;
 }
 
-.line1{
+.line1 {
     width: 1000px;
-   margin-bottom: 10px;
-   
+    margin-bottom: 10px;
+
 }
 
 .fa-utensils {
@@ -68,21 +73,62 @@
     color: gray
 }
 
-.business{
+.business {
     color: gray;
     font-size: 20px;
 }
 
-.business_img_in_profile_container{
+.business_img_in_profile_container {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     width: 1250px;
 }
 
-.business_img_in_profile{
+.business_img_in_profile {
     width: 300px;
     height: 300px;
     object-fit: cover;
     margin-top: 20px;
+}
+
+.no_business {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.profile_create_business {
+    margin-left: 10px;
+    font-family: cursive;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(6, 174, 252);
+    border: thin solid lightgray;
+    background-color: lightcyan;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.profile_create_business:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.Edit_profile {
+    /* margin-bottom: 100px; */
+    margin-left: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: thin solid grey;
+    padding: 5px;
+    font-size: 15px;
+    background-color: lightcyan;
+    color: red;
+}
+
+
+.Edit_profile:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

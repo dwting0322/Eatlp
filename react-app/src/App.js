@@ -18,6 +18,7 @@ import EditReviewForm from './components/Review/EditReviewForm';
 import notFound from './Picture/404-error-page-not-found.jpg'
 import NotFound from './404NotFound/NotFound';
 import ProfilePage from './components/ProfilePage';
+import EditProfileForm from './components/ProfilePage/EditProfileForm';
 
 
 function App() {
@@ -61,9 +62,9 @@ function App() {
           <ProfilePage />
         </ProtectedRoute>
 
-        {/* <ProtectedRoute path="/profile/edit/:userId" exact={true}>
-          <EditProfile />
-        </ProtectedRoute> */}
+        <ProtectedRoute path="/profile/edit/:userId" exact={true}>
+          <EditProfileForm />
+        </ProtectedRoute>
 
 
         <ProtectedRoute path='/users/:userId' exact={true} >
