@@ -92,7 +92,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
             review,
             review_img
         };
-        console.log("myReviewInfo*************", myReviewInfo)
+        // console.log("myReviewInfo*************", myReviewInfo)
 
         if (formType === "Post Review") {
             const newReview = await dispatch(createReview(myReviewInfo))
@@ -205,7 +205,7 @@ console.log("review_img", review_img)
                 <ul className="errors_ul">
                     {hasSubmitted && validationErrors.map(error => (
                         <li className='Review_errorsList' key={error}>
-                            <i className="fa-solid fa-ban"></i> {error}
+                             {error}
                         </li>
                     ))}
                 </ul>
@@ -388,6 +388,7 @@ console.log("review_img", review_img)
                             placeholder="Doesn't look like much when you walk past, but I was practically dying of hunger so I popped in..."
                             value={review}
                             onChange={e => setReview(e.target.value)}
+                            maxlength="225"
                         />
                     </label>
                 </div> 

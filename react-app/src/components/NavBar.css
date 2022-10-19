@@ -177,9 +177,15 @@ margin-top: -10px;
 .profile_name_email{
     padding: 5px;
     border-radius: 5px;
+    color: black;
 }
 
 .profile_name_email:hover{
     background-color: lightgray;
 
+}
+
+.fa-image-portrait{
+  color: black;
+    font-size: 20px;
 }

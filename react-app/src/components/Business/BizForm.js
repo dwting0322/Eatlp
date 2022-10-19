@@ -128,8 +128,8 @@ console.log("myBusiness", myBusiness)
             errors.push("Name can't start a period");
         }
 
-        if (description.length < 5 || description.length > 50) {
-            errors.push("Description must be between 5 and 50 characters");
+        if (description.length < 5 || description.length > 225) {
+            errors.push("Description must be between 5 and 225 characters");
         }
 
         // if (!city.length) {
@@ -246,6 +246,8 @@ console.log("myBusiness", myBusiness)
                                     type="text"
                                     placeholder="Business name..."
                                     required
+                                    autoFocus
+                                    maxlength="25"
                                     value={name}
                                     onChange={e => setName(e.target.value)}
                                 />
@@ -259,7 +261,7 @@ console.log("myBusiness", myBusiness)
                                     type="text"
                                     placeholder="Address..."
                                     required
-                                    autoFocus
+                                    maxlength="50"
                                     value={address}
                                     onChange={e => setAddress(e.target.value)}
                                 />
@@ -317,6 +319,7 @@ console.log("myBusiness", myBusiness)
                                     type="text"
                                     placeholder="Description..."
                                     required
+                                    maxlength="225"
                                     value={description}
                                     onChange={e => setDescription(e.target.value)}
                                 />

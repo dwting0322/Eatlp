@@ -292,14 +292,16 @@ a {
     font-size: 16px;
     margin-bottom: 5px;
     margin-top: 10px;
-
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .address_in_pic {
     font-size: 13px;
     color: rgb(176, 173, 173);
     margin-bottom: 5px;
-
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .address_not_in_pic {

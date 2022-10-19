@@ -120,7 +120,6 @@ def edit_business(business_id):
         business.description=form.data['description']
         business.price_range=form.data['price_range']
         business.preview_img=form.data['preview_img']
-        # business.phone=form.data['phone']
         # business.city=form.data['city']
         # business.state=form.data['state']
         # business.country=form.data['country']

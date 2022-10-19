@@ -174,10 +174,14 @@ const businessReducer = (state = initialState, action) => {
     }
 
     case READ_OWNER_BUSINESS: {
+      if(action.businesses){
         action.businesses.forEach((business) => {
         newState[business.id] = business;
         });
         return newState;
+      }else{
+        return newState;
+        }
     }
     
     case ADD_BUSINESS: {

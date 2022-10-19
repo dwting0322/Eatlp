@@ -55,7 +55,7 @@ function Splash_Page() {
           <img className="splash_image" src={image} />
           <div className='Welcome_words'>Welcome to Eatlp</div>
           <div className='explore'>
-            <NavLink className='explore_link' to="/businesses"><i className="fa-solid fa-magnifying-glass" /> Explore All Restaurant</NavLink>
+            <NavLink className='explore_link' to="/businesses"><i className="fa-solid fa-magnifying-glass" /> Explore All Restaurants</NavLink>
           </div>
           <div className='EatlpLink_div'> <a className='EatlpLink' href="https://github.com/dwting0322/Eatlp"> Eatlp Github </a></div>
           <div className='splah_page_followMe_container'>
