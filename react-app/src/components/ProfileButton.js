@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { logout } from "../store/session";
 import "./NavBar.css";
+import ProfilePage from "./ProfilePage";
+
 
 function ProfileButton({ user, setShowModal }) {
     const dispatch = useDispatch();
     const history = useHistory()
     const [showMenu, setShowMenu] = useState(false);
+    
 
     const openMenu = () => {
         if (showMenu) return;
@@ -45,6 +48,12 @@ function ProfileButton({ user, setShowModal }) {
                     <i className="fa-solid fa-envelope" /> {user.email}
 
                 </div>
+                <hr></hr>
+
+                <NavLink to={`/profile/${user.id}`} exact={true} activeClassName='active'>
+                    Profile Page
+                </NavLink>
+                
                 <hr></hr>
                 <div className="logout_dropdown" onClick={onLogout}>
                 <i className="fa-solid fa-right-from-bracket"/> Log Out

@@ -10,8 +10,10 @@ profile_route = Blueprint('profile', __name__)
 #GET PROFILE
 @profile_route.route('/<int:userId>')
 def profile_page(userId):
-  userprofile = User.query.get(userId)
-  profile = [userprofile.to_dict()]
+  user_profile = User.query.get_or_404(userId)
+ 
+  profile = user_profile.to_dict()
+
   allbusinesses = Business.query.filter(Business.owner_id == userId).all()
   businesses = [business.to_dict() for business in allbusinesses]
   res = {

@@ -5,10 +5,10 @@ const EDIT_USERPROFILE = "userprofile/EDIT_USERPROFILE";
 
 
 //Action Creators:
-const loadProfile = (business, profile) => {
+const loadProfile = ( profile) => {
     return {
       type: LOAD_USERPROFILE,
-      business,
+      // business,
       profile,
     };
   };
@@ -25,10 +25,10 @@ const loadProfile = (business, profile) => {
 export const loadUserProfile = (userId) => async (dispatch) => {
     const res = await fetch(`/api/profile/${userId}`);
     if (res.ok) {
-      const profile = await res.json();
-  
-      dispatch(loadProfile(profile.business, profile.profile));
-      return { businesses: profile.business, profile: profile.profile };
+      const data = await res.json();
+       dispatch(loadProfile( data.profile));
+       
+      // return { businesses: data.businesses, profile: data.profile };
     }
   };
   
@@ -52,14 +52,25 @@ export const loadUserProfile = (userId) => async (dispatch) => {
   const userProfileReducer = (state = initialState, action) => {
     let newState = {};
     switch (action.type) {
-      case LOAD_USERPROFILE:
+      case LOAD_USERPROFILE:{
+        // newState = { ...state };
+        // console.log("action.business", action.business)
+        // newState.business = action.business;
+        // newState.profile = action.profile;
+        // return newState
+  
         newState = { ...state };
-        newState.business = action.business;
+        console.log("action.profile", action.profile)
         newState.profile = action.profile;
-        return { ...newState };
-      case EDIT_USERPROFILE:
+        return newState;
+
+      }
+
+      case EDIT_USERPROFILE:{
         newState = action.userId;
-        return { ...newState };
+        return newState
+      }
+
       default:
         return state;
     }
