@@ -33,11 +33,11 @@ const NavBar = ({ isLoaded }) => {
             <div className='Navbar_test'>
               <div>
                 <NavLink className="Navbar_link_GetAllBiz" to='/businesses' exact={true} activeClassName='active'>
-                  Find All Restaurant
+                All Restaurants
                 </NavLink>
 
                 <NavLink className="Navbar_link_CreateBiz" to='/businesses/new' exact={true} activeClassName='active'>
-                  Create Business
+                  Create Restaurant
                 </NavLink>
               </div>
               <div className='Click_Me'>
