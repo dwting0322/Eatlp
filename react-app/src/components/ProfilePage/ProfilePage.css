@@ -26,19 +26,19 @@
 }
 
 .First{
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-family:cursive;
     font-weight: bold;
 }
 
 .Last{
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-family:cursive;
     font-weight: bold;
 }
 
 .Gender{
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-family:cursive;
     font-weight: bold;
    
@@ -57,7 +57,17 @@
     gap: 1rem;
 }
 
-.line{
+.line1{
     width: 800px;
+   margin-bottom: 10px;
    
+}
+
+.fa-utensils {
+    margin-right: 5px;
+    color: gray
+}
+
+.business{
+    color: gray
 }

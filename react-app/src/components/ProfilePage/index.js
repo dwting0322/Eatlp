@@ -26,7 +26,7 @@ const ProfilePage = () => {
     <div className="Profile_outter_container">
     <div className="Profile_container">
       <div>
-        <img className="profilePage_img" src={profile.profile_img}
+        <img className="profilePage_img" src={profile?.profile_img}
           onError={e => { e.currentTarget.src = "https://s3-media0.fl.yelpcdn.com/photo/u_4AtMdPnNBQgn5fWEyTnw/ss.jpg" }}
         />
       </div>
@@ -37,7 +37,7 @@ const ProfilePage = () => {
             First Name:
           </div>
           <div className="First">
-            {profile.first_name}
+            {profile?.first_name}
           </div>
         </div>
 
@@ -46,7 +46,7 @@ const ProfilePage = () => {
             Last Name:
           </div>
           <div className="Last">
-            {profile.last_name}
+            {profile?.last_name}
           </div>
         </div>
 
@@ -54,9 +54,9 @@ const ProfilePage = () => {
           <div className="Gender">
             Gender:
           </div>
-          {profile.gender ?
+          {profile?.gender ?
             <div className="Gender">
-              {profile.gender}
+              {profile?.gender}
             </div> : <div>You have no edit your gender yet</div>}
         </div>
 
@@ -64,16 +64,20 @@ const ProfilePage = () => {
           <div className="Bio">
             Bio:
           </div>
-          {profile.bio ?
+          {profile?.bio ?
             <div className="Bio">
-              {profile.bio}
+              {profile?.bio}
             </div> : <div>You have not edit your bio yet</div>}
         </div>
       
       </div>
       
     </div>
-    <hr className="line"></hr>
+    <hr className="line1"></hr>
+    <div className="business"><i className="fa-solid fa-utensils"/> Businesses</div>
+
+
+
     </div>
     
   );
