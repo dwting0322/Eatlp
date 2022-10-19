@@ -43,12 +43,12 @@ function ProfileButton({ user, setShowModal }) {
         <>
             <div className="">
                 <div className='profile_name_email'>
-                    <i className="fa-solid fa-user" /> Hi, {profile.first_name}
+                    <i className="fa-solid fa-user" /> Hi, {profile? profile.first_name : user.first_name}
 
                 </div >
                 <hr></hr>
                 <div className='profile_name_email'>
-                    <i className="fa-solid fa-envelope" /> {profile.email}
+                    <i className="fa-solid fa-envelope" /> {profile? profile.email : user.email}
 
                 </div>
                 <hr></hr>
