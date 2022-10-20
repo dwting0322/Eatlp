@@ -52,7 +52,7 @@ function BusinessDetail() {
 
     function googleMap(lat, lng, googleMapAPIKey) {
         return googleMapAPIKey && (
-            <div style={{ height: '40vh', width: '90%' }}>
+            <div style={{ height: '50vh', width: '100%' }}>
 
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: googleMapAPIKey }}
