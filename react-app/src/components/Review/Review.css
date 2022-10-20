@@ -47,10 +47,10 @@
 }
 
 .review_by_biz_contanier {
-    margin-left: 20px;
-    width: 500px;
+    /* margin-left: -30px; */
+    width: 530px;
     padding-top: 20px;
-    padding-left: 20px;
+    /* padding-left: 20px; */
 }
 
 .no_review_words {
@@ -67,9 +67,9 @@
 }
 
 .line {
-    width: 490px;
-    margin-bottom: 20px;
-    margin-left: 40px;
+    width: 530px;
+    /* margin-bottom: 20px;
+    margin-left: 40px; */
     margin-top: 20px;
 }
 
@@ -83,8 +83,8 @@
 
 .Recommended {
     margin-left: 40px;
-    padding-top: 50px;
-    margin-left: -135px;
+    padding-top: 60px;
+    margin-left: -230px;
 }
 
 .business_name_review {

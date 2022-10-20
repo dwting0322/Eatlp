@@ -595,7 +595,7 @@ a {
 
 .grey {
     background-color: lightgrey;
-    width: 70%;
+    width: 100%;
     border-radius: 10px;
 }
 
@@ -609,13 +609,14 @@ a {
 
 .Overall_rating{
     margin-bottom: 15px;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     font-size: 25px;
     color: #7611ee;
 }
 
 .avg_rating_star_and_word{
    font-size: 30px;
+   margin-left: -3px;
 }
 
 .total_avg_review{
