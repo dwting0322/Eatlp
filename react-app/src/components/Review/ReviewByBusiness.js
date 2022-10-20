@@ -112,35 +112,15 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
                             onError={e => { e.currentTarget.src = "https://s3-media0.fl.yelpcdn.com/photo/u_4AtMdPnNBQgn5fWEyTnw/ss.jpg" }}
                         />
                         <div className='profile_name_review'>{review?.user?.first_name}</div>
-                    </div>
-                    <div>
-
-                        {review?.stars === 1 && (<i className="fa-solid fa-star star-icon" />)}
-                        {review?.stars === 2 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
-                        {review?.stars === 3 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
-                        {review?.stars === 4 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
-                        {review?.stars === 5 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
-                        {/* {review?.stars}  */}
-
-                    </div>
-                    <div className='Review_date'> {new Date(review.created_at).toLocaleDateString()} </div>
-                    <div className="ReviewForm_review" > {review?.review} </div>
-                    {review?.review_img ? <img className="ReviewForm_reviewImg" src={review?.review_img}/> : null } 
-                    {user?.id === review?.user_id && (
-                        <div>
+                        {user?.id === review?.user_id && (
+                        <div className='edit_and_delete_reviewByBiz'>
                             {/* <NavLink className="edit_link_review" to={`/reviews/${review.id}/edit`}><i className="fa-solid fa-pen-to-square"></i> Edit</NavLink> */}
                             <span className='edit_review_modal' onClick={(e) => {
-                                // setReview(review)
-                                // e.stopPropagation();
-
                                 setReviewId(review.id)
                                 setShowModal(true)
                             }}>
                                 <i className="fa-solid fa-pen-to-square" />
-
-                                {/* <EditReviewModal reviewId={reviewId} showModal={showModal} setShowModal={setShowModal} businessId={businessId} onHide={onHide} /> */}
-
-                                Edit
+                                
                             </span>
 
                             {showModal && (<Modal onClose={() => setShowModal(false)}>
@@ -160,11 +140,28 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
                             <button className='delete_review' onClick={() => {
                                 dispatch(deleteReview(review.id))
                                 alert("I have successfully eaten the message for you!!!")
-                            }}> <i className="fa-solid fa-trash-can" /> Delete</button>
+                            }}> <i className="fa-solid fa-trash-can" /> </button>
 
                         </div>
 
                     )}
+                        
+                    </div>
+                    <div>
+
+                        {review?.stars === 1 && (<i className="fa-solid fa-star star-icon" />)}
+                        {review?.stars === 2 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
+                        {review?.stars === 3 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
+                        {review?.stars === 4 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
+                        {review?.stars === 5 && (<><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /><i className="fa-solid fa-star star-icon" /></>)}
+                        {/* {review?.stars}  */}
+
+                    </div>
+                    <div className='Review_date'> {new Date(review.created_at).toLocaleDateString()} </div>
+                    <div className="ReviewForm_review" > {review?.review} </div>
+                    {review?.review_img ? <img className="ReviewForm_reviewImg" src={review?.review_img}/> : null } 
+                    
+       
 
                     <div>
                         {user && ( review?.likes?.filter((id) => id === user?.id).length ? (

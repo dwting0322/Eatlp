@@ -142,8 +142,8 @@
 }
 
 .ReviewForm_reviewImg{
-    width: 480px;
-    height: 300px;
+    width: 530px;
+    height: 350px;
     margin-left: 0;
 }
 
@@ -298,6 +298,12 @@
     font-size: 17px;
     color: blue;
     margin-right: 5px;
+}
+
+.edit_and_delete_reviewByBiz{
+    display: flex;
+    align-items: center;
+    margin-left: 370px;
 }
 
 .edit_review_modal:hover {
