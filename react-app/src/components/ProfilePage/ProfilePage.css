@@ -54,13 +54,14 @@
     word-break: break-all;
     font-family: cursive;
     font-weight: bold;
-
+    overflow-y: auto;
+    max-height: 100px;
 }
 
 .word_container {
     display: flex;
     gap: 1rem;
-    width: 600px
+
 }
 
 .line1 {
@@ -77,6 +78,7 @@
 .business {
     color: gray;
     font-size: 20px;
+    margin-bottom: 15px;
 }
 
 .business_img_in_profile_container {
@@ -90,7 +92,7 @@
     width: 300px;
     height: 300px;
     object-fit: cover;
-    margin-top: 20px;
+  
 }
 
 .no_business {
