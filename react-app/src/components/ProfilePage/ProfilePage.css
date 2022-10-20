@@ -85,7 +85,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    width: 1250px;
+    width: 1250px; 
 }
 
 .business_img_in_profile {
