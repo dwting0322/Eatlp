@@ -188,7 +188,7 @@ console.log("myBusiness", myBusiness)
         // some sort of loading message is a good idea
         setImageLoading(true);
 
-        const res = await fetch('/api/reviews/upload', {
+        const res = await fetch('/api/businesses/upload', {
             method: "POST",
             body: formData,
         });
