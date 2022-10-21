@@ -35,6 +35,8 @@
     font-size: 20px;
     margin-left: 10px;
     margin-top: 10px;
+    width: 400px;
+    overflow-wrap: break-word;
 }
 
 .Stars {
@@ -303,7 +305,9 @@
 .edit_and_delete_reviewByBiz{
     display: flex;
     align-items: center;
-    margin-left: 370px;
+    margin-left: 485px;
+    position: absolute;
+    margin-top: 9px;
 }
 
 .edit_review_modal:hover {

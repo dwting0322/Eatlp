@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import hotpot from '../Picture/hotpot.jpg'
 import SplashPic1 from '../Picture/SplashPic1.jpg';
 import SplashPic2 from '../Picture/SplashPic2.jpg';
 import SplashPic3 from '../Picture/SplashPic3.jpg';
@@ -9,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 
 function Splash_Page() {
 
-  const listImage = [SplashPic1, SplashPic2, SplashPic3];
+  const listImage = [hotpot, SplashPic1, SplashPic2, SplashPic3];
   const [image, setImage] = useState(listImage[0]);
   const [second, setSeconds] = useState(0);
   const [loaded, setLoaded] = useState(false);
