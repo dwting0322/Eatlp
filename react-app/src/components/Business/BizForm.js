@@ -194,7 +194,7 @@ console.log("myBusiness", myBusiness)
             body: formData,
         });
 
-        console.log("res.body", res.body)
+        console.log("res", res)
 
         if (res.ok) {
             const data = await res.json();
