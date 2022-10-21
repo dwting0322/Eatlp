@@ -43,7 +43,7 @@ const NavBar = ({ isLoaded }) => {
               </div>
               <div className='Click_Me'>
                 {/* <i className="fa-solid fa-list"/> <i className="fas fa-user-circle"/> */}
-                <img className='profile_image' src={profile.profile_img} />
+                <img className='profile_image' src={profile? profile?.profile_img : sessionUser.profile_img} />
                 <div className='login_already'>
                   <ProfileButton user={sessionUser} setShowModal={setShowModal} showModal={showModal} />
                 </div>
