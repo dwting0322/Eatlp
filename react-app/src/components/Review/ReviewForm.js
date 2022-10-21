@@ -141,13 +141,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
         if (review.length > 255 || review.length < 10) {
             errors.push("Review number of characters must be from 10 to 255");
         }
-        // if (review_img?.type !== "image/jpeg" &&
-        //     review_img?.type !== "image/jpg" &&
-        //     review_img?.type !== "image/png" &&
-        //     review_img?.type !== "image/gif") {
-
-        //     errors.push( "Only jpeg, jpg, png, or gif files will be accepted as preview image.")
-        // }
+        
 
         setValidationErrors(errors);
 
@@ -182,7 +176,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
             setImageLoading(false);
             // a real app would probably use more advanced
             // error handling
-            alert("Only jpeg, jpg, png, or gif files will be accepted as preview image.");
+            alert("An error occurred while uploading the image.");
 
         }
     }
