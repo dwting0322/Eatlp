@@ -183,8 +183,7 @@ console.log("myBusiness", myBusiness)
         e.preventDefault();
         const formData = new FormData();
         formData.append("image", image);
-        console.log("formData", formData)
-        console.log("image", image)
+
         // aws uploads can be a bit slow—displaying
         // some sort of loading message is a good idea
         setImageLoading(true);
@@ -193,9 +192,7 @@ console.log("myBusiness", myBusiness)
             method: "POST",
             body: formData,
         });
-
-        console.log("res", res)
-
+   
         if (res.ok) {
             const data = await res.json();
 
