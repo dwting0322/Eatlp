@@ -179,7 +179,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
 
         }
     }
-console.log("review_img", review_img)
+
     const updateImage = (e) => {
         const file = e.target.files[0];
         setImage(file);

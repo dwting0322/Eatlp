@@ -353,11 +353,12 @@
     cursor: pointer;
     margin-top: 5px;
     transition: all 0.2s;
-
+    /* animation: 2s bounce ; */
 }
 
 
-.dislike:active {
+.like:active {
+  
     transform: rotate(-45deg) scale(3);
     -webkit-transform: rotate(-45deg) scale(3);
     -ms-transform: rotate(45deg) scale(3);

@@ -157,9 +157,10 @@ console.log("myBusiness", myBusiness)
         if (
             !preview_img?.includes("jpg") &&
             !preview_img?.includes("jpeg") &&
-            !preview_img?.includes("png")
+            !preview_img?.includes("png") &&
+            !preview_img?.includes("gif") 
         ) {
-            errors.push("Please use jpg, jpeg or png");
+            errors.push("Please use jpg, gif, jpeg or png");
         }
 
         setValidationErrors(errors);

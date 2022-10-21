@@ -165,13 +165,13 @@ function ReviewByBusiness({ showModal, setShowModal, businessId }) {
 
                     <div>
                         {user && ( review?.likes?.filter((id) => id === user?.id).length ? (
-                            (<i className="fa-solid fa-thumbs-up like"
+                            (<i className="fa-solid fa-thumbs-up dislike"
                                 onClick={() => {
                                     likeReview(review);
                                 }}
                             />)
                         ) : (
-                            <i className="fa-regular fa-thumbs-up dislike"
+                            <i className="fa-regular fa-thumbs-up like"
 
                                 onClick={() => {
                                     likeReview(review);
