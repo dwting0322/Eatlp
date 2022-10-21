@@ -145,6 +145,7 @@
     width: 530px;
     height: 350px;
     margin-left: 0;
+    object-fit: cover;
 }
 
 #upload_file {

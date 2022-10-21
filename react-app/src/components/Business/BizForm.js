@@ -154,6 +154,15 @@ console.log("myBusiness", myBusiness)
             errors.push("Image's url must less than 500 characters");
         }
 
+        // if (preview_img?.type !== "image/jpeg" &&
+        //     preview_img?.type !== "image/jpg" &&
+        //     preview_img?.type !== "image/png" &&
+        //     preview_img?.type !== "image/gif") {
+
+        //     errors.push( "Only jpeg, jpg, png, or gif files will be accepted as preview image.")
+        // }
+
+
         if (
             !preview_img?.includes("jpg") &&
             !preview_img?.includes("jpeg") &&
@@ -196,7 +205,7 @@ console.log("myBusiness", myBusiness)
             setImageLoading(false);
             // a real app would probably use more advanced
             // error handling
-            alert("An error occurred while uploading the image.");
+            alert("Only jpeg, jpg, png, or gif files will be accepted as preview image.");
 
         }
     }
