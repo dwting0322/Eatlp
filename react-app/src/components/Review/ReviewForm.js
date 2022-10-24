@@ -166,7 +166,7 @@ function ReviewForm({ myReview, formType, showModal, setShowModal, businessId, r
 
         if (res.ok) {
             const data = await res.json();
-            console.log("data.url", data.url)
+            // console.log("data.url", data.url)
             setReview_img(data.url);
             setImageLoading(false);
             // history.push("/images");

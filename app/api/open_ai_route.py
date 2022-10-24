@@ -30,5 +30,5 @@ def call_ai():
         if response.choices[0].text:
             content = response.choices[0].text.split('\n')
             content_list = content[1:]
-            content_string = ''.join(content_list)
+            content_string = '\n'.join(content_list)
             return jsonify(content_string) 
