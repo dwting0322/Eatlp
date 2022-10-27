@@ -22,10 +22,12 @@ const NavBar = ({ isLoaded }) => {
         <div>
           <NavLink className="Eatlp_link" to='/' exact={true} activeClassName='active'>
             Eatlp
-        <img className="Logo_image" src={EatlpLogo1} />
+            <img className="Logo_image" src={EatlpLogo1} />
           </NavLink>
         </div>
       </div >
+
+      
 
       <div className='Login_SignUp_Container'>
 
@@ -34,7 +36,7 @@ const NavBar = ({ isLoaded }) => {
             <div className='Navbar_test'>
               <div>
                 <NavLink className="Navbar_link_GetAllBiz" to='/businesses' exact={true} activeClassName='active'>
-                All Restaurants
+                  All Restaurants
                 </NavLink>
 
                 <NavLink className="Navbar_link_CreateBiz" to='/businesses/new' exact={true} activeClassName='active'>
@@ -43,7 +45,7 @@ const NavBar = ({ isLoaded }) => {
               </div>
               <div className='Click_Me'>
                 {/* <i className="fa-solid fa-list"/> <i className="fas fa-user-circle"/> */}
-                <img className='profile_image' src={profile? profile?.profile_img : sessionUser.profile_img} />
+                <img className='profile_image' src={profile ? profile?.profile_img : sessionUser.profile_img} />
                 <div className='login_already'>
                   <ProfileButton user={sessionUser} setShowModal={setShowModal} showModal={showModal} />
                 </div>
